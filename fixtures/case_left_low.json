@@ -1,0 +1,14 @@
+{
+  "subject": {
+    "id": "case-left-low-001",
+    "name": "左低场景"
+  },
+  "measurements": {
+    "liver": {"left": 35.0, "right": 36.1},
+    "spleen": {"left": 35.1, "right": 35.9},
+    "kidney": {"left": 35.0, "right": 35.8},
+    "stomach": {"left": 35.1, "right": 36.0},
+    "gallbladder": {"left": 35.0, "right": 35.9},
+    "bladder": {"left": 35.2, "right": 35.9}
+  }
+}

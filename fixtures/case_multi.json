@@ -1,0 +1,14 @@
+{
+  "subject": {
+    "id": "case-multi-001",
+    "name": "多失衡场景"
+  },
+  "measurements": {
+    "liver": {"left": 35.0, "right": 35.8},
+    "spleen": {"left": 35.1, "right": 35.7},
+    "kidney": {"left": 35.0, "right": 35.8},
+    "stomach": {"left": 36.2, "right": 35.0},
+    "gallbladder": {"left": 35.0, "right": 35.9},
+    "bladder": {"left": 36.0, "right": 35.1}
+  }
+}

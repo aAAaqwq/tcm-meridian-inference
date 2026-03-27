@@ -1,0 +1,14 @@
+{
+  "subject": {
+    "id": "case-cross-001",
+    "name": "交叉场景"
+  },
+  "measurements": {
+    "liver": {"left": 35.0, "right": 36.2},
+    "spleen": {"left": 36.2, "right": 35.0},
+    "kidney": {"left": 36.1, "right": 35.0},
+    "stomach": {"left": 35.0, "right": 36.0},
+    "gallbladder": {"left": 36.0, "right": 35.0},
+    "bladder": {"left": 35.0, "right": 36.1}
+  }
+}
