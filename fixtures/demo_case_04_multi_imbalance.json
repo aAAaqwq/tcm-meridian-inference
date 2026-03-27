@@ -1,0 +1,16 @@
+{
+  "subject": {"id": "demo-multi-imbalance-001", "name": "多经络波动型"},
+  "context": {
+    "intervalMinutes": 25,
+    "operator": "store-demo",
+    "scene": "作息紊乱、压力偏大，演示多经络联动失衡型"
+  },
+  "measurements": {
+    "liver": {"left": 35.0, "right": 35.8, "trendDelta": -0.8},
+    "spleen": {"left": 35.1, "right": 35.7, "trendDelta": -0.7},
+    "kidney": {"left": 35.0, "right": 35.8, "trendDelta": -0.9},
+    "stomach": {"left": 36.2, "right": 35.0, "trendDelta": -0.8},
+    "gallbladder": {"left": 35.0, "right": 35.9, "trendDelta": -0.7},
+    "bladder": {"left": 36.0, "right": 35.1, "trendDelta": -0.8}
+  }
+}

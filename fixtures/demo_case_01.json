@@ -1,0 +1,19 @@
+{
+  "subject": {
+    "id": "demo-left-low-001",
+    "name": "久坐加班型"
+  },
+  "context": {
+    "intervalMinutes": 20,
+    "operator": "store-demo",
+    "scene": "连续加班、睡眠不足，演示左侧偏低型"
+  },
+  "measurements": {
+    "liver": {"left": 35.0, "right": 36.1, "trendDelta": -0.2},
+    "spleen": {"left": 35.1, "right": 35.8, "trendDelta": -0.1},
+    "kidney": {"left": 35.0, "right": 35.9, "trendDelta": -0.7},
+    "stomach": {"left": 35.2, "right": 35.9, "trendDelta": -0.2},
+    "gallbladder": {"left": 35.1, "right": 36.0, "trendDelta": -0.1},
+    "bladder": {"left": 36.0, "right": 35.2, "trendDelta": -0.5}
+  }
+}

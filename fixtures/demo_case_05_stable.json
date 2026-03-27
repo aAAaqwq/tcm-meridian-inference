@@ -1,0 +1,16 @@
+{
+  "subject": {"id": "demo-stable-001", "name": "相对平稳型"},
+  "context": {
+    "intervalMinutes": 20,
+    "operator": "store-demo",
+    "scene": "近期状态稳定，演示相对平稳型"
+  },
+  "measurements": {
+    "liver": {"left": 35.8, "right": 35.9, "trendDelta": 0.0},
+    "spleen": {"left": 35.9, "right": 35.8, "trendDelta": 0.0},
+    "kidney": {"left": 35.8, "right": 35.8, "trendDelta": 0.0},
+    "stomach": {"left": 36.0, "right": 35.9, "trendDelta": 0.0},
+    "gallbladder": {"left": 35.9, "right": 35.8, "trendDelta": 0.0},
+    "bladder": {"left": 35.8, "right": 35.9, "trendDelta": 0.0}
+  }
+}
