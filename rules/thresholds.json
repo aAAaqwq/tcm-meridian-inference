@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "notes": "Default thresholds for foot-six-meridian temperature-style measurements. Tune per device/store calibration.",
+  "temperature": {
+    "normalMin": 35.6,
+    "normalMax": 36.6,
+    "lowMin": 35.3,
+    "highMax": 36.9,
+    "leftRightDiffWarn": 0.6,
+    "trendDeltaWarnAbs": 0.4
+  },
+  "scoring": {
+    "base": 100,
+    "penalty": {
+      "low": 18,
+      "high": 10,
+      "diff": 12,
+      "trend": 8
+    },
+    "floor": 0,
+    "ceiling": 100
+  }
+}

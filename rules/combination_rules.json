@@ -1,0 +1,18 @@
+{
+  "version": "0.1.0",
+  "description": "Combination/aggregation rules across meridians.",
+  "rules": [
+    {
+      "id": "multi_imbalance",
+      "when": {
+        "minMeridiansWithAnyTag": {
+          "tags": ["left_low", "right_low", "lr_diff"],
+          "count": 3
+        }
+      },
+      "addTags": ["multi_imbalance"],
+      "summaryAppend": "（多经络失衡倾向）",
+      "adviceAppend": ["出现多条经络异常信号，建议先做生活方式调整并周期复测"]
+    }
+  ]
+}

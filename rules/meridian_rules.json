@@ -1,0 +1,61 @@
+{
+  "version": "0.1.0",
+  "description": "Per-meridian rules. These rules are intentionally simple for MVP; refine with the expert rule library later.",
+  "rules": [
+    {
+      "id": "left_low",
+      "meridian": "*",
+      "tag": "left_low",
+      "penaltyKey": "low",
+      "conditions": [
+        {"field": "left", "op": "<", "valueFrom": "thresholds.temperature.lowMin"}
+      ],
+      "summary": "左侧偏低",
+      "advice": ["建议补充休息与保暖，关注左侧差异是否持续"]
+    },
+    {
+      "id": "right_low",
+      "meridian": "*",
+      "tag": "right_low",
+      "penaltyKey": "low",
+      "conditions": [
+        {"field": "right", "op": "<", "valueFrom": "thresholds.temperature.lowMin"}
+      ],
+      "summary": "右侧偏低",
+      "advice": ["建议注意睡眠与作息，必要时复测确认趋势"]
+    },
+    {
+      "id": "high_warn",
+      "meridian": "*",
+      "tag": "high_warn",
+      "penaltyKey": "high",
+      "conditions": [
+        {"field": "avg", "op": ">", "valueFrom": "thresholds.temperature.highMax"}
+      ],
+      "summary": "偏高(提示)",
+      "advice": ["建议先排除环境/运动影响，必要时间隔复测"]
+    },
+    {
+      "id": "lr_diff",
+      "meridian": "*",
+      "tag": "lr_diff",
+      "penaltyKey": "diff",
+      "conditions": [
+        {"field": "diffAbs", "op": ">", "valueFrom": "thresholds.temperature.leftRightDiffWarn"}
+      ],
+      "summary": "左右差异偏大",
+      "advice": ["左右差异较明显，建议复测并结合近期状态观察"]
+    },
+    {
+      "id": "trend_warn",
+      "meridian": "*",
+      "tag": "trend_warn",
+      "penaltyKey": "trend",
+      "conditions": [
+        {"field": "trendAbs", "op": ">", "valueFrom": "thresholds.temperature.trendDeltaWarnAbs"}
+      ],
+      "summary": "趋势变化明显",
+      "advice": ["趋势波动明显，建议以 2-3 次复测结果作为判断依据"]
+    }
+  ]
+}
