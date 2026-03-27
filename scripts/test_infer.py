@@ -65,6 +65,34 @@ def test_c4_bladder_cross_symptoms() -> None:
     assert _contains_any(bladder["symptoms"], ["肠道息肉", "子宫", "肩颈腰"]), bladder["symptoms"]
 
 
+def _combo_names(data: dict) -> list[str]:
+    return [c.get("name", "") for c in data.get("combinations", [])]
+
+
+def test_c5_combo_liver_gallbladder_transaminase() -> None:
+    data = run_case("fixtures/case_left_low.json")
+    names = _combo_names(data)
+    assert any("转氨酶" in n for n in names), names
+
+
+def test_c5_combo_kidney_bladder_opposite_low_cervical() -> None:
+    data = run_case("fixtures/case_cross.json")
+    names = _combo_names(data)
+    assert any("颈椎" in n for n in names), names
+
+
+def test_c5_combo_kidney_bladder_same_side_low_lumbar() -> None:
+    data = run_case("fixtures/case_right_low.json")
+    names = _combo_names(data)
+    assert any("腰椎" in n for n in names), names
+
+
+def test_c5_combo_right_side_four_plus_heart_supply() -> None:
+    data = run_case("fixtures/case_right_low.json")
+    names = _combo_names(data)
+    assert any("心脏供血" in n for n in names), names
+
+
 if __name__ == "__main__":
     tests = [
         test_c3_left_low_case_contract,
@@ -73,6 +101,10 @@ if __name__ == "__main__":
         test_c4_kidney_left_low_symptoms,
         test_c4_gallbladder_left_low_symptoms,
         test_c4_bladder_cross_symptoms,
+        test_c5_combo_liver_gallbladder_transaminase,
+        test_c5_combo_kidney_bladder_opposite_low_cervical,
+        test_c5_combo_kidney_bladder_same_side_low_lumbar,
+        test_c5_combo_right_side_four_plus_heart_supply,
     ]
     for test in tests:
         test()
