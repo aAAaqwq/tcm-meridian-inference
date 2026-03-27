@@ -93,6 +93,26 @@ def test_c5_combo_right_side_four_plus_heart_supply() -> None:
     assert any("心脏供血" in n for n in names), names
 
 
+def test_c6_all_demo_cases_output_and_focusheadline() -> None:
+    cases = {
+        "fixtures/case_left_low.json": ["左侧偏低"],
+        "fixtures/case_right_low.json": ["右侧偏低"],
+        "fixtures/case_cross.json": ["交叉"],
+        "fixtures/case_multi.json": ["多经络"],
+        "fixtures/case_stable.json": ["整体相对平稳"],
+    }
+
+    for path, expected_any in cases.items():
+        data = run_case(path)
+        # required structure
+        for k in ["healthScore", "meridians", "summary", "storefront"]:
+            assert k in data, (path, k)
+        sf = data["storefront"]
+        assert isinstance(sf.get("talkTrack"), list) and len(sf["talkTrack"]) == 3, (path, sf)
+        focus = sf.get("focusHeadline", "")
+        assert any(x in focus for x in expected_any), (path, focus, expected_any)
+
+
 if __name__ == "__main__":
     tests = [
         test_c3_left_low_case_contract,
@@ -105,6 +125,7 @@ if __name__ == "__main__":
         test_c5_combo_kidney_bladder_opposite_low_cervical,
         test_c5_combo_kidney_bladder_same_side_low_lumbar,
         test_c5_combo_right_side_four_plus_heart_supply,
+        test_c6_all_demo_cases_output_and_focusheadline,
     ]
     for test in tests:
         test()

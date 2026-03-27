@@ -237,21 +237,49 @@ def infer(payload: dict, thresholds: dict, meridian_rules: dict, combo_rules: di
     } for m in MERIDIANS}
     six_dimension_scores = [{"meridian": m, "score": scores_map[m], "tags": per_meridian[m]["tags"]} for m in MERIDIANS]
 
+    # Determine scenario label for storefront headline (c6 acceptance)
+    left_cnt = sum(1 for m in MERIDIANS if per_meridian[m]["status"] == "left_low")
+    right_cnt = sum(1 for m in MERIDIANS if per_meridian[m]["status"] == "right_low")
+    combo_names = [c.get("name", "") for c in combinations if c.get("name")]
+
     if not risk_tags:
+        scenario = "stable"
+    elif left_cnt >= 4 and right_cnt == 0:
+        scenario = "left"
+    elif right_cnt >= 4 and left_cnt == 0:
+        scenario = "right"
+    elif len(combinations) >= 2:
+        scenario = "multi"
+    else:
+        scenario = "cross"
+
+    if scenario == "stable":
         report_summary = "整体相对平稳，本次结果更适合做状态追踪，不等同于医疗诊断。"
         focus = "整体相对平稳"
         talk_track = [
             "本次六经整体比较平稳，更像状态跟踪结果。",
             "这不等同于医疗诊断，主要用于看趋势和左右差异。",
-            "建议保持作息，按周期复测即可。"
+            "建议保持作息，按周期复测即可。",
         ]
     else:
         report_summary = "；".join(summaries[:8])
-        focus = "需要重点关注：" + ", ".join(risk_tags[:5])
+        if scenario == "left":
+            focus = "左侧偏低"
+        elif scenario == "right":
+            focus = "右侧偏低"
+        elif scenario == "multi":
+            focus = "多经络失衡"
+        else:
+            focus = "左右交叉/不对称"
+
+        # Append up to 2 key combination names for clarity
+        if combo_names:
+            focus = focus + "：重点关注 " + "、".join(combo_names[:2])
+
         talk_track = [
             "这次主要看到的是经络侧的偏低/交叉信号，不等同于医疗诊断。",
             "更适合把它理解为体感、作息和左右差异的提示。",
-            "建议结合近期状态，按 20-30 分钟间隔复测 2-3 次看趋势。"
+            "建议结合近期状态，按 20-30 分钟间隔复测 2-3 次看趋势。",
         ]
 
     storefront = {
@@ -311,7 +339,11 @@ def main() -> int:
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(text + "\n", encoding="utf-8")
     else:
-        print(text)
+        try:
+            print(text)
+        except BrokenPipeError:
+            # Allow piping to tools that may close early (e.g., head/grep)
+            return 0
     return 0
 
 
