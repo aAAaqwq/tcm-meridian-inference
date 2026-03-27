@@ -113,6 +113,27 @@ def test_c6_all_demo_cases_output_and_focusheadline() -> None:
         assert any(x in focus for x in expected_any), (path, focus, expected_any)
 
 
+def test_c7_storefront_explanation_and_stable_tone() -> None:
+    left = run_case("fixtures/case_left_low.json")
+    left_sf = left["storefront"]
+    assert any(x in left_sf.get("clientExplanation", "") for x in ["不等同", "非诊断"]), left_sf
+    assert isinstance(left_sf.get("talkTrack"), list) and len(left_sf["talkTrack"]) == 3, left_sf
+
+    stable = run_case("fixtures/case_stable.json")
+    stable_sf = stable["storefront"]
+    assert any(x in stable_sf.get("clientExplanation", "") for x in ["不等同", "非诊断"]), stable_sf
+    assert isinstance(stable_sf.get("talkTrack"), list) and len(stable_sf["talkTrack"]) == 3, stable_sf
+
+    stable_blob = " ".join([
+        stable_sf.get("focusHeadline", ""),
+        stable_sf.get("clientExplanation", ""),
+        *stable_sf.get("talkTrack", []),
+        stable_sf.get("retestPrompt", ""),
+    ])
+    for bad in ["预警", "严重"]:
+        assert bad not in stable_blob, stable_blob
+
+
 if __name__ == "__main__":
     tests = [
         test_c3_left_low_case_contract,
@@ -126,6 +147,7 @@ if __name__ == "__main__":
         test_c5_combo_kidney_bladder_same_side_low_lumbar,
         test_c5_combo_right_side_four_plus_heart_supply,
         test_c6_all_demo_cases_output_and_focusheadline,
+        test_c7_storefront_explanation_and_stable_tone,
     ]
     for test in tests:
         test()
