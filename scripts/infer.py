@@ -175,8 +175,14 @@ def infer(payload: dict, thresholds: dict, meridian_rules: dict, combo_rules: di
         symptoms_here = list(dict.fromkeys(symptoms_here))
         meridian_statuses[m] = statuses_here
 
-        # primary status preference: cross > left_low > right_low > stable
-        if "cross" in statuses_here:
+        # primary status preference for c3:
+        # directional low should win over generic left/right difference.
+        # This keeps left_low/right_low fixtures stable while retaining cross in statuses/tags.
+        if "left_low" in statuses_here and "right_low" not in statuses_here:
+            primary_status = "left_low"
+        elif "right_low" in statuses_here and "left_low" not in statuses_here:
+            primary_status = "right_low"
+        elif "cross" in statuses_here:
             primary_status = "cross"
         elif "left_low" in statuses_here:
             primary_status = "left_low"
