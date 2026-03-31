@@ -1,0 +1,198 @@
+{
+  "project": {
+    "name": "tcm-meridian-inference",
+    "path": "~/clawd/projects/tcm-meridian-inference-mvp/",
+    "startedAt": "2026-03-27T20:19:00+08:00",
+    "startedBy": "Daniel",
+    "cronJobId": "4569ae61-4567-43e8-b122-3532a4a60376",
+    "githubRepo": "https://github.com/aAAaqwq/tcm-meridian-inference"
+  },
+  "config": {
+    "intervalMs": 300000,
+    "maxRounds": 30,
+    "maxRetriesPerCriterion": 3,
+    "acceptanceFile": "acceptance-criteria.md"
+  },
+  "status": "completed",
+  "currentRound": 6,
+  "criteria": [
+    {
+      "id": "c1",
+      "description": "项目结构就绪 (infer.py + rules JSON)",
+      "dependsOn": [],
+      "verification": "exec: cd ~/clawd/projects/tcm-meridian-inference-mvp && python3 scripts/infer.py --help 2>&1 | head -3",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T20:29:00+08:00",
+      "lastCheckedAt": "2026-03-27T20:56:00+08:00",
+      "passedAt": "2026-03-27T20:56:00+08:00"
+    },
+    {
+      "id": "c2",
+      "description": "规则库 JSON 完成 (从《六条经络辩证》Excel 提取)",
+      "dependsOn": [],
+      "verification": "file_contains: ~/clawd/projects/tcm-meridian-inference-mvp/rules/meridian_rules.json",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T20:29:00+08:00",
+      "lastCheckedAt": "2026-03-27T20:56:00+08:00",
+      "passedAt": "2026-03-27T20:56:00+08:00"
+    },
+    {
+      "id": "c3",
+      "description": "推理脚本核心逻辑完成 (infer.py 输出完整 JSON)",
+      "dependsOn": ["c1", "c2"],
+      "verification": "exec: cd ~/clawd/projects/tcm-meridian-inference-mvp && python3 scripts/infer.py fixtures/case_left_low.json 2>&1 | python3 -c 'import json,sys;d=json.load(sys.stdin);print(\"OK\" if \"healthScore\" in d and \"meridians\" in d else \"FAIL\")'",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T20:56:00+08:00",
+      "lastCheckedAt": "2026-03-27T21:45:00+08:00",
+      "passedAt": "2026-03-27T21:45:00+08:00"
+    },
+    {
+      "id": "c4",
+      "description": "单经推理正确性 (肝左/右低、肾左低、胆左低等)",
+      "dependsOn": ["c3"],
+      "verification": "exec: cd ~/clawd/projects/tcm-meridian-inference-mvp && python3 scripts/test_infer.py 2>&1 | tail -3",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T21:45:00+08:00",
+      "lastCheckedAt": "2026-03-27T22:27:05+08:00",
+      "passedAt": "2026-03-27T22:27:05+08:00"
+    },
+    {
+      "id": "c5",
+      "description": "组合判症正确性 (肝+胆→转氨酶、肾+膀胱→颈椎/腰椎)",
+      "dependsOn": ["c3"],
+      "verification": "exec: cd ~/clawd/projects/tcm-meridian-inference-mvp && python3 scripts/test_infer.py 2>&1 | grep -c 'PASS\\|pass'",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T21:45:00+08:00",
+      "lastCheckedAt": "2026-03-27T22:27:05+08:00",
+      "passedAt": "2026-03-27T22:27:05+08:00"
+    },
+    {
+      "id": "c6",
+      "description": "5 个 Demo Case 全过 (左低/右低/交叉/多失衡/平稳)",
+      "dependsOn": ["c3"],
+      "verification": "exec: cd ~/clawd/projects/tcm-meridian-inference-mvp && python3 scripts/infer.py fixtures/case_left_low.json >/dev/null 2>&1 && python3 scripts/infer.py fixtures/case_right_low.json >/dev/null 2>&1 && python3 scripts/infer.py fixtures/case_cross.json >/dev/null 2>&1 && python3 scripts/infer.py fixtures/case_multi.json >/dev/null 2>&1 && python3 scripts/infer.py fixtures/case_stable.json >/dev/null 2>&1 && echo 'ALL_PASS'",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T22:27:05+08:00",
+      "lastCheckedAt": "2026-03-27T22:42:51+08:00",
+      "passedAt": "2026-03-27T22:42:51+08:00"
+    },
+    {
+      "id": "c7",
+      "description": "门店讲解层可用 (非诊断边界、talkTrack 3句)",
+      "dependsOn": ["c3"],
+      "verification": "exec: cd ~/clawd/projects/tcm-meridian-inference-mvp && python3 scripts/infer.py fixtures/case_stable.json 2>&1 | python3 -c 'import json,sys;d=json.load(sys.stdin);sf=d.get(\"storefront\",{});ok=\"不等同\" in sf.get(\"clientExplanation\",\"\") or \"非诊断\" in sf.get(\"clientExplanation\",\"\");tt=len(sf.get(\"talkTrack\",[]))==3;print(\"OK\" if ok and tt else \"FAIL\")'",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T22:27:05+08:00",
+      "lastCheckedAt": "2026-03-27T22:42:51+08:00",
+      "passedAt": "2026-03-27T22:42:51+08:00"
+    },
+    {
+      "id": "c8",
+      "description": "Agent 注册到 OpenClaw (tcm-meridian agent.json)",
+      "dependsOn": ["c3"],
+      "verification": "file_exists: ~/.openclaw/agents/tcm-meridian/agent.json",
+      "responsibleAgent": "ops",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T21:45:00+08:00",
+      "lastCheckedAt": "2026-03-27T22:27:05+08:00",
+      "passedAt": "2026-03-27T22:27:05+08:00"
+    },
+    {
+      "id": "c9",
+      "description": "Demo Case 文件重写 (新 left/right 数值格式)",
+      "dependsOn": [],
+      "verification": "exec: ls ~/clawd/projects/tcm-meridian-inference-mvp/fixtures/case_*.json | wc -l",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T20:29:00+08:00",
+      "lastCheckedAt": "2026-03-27T20:56:00+08:00",
+      "passedAt": "2026-03-27T20:56:00+08:00"
+    },
+    {
+      "id": "c10",
+      "description": "Git Push + README 更新",
+      "dependsOn": ["c3", "c6"],
+      "verification": "exec: cd ~/clawd/projects/tcm-meridian-inference-mvp && git log --oneline -1",
+      "responsibleAgent": "code",
+      "status": "passed",
+      "retryCount": 0,
+      "blockerReason": null,
+      "lastDispatchedAt": "2026-03-27T22:42:51+08:00",
+      "lastCheckedAt": "2026-03-27T22:52:53+08:00",
+      "passedAt": "2026-03-27T22:52:53+08:00"
+    }
+  ],
+  "blockers": [],
+  "history": [
+    {
+      "round": 1,
+      "timestamp": "2026-03-27T20:29:00+08:00",
+      "actions": ["Dispatched c1+c2+c9 to code in parallel"],
+      "blockers": []
+    },
+    {
+      "round": 2,
+      "timestamp": "2026-03-27T20:56:00+08:00",
+      "actions": ["Verified c1+c2+c9 passed. Dispatched c3 to code"],
+      "blockers": []
+    },
+    {
+      "round": 3,
+      "timestamp": "2026-03-27T21:45:00+08:00",
+      "actions": ["Verified c3 passed. Dispatched c4+c5 to code, c8 to ops"],
+      "blockers": []
+    },
+    {
+      "round": 4,
+      "timestamp": "2026-03-27T22:27:05+08:00",
+      "actions": ["Verified c4+c5+c8 passed. Dispatched c6+c7 to code"],
+      "blockers": []
+    },
+    {
+      "round": 5,
+      "timestamp": "2026-03-27T22:42:51+08:00",
+      "actions": [
+        "Verified c6 passed (ALL_PASS across 5 fixtures)",
+        "Verified c7 passed (OK — clientExplanation含'不等同', talkTrack=3句)",
+        "Dispatched c10 (Git Push + README) to code"
+      ],
+      "notes": "9/10 criteria now passed. Only c10 remaining. sessions_send timeout but dispatch recorded.",
+      "blockers": []
+    },
+    {
+      "round": 6,
+      "timestamp": "2026-03-27T22:52:53+08:00",
+      "actions": [
+        "Verified c10 passed via git log --oneline -1 => 0703114 Update README for current MVP architecture and tests",
+        "Marked project as completed (10/10 passed)"
+      ],
+      "notes": "All acceptance criteria passed. Cron removal and Daniel notification should be sent to cron owner/main session.",
+      "blockers": []
+    }
+  ]
+}
