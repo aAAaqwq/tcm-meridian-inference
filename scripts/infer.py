@@ -108,6 +108,30 @@ def combo_matches(combo_rule: dict, meridian_statuses: Dict[str, List[str]]) -> 
     return True
 
 
+def _combo_involved_meridians(combo_rule: dict) -> List[str]:
+    """Extract which meridians are involved in a combo rule's conditions."""
+    involved: List[str] = []
+    when = combo_rule.get("when") or {}
+
+    def _from_clause(clause: dict) -> None:
+        for item in clause.get("allStatuses", []) or []:
+            m = item.get("meridian", "")
+            if m and m not in involved:
+                involved.append(m)
+        msc = clause.get("minStatusCount")
+        if msc:
+            # minStatusCount applies to all meridians with that status
+            for m in MERIDIANS:
+                if m not in involved:
+                    involved.append(m)
+
+    _from_clause(when)
+    for clause in when.get("anyOf", []) or []:
+        _from_clause(clause)
+
+    return involved or MERIDIANS
+
+
 def infer(payload: dict, thresholds: dict, meridian_rules: dict, combo_rules: dict) -> dict:
     subject = payload.get("subject") or {}
     context = payload.get("context") or {}
@@ -219,7 +243,9 @@ def infer(payload: dict, thresholds: dict, meridian_rules: dict, combo_rules: di
             summaries.append(rule.get("summary", ""))
             advice.extend(rule.get("advice", []) or [])
             risk_tags.extend(rule.get("tags", []) or [])
-            for m in per_meridian:
+            # Only penalize meridians actually involved in this combo
+            involved = _combo_involved_meridians(rule)
+            for m in involved:
                 if per_meridian[m]["status"] != "stable":
                     per_meridian[m]["score"] = round(clamp(per_meridian[m]["score"] - combo_penalty, floor, ceiling), 1)
 

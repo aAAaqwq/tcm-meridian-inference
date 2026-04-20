@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
+export no_proxy="${no_proxy:+$no_proxy,}100.0.0.0/8"
+export NO_PROXY="${NO_PROXY:+$NO_PROXY,}100.0.0.0/8"
 
 BASE_URL="${1:-http://100.104.252.33:18790}"
 TMP_DIR="$(mktemp -d)"
