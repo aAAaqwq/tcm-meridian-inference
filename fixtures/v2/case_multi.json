@@ -1,0 +1,22 @@
+{
+  "subject": { "id": "v2-multi-001", "name": "多失衡场景" },
+  "measurementSession": { "sessionId": "s005", "measuredAt": "2026-04-20T10:00:00", "isFollowup": false },
+  "measurements": {
+    "before": {
+      "liver":       { "left": 35.0, "right": 35.8 },
+      "spleen":      { "left": 35.1, "right": 35.7 },
+      "kidney":      { "left": 35.0, "right": 35.8 },
+      "stomach":     { "left": 36.2, "right": 35.0 },
+      "gallbladder": { "left": 35.0, "right": 35.9 },
+      "bladder":     { "left": 36.0, "right": 35.1 }
+    },
+    "after": {
+      "liver":       { "left": 35.1, "right": 35.7 },
+      "spleen":      { "left": 35.2, "right": 35.6 },
+      "kidney":      { "left": 35.1, "right": 35.7 },
+      "stomach":     { "left": 36.1, "right": 35.1 },
+      "gallbladder": { "left": 35.1, "right": 35.8 },
+      "bladder":     { "left": 35.9, "right": 35.2 }
+    }
+  }
+}

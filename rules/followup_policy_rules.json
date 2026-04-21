@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "minUsageDaysForProtection": 7,
+  "preventScoreDecreaseWhenAdherent": true,
+  "allowStableOrImprovedFollowupMessaging": true,
+  "rules": [
+    {
+      "rule_id": "followup_score_protection",
+      "enabled": true,
+      "condition": {
+        "isFollowup": true,
+        "requiresPreviousDisplayedScore": true,
+        "minUsageDays": 7,
+        "whenCurrentRawScoreLowerThanPreviousDisplayedScore": true
+      },
+      "action": {
+        "displayedScore": "use_previousDisplayedScore",
+        "scoreAdjustedByPolicy": true
+      }
+    }
+  ]
+}

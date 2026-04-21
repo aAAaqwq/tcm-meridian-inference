@@ -53,14 +53,16 @@ def run_hybrid(
     if rules_dir is None:
         rules_dir = PROJECT_DIR / "rules"
 
-    thresholds, meridian_rules, combo_rules = load_rules(rules_dir)
+    thresholds, meridian_rules, combo_rules, score_rules, followup_policy = load_rules(rules_dir)
 
     # Step 1: deterministic rule engine
     t_rule = time.time()
-    rule_result = infer(payload, thresholds, meridian_rules, combo_rules)
+    rule_result = infer(payload, thresholds, meridian_rules, combo_rules, score_rules, followup_policy)
+    hs = rule_result.get("healthScore", {})
+    score = hs.get("score", 0) if isinstance(hs, dict) else hs
     log.info(
         "rule engine done score=%.1f latency=%.2fs",
-        rule_result.get("healthScore", 0),
+        score,
         time.time() - t_rule,
     )
 
@@ -94,7 +96,7 @@ def run_hybrid(
         "llmModel": os.environ.get("DEEPSEEK_MODEL", "deepseek-reasoner"),
         "llmLatency": elapsed,
     }
-    log.info("hybrid inference done score=%.1f llm_latency=%.2fs", merged.get("healthScore", 0), elapsed)
+    log.info("hybrid inference done score=%.1f llm_latency=%.2fs", merged.get("healthScoreValue", 0), elapsed)
 
     return merged
 

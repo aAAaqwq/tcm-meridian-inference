@@ -20,13 +20,20 @@ def validate_and_fix(
     """
     result = dict(rule_engine_result)
 
-    # --- summary ---
+    # --- summary / reportSummary ---
     summary = llm_output.get("summary")
     if isinstance(summary, str) and len(summary) > 5:
         result["summary"] = summary
         result["reportSummary"] = summary
 
-    # --- storefront ---
+    # --- healthScore enrichment ---
+    hs = result.get("healthScore", {})
+    if isinstance(hs, dict):
+        llm_summary = llm_output.get("healthScoreSummary")
+        if isinstance(llm_summary, str) and len(llm_summary) > 5:
+            hs["summary"] = llm_summary
+
+    # --- storefront (legacy compat) ---
     sf_llm = llm_output.get("storefront")
     if isinstance(sf_llm, dict):
         sf = dict(result.get("storefront", {}))
@@ -62,15 +69,14 @@ def validate_and_fix(
 
         result["storefront"] = sf
 
-    # --- meridianNarrative (optional enrichment) ---
+    # --- meridianNarrative enrichment ---
     narrative = llm_output.get("meridianNarrative")
     if isinstance(narrative, dict):
-        meridians = result.get("meridians", {})
-        for m in MERIDIANS:
-            if m in narrative and isinstance(narrative[m], str):
-                if m in meridians:
-                    meridians[m]["narrative"] = narrative[m]
-        result["meridians"] = meridians
+        details = result.get("meridianDetails", [])
+        for md in details:
+            mid = md.get("meridianId", "")
+            if mid in narrative and isinstance(narrative[mid], str):
+                md["narrative"] = narrative[mid]
 
     # --- recommendations ---
     recs = llm_output.get("recommendations")
@@ -103,7 +109,7 @@ def _ensure_storefront_safety(result: dict[str, Any]) -> None:
             tt.append(defaults[min(len(tt), 2)])
         sf["talkTrack"] = tt[:3]
 
-    risk_tags = result.get("riskTags", [])
+    risk_tags = result.get("adviceTags", [])
     if not risk_tags:
         blob = " ".join([
             sf.get("focusHeadline", ""),

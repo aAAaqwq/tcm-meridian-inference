@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "rules": [
+    {
+      "tag": "stomach_cold",
+      "priorityDirections": ["温胃", "调理胃部功能"],
+      "lifestyleAdvice": ["饮食规律，少食寒凉、生冷食物"],
+      "wellnessAdvice": ["三餐尽量规律，少空腹", "避免长期节食", "减少冰凉刺激"]
+    },
+    {
+      "tag": "spleen_damp",
+      "priorityDirections": ["健脾", "祛湿"],
+      "lifestyleAdvice": ["少甜、少油、少黏腻", "注意活动"],
+      "wellnessAdvice": ["适量活动，避免久坐", "关注排湿和大便状态", "注意膝盖和四肢的保养"]
+    },
+    {
+      "tag": "kidney_yang_weak",
+      "priorityDirections": ["温养肾阳"],
+      "lifestyleAdvice": ["注意腰腹和四肢保暖", "避免过劳"],
+      "wellnessAdvice": ["作息规律", "减少熬夜", "避免长期身体透支"]
+    },
+    {
+      "tag": "liver_blood_weak",
+      "priorityDirections": ["养肝", "补血", "改善循环"],
+      "lifestyleAdvice": ["注意休息", "减少熬夜", "关注睡眠质量"],
+      "wellnessAdvice": ["保持规律作息", "避免情绪过度紧张", "重视身体恢复和气血调养"]
+    },
+    {
+      "tag": "gallbladder_metabolism_pressure",
+      "priorityDirections": ["关注肝胆代谢"],
+      "lifestyleAdvice": ["饮食清淡", "少高脂、高油食物"],
+      "wellnessAdvice": ["规律作息", "适量活动", "减轻身体代谢负担"]
+    },
+    {
+      "tag": "heart_supply_attention",
+      "priorityDirections": ["优先关注循环与供血状态"],
+      "lifestyleAdvice": ["避免劳累", "注意休息与睡眠"],
+      "wellnessAdvice": ["日常关注心悸、乏力等表现", "保持节律稳定", "避免情绪和体力过度消耗"]
+    },
+    {
+      "tag": "head_supply_attention",
+      "priorityDirections": ["优先关注头部循环状态"],
+      "lifestyleAdvice": ["避免熬夜", "减少脑力透支"],
+      "wellnessAdvice": ["注意睡眠", "关注精神状态和记忆力变化", "避免长期紧张和疲劳"]
+    },
+    {
+      "tag": "reproductive_system_attention",
+      "priorityDirections": ["优先关注生殖系统方向"],
+      "lifestyleAdvice": ["注意休息", "注意保暖", "避免过度劳累"],
+      "wellnessAdvice": ["关注腰腹、生殖系统及周期性不适情况", "避免长期受凉", "出现持续不适时及时检查"]
+    }
+  ]
+}

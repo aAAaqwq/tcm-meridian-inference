@@ -1,0 +1,31 @@
+{
+  "subject": { "id": "v2-followup-001", "name": "复测保护场景" },
+  "measurementSession": {
+    "sessionId": "s006",
+    "measuredAt": "2026-04-20T10:00:00",
+    "isFollowup": true,
+    "daysSinceLastMeasurement": 30,
+    "instrumentUsageDaysBetweenMeasurements": 25
+  },
+  "measurements": {
+    "before": {
+      "liver":       { "left": 35.0, "right": 36.1 },
+      "spleen":      { "left": 35.1, "right": 35.9 },
+      "kidney":      { "left": 35.0, "right": 35.8 },
+      "stomach":     { "left": 35.1, "right": 36.0 },
+      "gallbladder": { "left": 35.0, "right": 35.9 },
+      "bladder":     { "left": 35.2, "right": 35.9 }
+    },
+    "after": {
+      "liver":       { "left": 35.0, "right": 36.0 },
+      "spleen":      { "left": 35.2, "right": 35.8 },
+      "kidney":      { "left": 35.1, "right": 35.7 },
+      "stomach":     { "left": 35.3, "right": 35.9 },
+      "gallbladder": { "left": 35.2, "right": 35.8 },
+      "bladder":     { "left": 35.4, "right": 35.8 }
+    }
+  },
+  "scoreContext": {
+    "previousDisplayedScore": 82
+  }
+}

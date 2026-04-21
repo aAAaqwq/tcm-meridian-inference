@@ -30,6 +30,8 @@ _agent_mod = None
 _thresholds = None
 _meridian_rules = None
 _combo_rules = None
+_score_rules = None
+_followup_policy = None
 
 
 def load_infer():
@@ -53,7 +55,7 @@ def load_agent():
 
 
 def load_rules():
-    global _thresholds, _meridian_rules, _combo_rules
+    global _thresholds, _meridian_rules, _combo_rules, _score_rules, _followup_policy
     if _thresholds is not None:
         return
     with open(os.path.join(RULES_DIR, "thresholds.json")) as f:
@@ -62,6 +64,10 @@ def load_rules():
         _meridian_rules = json.load(f)
     with open(os.path.join(RULES_DIR, "combination_rules.json")) as f:
         _combo_rules = json.load(f)
+    with open(os.path.join(RULES_DIR, "score_rules.json")) as f:
+        _score_rules = json.load(f)
+    with open(os.path.join(RULES_DIR, "followup_policy_rules.json")) as f:
+        _followup_policy = json.load(f)
 
 
 def _resolve_mode():
@@ -87,7 +93,7 @@ def run_inference(payload):
     else:
         load_rules()
         mod = load_infer()
-        return mod.infer(payload, _thresholds, _meridian_rules, _combo_rules)
+        return mod.infer(payload, _thresholds, _meridian_rules, _combo_rules, _score_rules, _followup_policy)
 
 
 SAMPLE_DATA = {
@@ -117,7 +123,7 @@ class TCMHandler(BaseHTTPRequestHandler):
         elif path == "/":
             self._json({
                 "service": "TCM Meridian Inference API",
-                "version": "0.4.0",
+                "version": "2.0",
                 "inferMode": _resolve_mode(),
                 "endpoints": {
                     "POST /": "Run inference (legacy)",
@@ -151,11 +157,13 @@ class TCMHandler(BaseHTTPRequestHandler):
             self._json(result)
 
             engine = result.get("engine", {})
+            hs = result.get("healthScore", {})
+            score = hs.get("score", 0) if isinstance(hs, dict) else hs
             log.info(
                 "POST %s mode=%s score=%.1f latency=%.2fs",
                 path,
                 engine.get("mode", "?"),
-                result.get("healthScore", 0),
+                score,
                 elapsed,
             )
             log.debug("response body: %s", json.dumps(result, ensure_ascii=False))
