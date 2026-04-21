@@ -98,13 +98,22 @@ def run_inference(payload):
 
 SAMPLE_DATA = {
     "measurements": {
-        "liver": {"left": 34.5, "right": 34.3},
-        "heart": {"left": 35.0, "right": 34.8},
-        "spleen": {"left": 34.8, "right": 34.6},
-        "kidney": {"left": 33.5, "right": 34.2},
-        "stomach": {"left": 34.0, "right": 34.5},
-        "gallbladder": {"left": 34.2, "right": 34.0},
-        "bladder": {"left": 33.8, "right": 34.8}
+        "before": {
+            "liver": {"left": 34.5, "right": 34.3},
+            "spleen": {"left": 34.8, "right": 34.6},
+            "kidney": {"left": 33.5, "right": 34.2},
+            "stomach": {"left": 34.0, "right": 34.5},
+            "gallbladder": {"left": 34.2, "right": 34.0},
+            "bladder": {"left": 33.8, "right": 34.8}
+        },
+        "after": {
+            "liver": {"left": 34.6, "right": 34.4},
+            "spleen": {"left": 34.9, "right": 34.7},
+            "kidney": {"left": 33.8, "right": 34.0},
+            "stomach": {"left": 34.2, "right": 34.4},
+            "gallbladder": {"left": 34.3, "right": 34.1},
+            "bladder": {"left": 34.0, "right": 34.6}
+        }
     }
 }
 
