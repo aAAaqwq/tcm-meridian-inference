@@ -1,0 +1,20 @@
+[Unit]
+Description=TCM Meridian Inference API (Docker)
+Documentation=https://github.com/your-org/tcm-meridian-inference-mvp
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/tcm-api
+
+EnvironmentFile=-/opt/tcm-api/.env
+
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/docker-compose up -d --remove-orphans
+ExecStop=/usr/bin/docker-compose down
+ExecReload=/usr/bin/docker-compose pull && /usr/bin/docker-compose up -d --remove-orphans
+
+[Install]
+WantedBy=multi-user.target

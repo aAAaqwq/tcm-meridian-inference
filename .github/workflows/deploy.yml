@@ -1,0 +1,118 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix={{branch}}-
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Deploy to Baidu Cloud Server
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script_stop: true
+          script: |
+            set -e
+            echo "=== TCM API Deployment Start ==="
+            
+            # 配置
+            IMAGE="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest"
+            CONTAINER_NAME="tcm-api"
+            PORT="18790"
+            
+            # 登录 GitHub Container Registry
+            echo "Logging into GHCR..."
+            echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+            
+            # 拉取最新镜像
+            echo "Pulling image: $IMAGE"
+            docker pull $IMAGE
+            
+            # 停止并删除旧容器
+            echo "Stopping old container..."
+            docker stop $CONTAINER_NAME 2>/dev/null || true
+            docker rm $CONTAINER_NAME 2>/dev/null || true
+            
+            # 启动新容器
+            echo "Starting new container..."
+            docker run -d \
+              --name $CONTAINER_NAME \
+              --restart unless-stopped \
+              -p $PORT:$PORT \
+              -e TCM_API_PORT=$PORT \
+              -e TCM_INFER_MODE="${{ secrets.TCM_INFER_MODE || 'auto' }}" \
+              -e TCM_LOG_LEVEL="${{ secrets.TCM_LOG_LEVEL || 'INFO' }}" \
+              -e DEEPSEEK_API_KEY="${{ secrets.DEEPSEEK_API_KEY }}" \
+              -e DEEPSEEK_MODEL="${{ secrets.DEEPSEEK_MODEL || 'deepseek-chat' }}" \
+              $IMAGE
+            
+            # 等待服务启动
+            echo "Waiting for service..."
+            sleep 5
+            
+            # 健康检查
+            if curl -s http://localhost:$PORT/health | grep -q '"status": "ok"'; then
+              echo "✅ Health check passed"
+              curl -s http://localhost:$PORT/health
+            else
+              echo "⚠️ Health check failed"
+              docker logs $CONTAINER_NAME --tail 20
+              exit 1
+            fi
+            
+            # 清理旧镜像
+            docker image prune -af --filter "until=168h" >/dev/null 2>&1 || true
+            
+            echo "=== Deployment Completed ==="
+            echo "API URL: http://${{ secrets.SSH_HOST }}:$PORT"

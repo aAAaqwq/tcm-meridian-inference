@@ -1,0 +1,85 @@
+version: '3.8'
+
+services:
+  tcm-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: tcm-meridian-inference:latest
+    container_name: tcm-api
+    restart: unless-stopped
+
+    # Resource limits
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+    # Environment variables
+    environment:
+      - TCM_API_PORT=18790
+      - TCM_INFER_MODE=${TCM_INFER_MODE:-auto}
+      - TCM_LOG_LEVEL=${TCM_LOG_LEVEL:-INFO}
+      - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
+      - DEEPSEEK_MODEL=${DEEPSEEK_MODEL:-deepseek-chat}
+
+    # Port mapping - 统一使用 18790 端口
+    ports:
+      - "18790:18790"
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:18790/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+    # Logging configuration
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        labels: "service_name,environment"
+        env: "TCM_INFER_MODE,TCM_LOG_LEVEL"
+
+    # Security options
+    security_opt:
+      - no-new-privileges:true
+
+    networks:
+      - tcm-network
+
+  # Optional: Nginx reverse proxy (recommended for production)
+  nginx:
+    image: nginx:alpine
+    container_name: tcm-nginx
+    restart: unless-stopped
+    depends_on:
+      tcm-api:
+        condition: service_healthy
+
+    ports:
+      - "80:80"
+      - "443:443"
+
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./logs/nginx:/var/log/nginx
+
+    networks:
+      - tcm-network
+
+    # Only start nginx if you have nginx config ready
+    profiles:
+      - with-nginx
+
+networks:
+  tcm-network:
+    driver: bridge
