@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY: registry.cn-hangzhou.aliyuncs.com
+  REGISTRY: crpi-lwz264sedmauvivo.cn-guangzhou.personal.cr.aliyuncs.com
   IMAGE_NAME: danielli/tcm-meridian-inference
 
 jobs:
