@@ -6,7 +6,10 @@ set -e
 
 GITHUB_USER="${1:-}"
 GITHUB_TOKEN="${2:-${GITHUB_TOKEN:-}}"
-IMAGE="ghcr.io/${GITHUB_USER}/tcm-meridian-inference-mvp:latest"
+
+# 镜像名称转小写（Docker 要求）
+GITHUB_USER_LC=$(echo "$GITHUB_USER" | tr '[:upper:]' '[:lower:]')
+IMAGE="ghcr.io/${GITHUB_USER_LC}/tcm-meridian-inference:latest"
 CONTAINER_NAME="tcm-api"
 PORT="18790"
 
@@ -17,6 +20,7 @@ if [ -z "$GITHUB_USER" ] || [ -z "$GITHUB_TOKEN" ]; then
 fi
 
 echo "=== TCM API 部署脚本 ==="
+echo "用户: $GITHUB_USER_LC"
 echo "镜像: $IMAGE"
 echo "端口: $PORT"
 
