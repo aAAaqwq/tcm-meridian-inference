@@ -7,7 +7,7 @@ on:
 
 env:
   REGISTRY: registry.cn-hangzhou.aliyuncs.com
-  IMAGE_NAME: aaa-tcm/tcm-meridian-inference
+  IMAGE_NAME: danielli/tcm-meridian-inference
 
 jobs:
   build:

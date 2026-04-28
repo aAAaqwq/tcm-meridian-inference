@@ -58,7 +58,7 @@ ssh root@180.76.137.183
 docker login registry.cn-hangzhou.aliyuncs.com -u YOUR_ALIYUN_USERNAME
 
 # 3. 拉取镜像
-docker pull registry.cn-hangzhou.aliyuncs.com/aaa-tcm/tcm-meridian-inference:latest
+docker pull registry.cn-hangzhou.aliyuncs.com/danielli/tcm-meridian-inference:latest
 
 # 4. 运行容器
 docker run -d \
@@ -66,7 +66,7 @@ docker run -d \
   --restart unless-stopped \
   -p 18790:18790 \
   -e DEEPSEEK_API_KEY=sk-your-api-key \
-  registry.cn-hangzhou.aliyuncs.com/aaa-tcm/tcm-meridian-inference:latest
+  registry.cn-hangzhou.aliyuncs.com/danielli/tcm-meridian-inference:latest
 
 # 5. 验证
 curl http://localhost:18790/health
@@ -77,7 +77,7 @@ curl http://localhost:18790/health
 ## 镜像地址
 
 ```
-registry.cn-hangzhou.aliyuncs.com/aaa-tcm/tcm-meridian-inference:latest
+registry.cn-hangzhou.aliyuncs.com/danielli/tcm-meridian-inference:latest
 ```
 
 ---
@@ -101,5 +101,5 @@ docker login registry.cn-hangzhou.aliyuncs.com
 # 阿里云控制台 → 镜像仓库 → 查看
 
 # 手动测试拉取
-docker pull registry.cn-hangzhou.aliyuncs.com/aaa-tcm/tcm-meridian-inference:latest
+docker pull registry.cn-hangzhou.aliyuncs.com/danielli/tcm-meridian-inference:latest
 ```
