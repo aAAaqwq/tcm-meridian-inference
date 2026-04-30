@@ -1,218 +1,172 @@
-# 评分系统调整方案
+# 评分系统调整方案 (已实施)
+
+## 版本信息
+
+- **实施版本**: v2.1
+- **实施日期**: 2026-04-29
+- **状态**: ✅ 已完成并上线
+
+---
 
 ## 问题诊断
 
-当前评分系统扣减分值过高，导致：
+原评分系统扣减分值过高，导致：
 - 轻微问题就跌到80分以下
 - 用户感觉"很吓人"，体验不好
 - 无法体现"亚健康"概念
 
-## 目标评分区间
+---
 
-| 分数 | 状态描述 | 目标用户感受 |
-|------|----------|--------------|
-| 90-100 | 身体很好 | 安心，继续保持 |
-| 75-90 | 亚健康 | 需要注意，但不恐慌 |
-| 60-75 | 身体有大问题 | 需要重视和调理 |
-| <60 | 严重问题 | 必须立即就医 |
+## 最终评分标准
+
+| 分数区间 | 等级 | 用户感受 | 说明 |
+|---------|------|---------|------|
+| 90-100 | 整体状态较好 | 身体很好，安心 | 继续保持 |
+| 75-90 | 轻度失衡 | 亚健康，需注意 | 不恐慌，关注即可 |
+| 60-75 | 中度失衡 | 身体有大问题 | 需要重视和调理 |
+| 50-60 | 需重点关注 | 严重问题 | 建议就医 |
+
+**保底分**: 50分（最低不会低于此值）
 
 ---
 
-## Plan A: 温和扣减版（推荐）
+## 实施方案：温和扣减版 v6
 
-**核心思路**：降低所有扣减分值约50%，设置更高的保底分
+### 核心思路
 
-### 修改内容
+1. 降低所有扣减分值约50%
+2. 保底分从30分提高到50分
+3. 支持从配置文件读取扣减/加分值
 
-1. **score_rules.json** - 扣减规则调整
+### 扣减规则 (score_rules.json)
+
 ```json
 {
   "deductions": [
-    { "rule_id": "single_meridian_mild_abnormal", "score": -0.5 },
-    { "rule_id": "single_meridian_obvious_abnormal", "score": -1.5 },
-    { "rule_id": "single_meridian_cross", "score": -2 },
-    { "rule_id": "kidney_bladder_double_cross", "score": -4 },
-    { "rule_id": "multi_cross", "score": -4 },
-    { "rule_id": "right_bias", "score": -3 },
-    { "rule_id": "left_bias", "score": -3 },
-    { "rule_id": "heart_supply_hit", "score": -3 },
-    { "rule_id": "head_supply_hit", "score": -3 },
-    { "rule_id": "neck_waist_reproductive_hit", "score": -2.5 },
-    { "rule_id": "mass_risk_hit", "score": -4 },
-    { "rule_id": "multi_imbalance", "score": -5 }
-  ],
-  "min_score": 50,
-  "max_score": 100
+    { "rule_id": "single_meridian_mild_abnormal", "score": -1.0, "note": "轻度异常单经络扣1分" },
+    { "rule_id": "single_meridian_obvious_abnormal", "score": -2.0, "note": "明显异常单经络扣2分" },
+    { "rule_id": "single_meridian_cross", "score": -2.0, "note": "交叉异常单经络扣2分" },
+    { "rule_id": "kidney_bladder_double_cross", "score": -3, "note": "肾膀胱双交叉扣3分" },
+    { "rule_id": "multi_cross", "score": -3, "note": "3个以上交叉扣3分" },
+    { "rule_id": "right_bias", "score": -4, "note": "右偏扣4分" },
+    { "rule_id": "left_bias", "score": -4, "note": "左偏扣4分" },
+    { "rule_id": "heart_supply_hit", "score": -4, "note": "心脑供血风险扣4分" },
+    { "rule_id": "head_supply_hit", "score": -4, "note": "头部供血风险扣4分" },
+    { "rule_id": "neck_waist_reproductive_hit", "score": -3, "note": "颈腰生殖风险扣3分" },
+    { "rule_id": "mass_risk_hit", "score": -4, "note": "肿块风险扣4分" },
+    { "rule_id": "multi_imbalance", "score": -4, "note": "4个以上经络失衡扣4分" }
+  ]
 }
 ```
 
-2. **加分规则** - 保持不变
+### 加分规则
 
-3. **等级区间** - 保持不变（已符合目标）
-
-### 预期效果
-
-| 场景 | 旧评分 | 新评分 | 说明 |
-|------|--------|--------|------|
-| 全部正常 | 100 | 100 | 无变化 |
-| 1个轻度异常 | 98 | 99.5 | 几乎无感 |
-| 2个中度异常 | 92 | 97 | 温和提醒 |
-| 1个交叉问题 | 96 | 98 | 不恐慌 |
-| 肾膀胱双交叉 | 92 | 96 | 亚健康 |
-| 多问题组合 | 60-70 | 75-85 | 可接受范围 |
-
-### 优点
-- ✅ 改动最小，风险低
-- ✅ 向后兼容性好
-- ✅ 逻辑简单可预测
-
-### 缺点
-- ⚠️ 对于严重问题分数可能偏高
-
----
-
-## Plan B: 等级保护版
-
-**核心思路**：高分区域扣分减半，低分区域扣分加重
-
-### 修改内容
-
-1. **infer.py** - 添加保护逻辑
-```python
-def apply_score_protection(score: float, deductions: list) -> float:
-    """根据当前分数应用保护机制"""
-    if score >= 90:
-        # 高分保护：扣分减半
-        return score - sum(d['score'] for d in deductions) * 0.5
-    elif score >= 75:
-        # 正常扣分
-        return score - sum(d['score'] for d in deductions)
-    else:
-        # 低分加重：扣分1.2倍
-        return score - sum(d['score'] for d in deductions) * 1.2
+```json
+{
+  "bonuses": [
+    { "rule_id": "multiple_meridians_improved", "score": 4, "note": "3个以上经络改善加4分" },
+    { "rule_id": "partial_improvement", "score": 2, "note": "部分改善加2分" },
+    { "rule_id": "overall_stable", "score": 3, "note": "整体平稳加3分" }
+  ]
+}
 ```
 
-2. **score_rules.json** - 基础扣减不变，增加保护开关
+---
 
-### 优点
-- ✅ 鼓励保持高分状态
-- ✅ 严重问题仍能被反映
+## 测试场景分布
 
-### 缺点
-- ⚠️ 逻辑复杂，难以解释
-- ⚠️ 可能产生非直观的结果
+| 场景 | 分数 | 等级 | 分类 |
+|------|------|------|------|
+| 全部正常 | 100.0 | 整体状态较好 | 优秀 |
+| 1个轻度异常 | 100.0 | 整体状态较好 | 优秀 |
+| 3个轻度异常 | 98.0 | 整体状态较好 | 优秀 |
+| 2个中度异常 | 100.0 | 整体状态较好 | 优秀 |
+| 肾交叉 | 100.0 | 整体状态较好 | 优秀 |
+| 心脑供血风险 | 80.0 | 轻度失衡 | 亚健康 |
+| 肿块风险 | 98.0 | 整体状态较好 | 优秀 |
+| 6个交叉 | 67.0 | 中度失衡 | 需注意 |
+| 左低 | 77.0 | 轻度失衡 | 亚健康 |
+| 多失衡 | 77.0 | 轻度失衡 | 亚健康 |
+| 严重失衡 | 77.0 | 轻度失衡 | 亚健康 |
+
+**分布统计**: 优秀6个，亚健康4个，需注意1个，严重0个
 
 ---
 
-## Plan C: 加权平均版
+## 代码修改
 
-**核心思路**：从"扣分制"改为"加权平均制"
+### 1. score_rules.json
 
-### 修改内容
+- 更新 `deductions` 数组，使用新的扣减分值
+- 更新 `bonuses` 数组（保持不变）
+- `min_score` 从30改为50
 
-1. **新算法设计**
+### 2. infer.py
+
+新增两个辅助函数：
+
 ```python
-def calculate_weighted_score(meridian_states: dict) -> float:
-    """加权平均评分"""
-    weights = {
-        "liver": 0.20,
-        "spleen": 0.18,
-        "kidney": 0.20,
-        "stomach": 0.15,
-        "gallbladder": 0.15,
-        "bladder": 0.12
-    }
-    
-    # 每个经络基础分
-    meridian_scores = {
-        "normal": 100,
-        "mild": 90,
-        "medium": 75,
-        "high": 60,
-        "cross": 70
-    }
-    
-    weighted_sum = sum(
-        meridian_scores[state["status"]] * weights[m]
-        for m, state in meridian_states.items()
-    )
-    
-    # 应用组合规则系数
-    combo_multiplier = calculate_combo_multiplier(combination_hits)
-    
-    return weighted_sum * combo_multiplier
+def _get_deduction(score_rules: dict, rule_id: str, default: float) -> float:
+    """从 score_rules 获取扣减分值，如果不存在则使用默认值。"""
+    for d in score_rules.get("deductions", []):
+        if d.get("rule_id") == rule_id:
+            return d.get("score", default)
+    return default
+
+def _get_bonus(score_rules: dict, rule_id: str, default: float) -> float:
+    """从 score_rules 获取加分值，如果不存在则使用默认值。"""
+    for b in score_rules.get("bonuses", []):
+        if b.get("rule_id") == rule_id:
+            return b.get("score", default)
+    return default
 ```
 
-### 优点
-- ✅ 更符合健康评估的科学性
-- ✅ 每个经络独立评估
-
-### 缺点
-- ⚠️ 改动巨大，需要全面重构
-- ⚠️ 难以向后兼容
-- ⚠️ 用户理解成本高
+修改 `calculate_raw_score()` 和 `apply_improvement_bonus()` 函数，使用配置值而非硬编码。
 
 ---
 
-## Plan D: 分段保底版
+## 向后兼容性
 
-**核心思路**：设置多个保底分，防止分数暴跌
-
-### 修改内容
-
-1. **分段保底逻辑**
-```python
-def apply_floor_protection(score: float, meridian_states: dict) -> float:
-    """分段保底保护"""
-    # 计算问题严重程度
-    problem_count = sum(1 for s in meridian_states.values() if s["status"] != "normal")
-    
-    # 根据问题数量设置保底分
-    if problem_count <= 1:
-        return max(score, 90)  # 单问题保底90
-    elif problem_count <= 3:
-        return max(score, 80)  # 多问题保底80
-    elif problem_count <= 5:
-        return max(score, 65)  # 较多问题保底65
-    else:
-        return max(score, 50)  # 严重问题保底50
-```
-
-2. **结合Plan A的温和扣减**
-
-### 优点
-- ✅ 分数不会剧烈波动
-- ✅ 给用户心理安全感
-
-### 缺点
-- ⚠️ 可能掩盖真实问题
-- ⚠️ 不同场景下的保底分不一致
+- 如果 `score_rules.json` 中缺少某个规则，使用默认值（原硬编码值）
+- 所有现有测试用例继续通过
+- 可平滑升级，无需数据迁移
 
 ---
-
-## 推荐方案
-
-**首选：Plan A 温和扣减版**
-
-理由：
-1. 改动最小，当天可上线
-2. 风险可控，可随时回滚
-3. 用户感知明显，体验提升
-
-**备选：Plan A + D 组合**
-
-如果需要更强的保底效果，可以结合 Plan A 的温和扣减 + Plan D 的单问题保底90分机制。
-
----
-
-## 实施步骤
-
-1. 修改 `rules/score_rules.json`
-2. 验证 `scripts/infer.py` 支持小数扣减
-3. 运行测试验证新评分分布
-4. 灰度发布，观察用户反馈
-5. 必要时微调参数
 
 ## 回滚方案
 
-保留原 `score_rules.json.bak`，如出现问题可立即回滚。
+如需回滚到旧评分：
+
+```bash
+# 恢复旧配置
+git checkout HEAD~1 -- rules/score_rules.json
+
+# 重启服务
+docker-compose restart
+```
+
+---
+
+## 后续微调
+
+如需调整某个场景的分数，只需修改 `score_rules.json` 中对应规则的 `score` 值：
+
+```bash
+# 示例：让交叉问题扣分更重
+# 修改前:
+{ "rule_id": "single_meridian_cross", "score": -2.0 }
+
+# 修改后:
+{ "rule_id": "single_meridian_cross", "score": -3.0 }
+```
+
+无需修改代码，重启服务即可生效。
+
+---
+
+## 相关文件
+
+- `rules/score_rules.json` - 评分规则配置
+- `scripts/infer.py` - 推理引擎（支持配置化评分）
+- `fixtures/v2/` - 测试场景（新增7个场景）
+- `scripts/test_infer.py` - 测试套件（35个测试用例）
