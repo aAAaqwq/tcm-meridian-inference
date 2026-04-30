@@ -1,8 +1,8 @@
 {
-  "version": "2.1",
-  "notes": "温和扣减版v6：保底50分，优化各区间分布",
+  "version": "2.2",
+  "notes": "调整评分区间：90-100优秀，80-90亚健康，70-80需注意，60-70严重，保底60分",
   "base_score": 100,
-  "min_score": 50,
+  "min_score": 60,
   "max_score": 100,
   "balance_threshold": 0.2,
   "severity_thresholds": {
@@ -29,9 +29,9 @@
     { "rule_id": "overall_stable", "condition": "no_cross AND abnormal_count <= 2", "score": 3, "note": "整体平稳加3分" }
   ],
   "score_levels": [
-    { "min": 90, "max": 100, "level": "整体状态较好", "summary": "当前整体状态较平稳，请继续保持。", "category": "优秀" },
-    { "min": 75, "max": 89, "level": "轻度失衡", "summary": "整体状态尚可，局部仍需关注。", "category": "亚健康" },
-    { "min": 60, "max": 74, "level": "中度失衡", "summary": "存在较明确失衡，建议持续调理。", "category": "需注意" },
-    { "min": 50, "max": 59, "level": "需重点关注", "summary": "当前失衡较明显，建议尽早重视。", "category": "严重" }
+    { "min": 90, "max": 100, "level": "健康优秀", "summary": "当前整体状态优秀，请继续保持。", "category": "优秀" },
+    { "min": 80, "max": 89, "level": "轻度失衡", "summary": "整体状态尚可，局部仍需关注。", "category": "亚健康" },
+    { "min": 70, "max": 79, "level": "中度失衡", "summary": "存在较明确失衡，建议持续调理。", "category": "需注意" },
+    { "min": 60, "max": 69, "level": "严重问题", "summary": "当前失衡较明显，建议尽早重视。", "category": "严重" }
   ]
 }

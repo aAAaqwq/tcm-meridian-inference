@@ -162,13 +162,13 @@ def test_combo_neck():
 def test_stable_score_100():
     data = run_case("fixtures/v2/case_stable.json")
     assert data["healthScore"]["score"] == 100, data["healthScore"]
-    assert data["healthScore"]["level"] == "整体状态较好", data["healthScore"]
+    assert data["healthScore"]["level"] == "健康优秀", data["healthScore"]
 
 
 def test_stable_score_level_mapping():
     data = run_case("fixtures/v2/case_stable.json")
-    assert data["scoreContext"]["scoreLevel"] == "整体状态较好"
-    assert "较平稳" in data["scoreContext"]["scoreSummary"]
+    assert data["scoreContext"]["scoreLevel"] == "健康优秀"
+    assert "优秀" in data["scoreContext"]["scoreSummary"]
 
 
 def test_left_low_score_below_100():
@@ -235,7 +235,7 @@ def test_score_levels_all_valid():
         "fixtures/v2/case_cross.json",
         "fixtures/v2/case_multi.json",
     ]
-    valid_levels = {"整体状态较好", "轻度失衡", "中度失衡", "需重点关注"}
+    valid_levels = {"健康优秀", "轻度失衡", "中度失衡", "严重问题"}
     for path in cases:
         data = run_case(path)
         level = data["healthScore"]["level"]
