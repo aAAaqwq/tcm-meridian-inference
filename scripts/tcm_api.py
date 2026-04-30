@@ -155,6 +155,10 @@ class TCMHandler(BaseHTTPRequestHandler):
                 payload = SAMPLE_DATA
             elif path in ("/", "/api/inference/meridian-diagnosis"):
                 length = int(self.headers.get("Content-Length", 0))
+                if length > 10 * 1024 * 1024:  # 限制请求体 10MB
+                    self._json({"error": "request body too large"}, 413)
+                    log.warning("POST %s 413 body_too_large: %d bytes", path, length)
+                    return
                 body = self.rfile.read(length)
                 payload = json.loads(body)
             else:
@@ -216,6 +220,12 @@ def main():
             os._exit(1)
         _shutting_down = True
         log.info("TCM API shutting down (signal=%s)", sig)
+        # 关闭 HTTP client 释放连接池
+        try:
+            from deepseek_client import close_http_client
+            close_http_client()
+        except Exception as e:
+            log.warning("Error closing HTTP client during shutdown: %s", e)
         # Set the internal flag that serve_forever() polls every 0.5s
         # Cannot call server.shutdown() here — it deadlocks (tries to join itself)
         server._BaseServer__shutdown_request = True  # noqa: SLF001

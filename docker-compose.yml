@@ -9,15 +9,24 @@ services:
     container_name: tcm-api
     restart: unless-stopped
 
-    # Resource limits
+    # Resource limits - 增加内存限制
     deploy:
       resources:
         limits:
-          cpus: '1.0'
-          memory: 512M
+          cpus: '2.0'
+          memory: 1G
         reservations:
-          cpus: '0.25'
-          memory: 128M
+          cpus: '0.5'
+          memory: 256M
+
+    # 系统限制优化
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+      nproc:
+        soft: 32768
+        hard: 32768
 
     # Environment variables
     environment:
@@ -26,16 +35,22 @@ services:
       - TCM_LOG_LEVEL=${TCM_LOG_LEVEL:-INFO}
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
       - DEEPSEEK_MODEL=${DEEPSEEK_MODEL:-deepseek-chat}
+      # Python 内存优化
+      - PYTHONUNBUFFERED=1
+      - MALLOC_ARENA_MAX=2
+      - MALLOC_MMAP_THRESHOLD_=131072
+      - MALLOC_TRIM_THRESHOLD_=131072
+      - MALLOC_TOP_PAD_=131072
 
     # Port mapping - 统一使用 18790 端口
     ports:
       - "18790:18790"
 
-    # Health check
+    # Health check - 缩短检查间隔，更快发现问题
     healthcheck:
       test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:18790/health')"]
-      interval: 30s
-      timeout: 10s
+      interval: 15s
+      timeout: 5s
       retries: 3
       start_period: 10s
 
