@@ -246,6 +246,14 @@ def apply_combination_rules(
 # Step 6: calculate_raw_score  (deductions)
 # ---------------------------------------------------------------------------
 
+def _get_deduction(score_rules: dict, rule_id: str, default: float) -> float:
+    """从 score_rules 获取扣减分值，如果不存在则使用默认值。"""
+    for d in score_rules.get("deductions", []):
+        if d.get("rule_id") == rule_id:
+            return d.get("score", default)
+    return default
+
+
 def calculate_raw_score(
     meridian_states: Dict[str, dict],
     global_patterns: dict,
@@ -256,57 +264,71 @@ def calculate_raw_score(
     raw_score = 100.0
     breakdown: List[dict] = []
 
+    # 从配置读取扣减分值（兼容旧配置）
+    mild_deduction = _get_deduction(score_rules, "single_meridian_mild_abnormal", -2)
+    obvious_deduction = _get_deduction(score_rules, "single_meridian_obvious_abnormal", -4)
+    cross_deduction = _get_deduction(score_rules, "single_meridian_cross", -4)
+    kidney_bladder_deduction = _get_deduction(score_rules, "kidney_bladder_double_cross", -8)
+    multi_cross_deduction = _get_deduction(score_rules, "multi_cross", -8)
+    right_bias_deduction = _get_deduction(score_rules, "right_bias", -6)
+    left_bias_deduction = _get_deduction(score_rules, "left_bias", -6)
+    heart_supply_deduction = _get_deduction(score_rules, "heart_supply_hit", -6)
+    head_supply_deduction = _get_deduction(score_rules, "head_supply_hit", -6)
+    neck_waist_deduction = _get_deduction(score_rules, "neck_waist_reproductive_hit", -5)
+    mass_risk_deduction = _get_deduction(score_rules, "mass_risk_hit", -6)
+    multi_imbalance_deduction = _get_deduction(score_rules, "multi_imbalance", -8)
+
     # Single meridian deductions
     for m, s in meridian_states.items():
         sev = s["severity"]
         if sev == "mild":
-            raw_score -= 2
-            breakdown.append({"rule": "single_meridian_mild_abnormal", "score": -2, "target": m})
+            raw_score += mild_deduction  # 加上负数等于减去
+            breakdown.append({"rule": "single_meridian_mild_abnormal", "score": mild_deduction, "target": m})
         elif sev in ("medium", "high"):
-            raw_score -= 4
-            breakdown.append({"rule": "single_meridian_obvious_abnormal", "score": -4, "target": m})
+            raw_score += obvious_deduction
+            breakdown.append({"rule": "single_meridian_obvious_abnormal", "score": obvious_deduction, "target": m})
         if s["cross"]:
-            raw_score -= 4
-            breakdown.append({"rule": "single_meridian_cross", "score": -4, "target": m})
+            raw_score += cross_deduction
+            breakdown.append({"rule": "single_meridian_cross", "score": cross_deduction, "target": m})
 
     gp = global_patterns
 
     # Kidney + bladder double cross
     if meridian_states["kidney"]["cross"] and meridian_states["bladder"]["cross"]:
-        raw_score -= 8
-        breakdown.append({"rule": "kidney_bladder_double_cross", "score": -8})
+        raw_score += kidney_bladder_deduction
+        breakdown.append({"rule": "kidney_bladder_double_cross", "score": kidney_bladder_deduction})
 
     # Multi cross
     if gp["crossCount"] >= 3:
-        raw_score -= 8
-        breakdown.append({"rule": "multi_cross", "score": -8})
+        raw_score += multi_cross_deduction
+        breakdown.append({"rule": "multi_cross", "score": multi_cross_deduction})
 
     # Right bias
     if gp["rightLowCountBefore"] >= 4 or gp["rightLowCountAfter"] >= 4:
-        raw_score -= 6
-        breakdown.append({"rule": "right_bias", "score": -6})
+        raw_score += right_bias_deduction
+        breakdown.append({"rule": "right_bias", "score": right_bias_deduction})
 
     # Left bias
     if gp["leftLowCountBefore"] >= 4 or gp["leftLowCountAfter"] >= 4:
-        raw_score -= 6
-        breakdown.append({"rule": "left_bias", "score": -6})
+        raw_score += left_bias_deduction
+        breakdown.append({"rule": "left_bias", "score": left_bias_deduction})
 
     # Combination hits
     if "combo_heart_supply" in combination_hits:
-        raw_score -= 6
-        breakdown.append({"rule": "heart_supply_hit", "score": -6})
+        raw_score += heart_supply_deduction
+        breakdown.append({"rule": "heart_supply_hit", "score": heart_supply_deduction})
 
     if "combo_head_supply" in combination_hits:
-        raw_score -= 6
-        breakdown.append({"rule": "head_supply_hit", "score": -6})
+        raw_score += head_supply_deduction
+        breakdown.append({"rule": "head_supply_hit", "score": head_supply_deduction})
 
     if any(c in combination_hits for c in ("combo_neck", "combo_waist", "combo_reproductive")):
-        raw_score -= 5
-        breakdown.append({"rule": "neck_waist_reproductive_hit", "score": -5})
+        raw_score += neck_waist_deduction
+        breakdown.append({"rule": "neck_waist_reproductive_hit", "score": neck_waist_deduction})
 
     if "combo_liver_gall_spleen_mass" in combination_hits:
-        raw_score -= 6
-        breakdown.append({"rule": "mass_risk_hit", "score": -6})
+        raw_score += mass_risk_deduction
+        breakdown.append({"rule": "mass_risk_hit", "score": mass_risk_deduction})
 
     # Multi imbalance: >= 4 meridians abnormal
     abnormal_count = sum(
@@ -314,8 +336,8 @@ def calculate_raw_score(
         if s["beforeStatus"] != "balanced" or s["afterStatus"] != "balanced"
     )
     if abnormal_count >= 4:
-        raw_score -= 8
-        breakdown.append({"rule": "multi_imbalance", "score": -8})
+        raw_score += multi_imbalance_deduction
+        breakdown.append({"rule": "multi_imbalance", "score": multi_imbalance_deduction})
 
     # Clamp
     min_score = score_rules.get("min_score", 30)
@@ -329,6 +351,14 @@ def calculate_raw_score(
 # Step 7: apply_improvement_bonus
 # ---------------------------------------------------------------------------
 
+def _get_bonus(score_rules: dict, rule_id: str, default: float) -> float:
+    """从 score_rules 获取加分值，如果不存在则使用默认值。"""
+    for b in score_rules.get("bonuses", []):
+        if b.get("rule_id") == rule_id:
+            return b.get("score", default)
+    return default
+
+
 def apply_improvement_bonus(
     raw_score: float,
     meridian_states: Dict[str, dict],
@@ -340,13 +370,18 @@ def apply_improvement_bonus(
         if s["afterDiff"] < s["beforeDiff"]
     )
 
+    # 从配置读取加分值（兼容旧配置）
+    multi_improve_bonus = _get_bonus(score_rules, "multiple_meridians_improved", 4)
+    partial_improve_bonus = _get_bonus(score_rules, "partial_improvement", 2)
+    stable_bonus_value = _get_bonus(score_rules, "overall_stable", 3)
+
     bonus = 0
     rule_id = None
     if improved_count >= 3:
-        bonus = 4
+        bonus = multi_improve_bonus
         rule_id = "multiple_meridians_improved"
     elif improved_count >= 1:
-        bonus = 2
+        bonus = partial_improve_bonus
         rule_id = "partial_improvement"
 
     # Overall stable bonus
@@ -357,7 +392,7 @@ def apply_improvement_bonus(
     )
     stable_bonus = 0
     if cross_count == 0 and abnormal_count <= 2:
-        stable_bonus = 3
+        stable_bonus = stable_bonus_value
 
     total_bonus = bonus + stable_bonus
     new_score = raw_score + total_bonus
