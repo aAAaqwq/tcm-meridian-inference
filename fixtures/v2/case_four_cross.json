@@ -1,0 +1,22 @@
+{
+  "subject": { "id": "v2-four-cross-001", "name": "4个交叉" },
+  "measurementSession": { "sessionId": "s020", "measuredAt": "2026-04-20T10:00:00", "isFollowup": false },
+  "measurements": {
+    "before": {
+      "liver":       { "left": 36.0, "right": 35.0 },
+      "spleen":      { "left": 36.0, "right": 35.0 },
+      "kidney":      { "left": 36.1, "right": 35.0 },
+      "stomach":     { "left": 36.0, "right": 35.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    },
+    "after": {
+      "liver":       { "left": 35.1, "right": 36.0 },
+      "spleen":      { "left": 35.1, "right": 36.0 },
+      "kidney":      { "left": 35.1, "right": 36.0 },
+      "stomach":     { "left": 35.1, "right": 36.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "subject": { "id": "v2-boundary-80", "name": "80分边界-刚好亚健康" },
+  "measurementSession": { "sessionId": "s080", "measuredAt": "2026-04-20T10:00:00", "isFollowup": false },
+  "measurements": {
+    "before": {
+      "liver":       { "left": 35.0, "right": 36.2 },
+      "spleen":      { "left": 36.0, "right": 36.0 },
+      "kidney":      { "left": 36.0, "right": 36.0 },
+      "stomach":     { "left": 36.0, "right": 36.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    },
+    "after": {
+      "liver":       { "left": 35.1, "right": 36.1 },
+      "spleen":      { "left": 36.0, "right": 36.0 },
+      "kidney":      { "left": 36.1, "right": 36.0 },
+      "stomach":     { "left": 36.0, "right": 36.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    }
+  }
+}

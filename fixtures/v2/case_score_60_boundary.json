@@ -1,0 +1,22 @@
+{
+  "subject": { "id": "v2-boundary-60", "name": "60分边界-刚好严重" },
+  "measurementSession": { "sessionId": "s060", "measuredAt": "2026-04-20T10:00:00", "isFollowup": false },
+  "measurements": {
+    "before": {
+      "liver":       { "left": 35.0, "right": 36.6 },
+      "spleen":      { "left": 35.0, "right": 36.5 },
+      "kidney":      { "left": 35.0, "right": 36.4 },
+      "stomach":     { "left": 36.0, "right": 36.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    },
+    "after": {
+      "liver":       { "left": 35.1, "right": 36.5 },
+      "spleen":      { "left": 35.1, "right": 36.4 },
+      "kidney":      { "left": 35.1, "right": 36.3 },
+      "stomach":     { "left": 36.0, "right": 36.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "subject": { "id": "v2-three-medium-001", "name": "3个中度异常" },
+  "measurementSession": { "sessionId": "s017", "measuredAt": "2026-04-20T10:00:00", "isFollowup": false },
+  "measurements": {
+    "before": {
+      "liver":       { "left": 35.0, "right": 36.3 },
+      "spleen":      { "left": 35.0, "right": 36.3 },
+      "kidney":      { "left": 35.0, "right": 36.3 },
+      "stomach":     { "left": 36.0, "right": 36.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    },
+    "after": {
+      "liver":       { "left": 35.1, "right": 36.2 },
+      "spleen":      { "left": 35.1, "right": 36.2 },
+      "kidney":      { "left": 35.1, "right": 36.2 },
+      "stomach":     { "left": 36.0, "right": 36.0 },
+      "gallbladder": { "left": 36.0, "right": 36.0 },
+      "bladder":     { "left": 36.0, "right": 36.0 }
+    }
+  }
+}
