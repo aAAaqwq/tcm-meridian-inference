@@ -11,8 +11,7 @@
   },
   "deductions": [
     { "rule_id": "single_meridian_mild_abnormal", "condition": "severity == mild", "per_meridian": true, "score": -1.0, "note": "轻度异常单经络扣1分" },
-    { "rule_id": "single_meridian_medium_abnormal", "condition": "severity == medium", "per_meridian": true, "score": -2.0, "note": "中度异常单经络扣2分" },
-    { "rule_id": "single_meridian_high_abnormal", "condition": "severity == high", "per_meridian": true, "score": -4.0, "note": "高度异常单经络扣4分" },
+    { "rule_id": "single_meridian_obvious_abnormal", "condition": "severity in [medium, high]", "per_meridian": true, "score": -2.0, "note": "明显异常单经络扣2分" },
     { "rule_id": "single_meridian_cross", "condition": "cross == true", "per_meridian": true, "score": -2.0, "note": "交叉异常单经络扣2分" },
     { "rule_id": "kidney_bladder_double_cross", "condition": "kidney.cross AND bladder.cross", "per_meridian": false, "score": -3, "note": "肾膀胱双交叉扣3分" },
     { "rule_id": "multi_cross", "condition": "cross_count >= 3", "per_meridian": false, "score": -3, "note": "3个以上交叉扣3分" },

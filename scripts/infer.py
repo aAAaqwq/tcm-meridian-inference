@@ -89,26 +89,7 @@ def get_severity(diff: float, thresholds: dict) -> str:
         return "high"
 
 
-def _check_temperature_range(temp: float, thresholds: dict) -> str:
-    """Check if temperature is within normal range."""
-    normal_min = thresholds.get("normalMin", 35.6)
-    normal_max = thresholds.get("normalMax", 36.6)
-    low_min = thresholds.get("lowMin", 35.3)
-    high_max = thresholds.get("highMax", 36.9)
-
-    if normal_min <= temp <= normal_max:
-        return "normal"
-    elif temp < low_min:
-        return "critical_low"
-    elif temp < normal_min:
-        return "low"
-    elif temp > high_max:
-        return "critical_high"
-    else:  # temp > normal_max
-        return "high"
-
-
-def compute_meridian_states(payload: dict, score_rules: dict, thresholds: dict) -> Dict[str, dict]:
+def compute_meridian_states(payload: dict, score_rules: dict) -> Dict[str, dict]:
     """Step 3: compute per-meridian states from before/after measurements."""
     ms = payload["measurements"]
     before = ms["before"]
@@ -131,28 +112,7 @@ def compute_meridian_states(payload: dict, score_rules: dict, thresholds: dict) 
             and before_low_side != after_low_side
         )
 
-        # Check balance severity
-        balance_severity = get_severity(max(before_diff, after_diff), severity_thresholds)
-
-        # Check temperature range for all measurements
-        temp_checks = [
-            _check_temperature_range(b["left"], thresholds),
-            _check_temperature_range(b["right"], thresholds),
-            _check_temperature_range(a["left"], thresholds),
-            _check_temperature_range(a["right"], thresholds),
-        ]
-
-        # Determine final severity - temperature range takes precedence
-        if any(t in ("critical_low", "critical_high") for t in temp_checks):
-            severity = "high"  # Critical temperature = high severity
-        elif any(t in ("low", "high") for t in temp_checks):
-            # Temperature out of range = at least mild
-            if balance_severity == "balanced":
-                severity = "mild"
-            else:
-                severity = balance_severity
-        else:
-            severity = balance_severity
+        severity = get_severity(max(before_diff, after_diff), severity_thresholds)
 
         meridian_states[m] = {
             "beforeStatus": before_status,
@@ -306,8 +266,7 @@ def calculate_raw_score(
 
     # 从配置读取扣减分值（兼容旧配置）
     mild_deduction = _get_deduction(score_rules, "single_meridian_mild_abnormal", -2)
-    medium_deduction = _get_deduction(score_rules, "single_meridian_medium_abnormal", -4)
-    high_deduction = _get_deduction(score_rules, "single_meridian_high_abnormal", -8)
+    obvious_deduction = _get_deduction(score_rules, "single_meridian_obvious_abnormal", -4)
     cross_deduction = _get_deduction(score_rules, "single_meridian_cross", -4)
     kidney_bladder_deduction = _get_deduction(score_rules, "kidney_bladder_double_cross", -8)
     multi_cross_deduction = _get_deduction(score_rules, "multi_cross", -8)
@@ -325,12 +284,9 @@ def calculate_raw_score(
         if sev == "mild":
             raw_score += mild_deduction  # 加上负数等于减去
             breakdown.append({"rule": "single_meridian_mild_abnormal", "score": mild_deduction, "target": m})
-        elif sev == "medium":
-            raw_score += medium_deduction
-            breakdown.append({"rule": "single_meridian_medium_abnormal", "score": medium_deduction, "target": m})
-        elif sev == "high":
-            raw_score += high_deduction
-            breakdown.append({"rule": "single_meridian_high_abnormal", "score": high_deduction, "target": m})
+        elif sev in ("medium", "high"):
+            raw_score += obvious_deduction
+            breakdown.append({"rule": "single_meridian_obvious_abnormal", "score": obvious_deduction, "target": m})
         if s["cross"]:
             raw_score += cross_deduction
             breakdown.append({"rule": "single_meridian_cross", "score": cross_deduction, "target": m})
@@ -727,7 +683,7 @@ def infer(payload: dict, thresholds: dict, meridian_rules: dict,
     validate_input(payload)
 
     # Step 3
-    meridian_states = compute_meridian_states(payload, score_rules, thresholds)
+    meridian_states = compute_meridian_states(payload, score_rules)
 
     # Step 4
     global_patterns = compute_global_patterns(meridian_states)

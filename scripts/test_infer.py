@@ -196,7 +196,7 @@ def test_score_breakdown_exists():
     assert isinstance(breakdown, list), breakdown
     assert len(breakdown) > 0, "Should have deductions"
     rules = [b["rule"] for b in breakdown]
-    assert "single_meridian_high_abnormal" in rules, rules
+    assert "single_meridian_obvious_abnormal" in rules, rules
 
 
 def test_improvement_bonus():
