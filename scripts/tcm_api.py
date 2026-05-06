@@ -1,12 +1,25 @@
 #!/usr/bin/env python3
-"""TCM Meridian Inference HTTP API - supports rule-only and hybrid (DeepSeek) modes.
+"""TCM Meridian Inference HTTP API v3 - Mulinsen Report Edition.
 
+Supports rule-only and hybrid (DeepSeek) modes.
 Modes (set via TCM_INFER_MODE env var):
   - rule   : deterministic rule engine only (default, no API key needed)
   - agent  : hybrid = rule engine + DeepSeek natural language enrichment
   - auto   : use agent if DEEPSEEK_API_KEY is set, otherwise fall back to rule
+
+Input format (v3):
+  - measurement_type: "first_test" or "retest"
+  - gender: "male", "female", or "unknown"
+  - meridians: {stomach, gallbladder, bladder, liver, spleen, kidney}
+    each with group1_left, group1_right, group2_left, group2_right
+
+See docs/sources/mulinsen-report-inference-flow.md for full PRD.
 """
-import json, sys, os, signal, time
+import json
+import sys
+import os
+import signal
+import time
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
@@ -16,7 +29,7 @@ from logger import get_logger, load_dotenv
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
-INFER_SCRIPT = os.path.join(SCRIPT_DIR, "infer.py")
+INFER_SCRIPT = os.path.join(SCRIPT_DIR, "infer_v2.py")  # v3 inference engine
 AGENT_SCRIPT = os.path.join(SCRIPT_DIR, "infer_agent.py")
 RULES_DIR = os.path.join(PROJECT_DIR, "rules")
 PORT = int(os.environ.get("TCM_API_PORT", 18790))
@@ -27,18 +40,14 @@ _shutting_down = False
 
 _infer_mod = None
 _agent_mod = None
-_thresholds = None
-_meridian_rules = None
-_combo_rules = None
-_score_rules = None
-_followup_policy = None
+_rules = None
 
 
 def load_infer():
     global _infer_mod
     if _infer_mod is not None:
         return _infer_mod
-    spec = importlib_util.spec_from_file_location("infer", INFER_SCRIPT)
+    spec = importlib_util.spec_from_file_location("infer_v2", INFER_SCRIPT)
     _infer_mod = importlib_util.module_from_spec(spec)
     spec.loader.exec_module(_infer_mod)
     return _infer_mod
@@ -55,19 +64,13 @@ def load_agent():
 
 
 def load_rules():
-    global _thresholds, _meridian_rules, _combo_rules, _score_rules, _followup_policy
-    if _thresholds is not None:
-        return
-    with open(os.path.join(RULES_DIR, "thresholds.json")) as f:
-        _thresholds = json.load(f)
+    global _rules
+    if _rules is not None:
+        return _rules
     with open(os.path.join(RULES_DIR, "meridian_rules.json")) as f:
-        _meridian_rules = json.load(f)
-    with open(os.path.join(RULES_DIR, "combination_rules.json")) as f:
-        _combo_rules = json.load(f)
-    with open(os.path.join(RULES_DIR, "score_rules.json")) as f:
-        _score_rules = json.load(f)
-    with open(os.path.join(RULES_DIR, "followup_policy_rules.json")) as f:
-        _followup_policy = json.load(f)
+        meridian_rules = json.load(f)
+    _rules = {"meridian_rules": meridian_rules}
+    return _rules
 
 
 def _resolve_mode():
@@ -91,28 +94,51 @@ def run_inference(payload):
             rules_dir=Path(RULES_DIR),
         )
     else:
-        load_rules()
+        rules = load_rules()
         mod = load_infer()
-        return mod.infer(payload, _thresholds, _meridian_rules, _combo_rules, _score_rules, _followup_policy)
+        return mod.infer(payload, rules)
 
 
+# v3 Sample data (Mulinsen format)
 SAMPLE_DATA = {
-    "measurements": {
-        "before": {
-            "liver": {"left": 34.5, "right": 34.3},
-            "spleen": {"left": 34.8, "right": 34.6},
-            "kidney": {"left": 33.5, "right": 34.2},
-            "stomach": {"left": 34.0, "right": 34.5},
-            "gallbladder": {"left": 34.2, "right": 34.0},
-            "bladder": {"left": 33.8, "right": 34.8}
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+        "stomach": {
+            "group1_left": 39.5,
+            "group1_right": 40.5,
+            "group2_left": 42.4,
+            "group2_right": 42.5
         },
-        "after": {
-            "liver": {"left": 34.6, "right": 34.4},
-            "spleen": {"left": 34.9, "right": 34.7},
-            "kidney": {"left": 33.8, "right": 34.0},
-            "stomach": {"left": 34.2, "right": 34.4},
-            "gallbladder": {"left": 34.3, "right": 34.1},
-            "bladder": {"left": 34.0, "right": 34.6}
+        "gallbladder": {
+            "group1_left": 36.7,
+            "group1_right": 36.7,
+            "group2_left": 42.1,
+            "group2_right": 42.1
+        },
+        "bladder": {
+            "group1_left": 36.2,
+            "group1_right": 36.5,
+            "group2_left": 37.9,
+            "group2_right": 41.1
+        },
+        "liver": {
+            "group1_left": 36.7,
+            "group1_right": 36.4,
+            "group2_left": 39.6,
+            "group2_right": 39.9
+        },
+        "spleen": {
+            "group1_left": 36.6,
+            "group1_right": 36.5,
+            "group2_left": 39.1,
+            "group2_right": 40.6
+        },
+        "kidney": {
+            "group1_left": 36.6,
+            "group1_right": 36.7,
+            "group2_left": 40.5,
+            "group2_right": 41.6
         }
     }
 }
@@ -128,11 +154,11 @@ class TCMHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         path = urlparse(self.path).path
         if path in ("/health", "/healthz"):
-            self._json({"status": "ok", "service": "tcm-meridian-api", "python": sys.version})
+            self._json({"status": "ok", "service": "tcm-meridian-api-v3", "python": sys.version})
         elif path == "/":
             self._json({
-                "service": "TCM Meridian Inference API",
-                "version": "2.0",
+                "service": "TCM Meridian Inference API v3",
+                "version": "3.0",
                 "inferMode": _resolve_mode(),
                 "endpoints": {
                     "POST /": "Run inference (legacy)",
@@ -141,7 +167,8 @@ class TCMHandler(BaseHTTPRequestHandler):
                     "GET /healthz": "Health check",
                     "POST /api/inference/meridian-diagnosis": "Run inference"
                 },
-                "meridians": ["liver", "spleen", "kidney", "stomach", "gallbladder", "bladder"]
+                "meridians": ["stomach", "gallbladder", "bladder", "liver", "spleen", "kidney"],
+                "inputFormat": "v3 (group1/group2) - see PRD docs/sources/mulinsen-report-inference-flow.md"
             })
         else:
             self._json({"error": "not found"}, 404)
@@ -169,14 +196,15 @@ class TCMHandler(BaseHTTPRequestHandler):
             elapsed = time.time() - t0
             self._json(result)
 
-            engine = result.get("engine", {})
-            hs = result.get("healthScore", {})
-            score = hs.get("score", 0) if isinstance(hs, dict) else hs
+            score_result = result.get("score_result", {})
+            score = score_result.get("score", 0)
+            problem_index = score_result.get("problem_index", 0)
             log.info(
-                "POST %s mode=%s score=%.1f latency=%.2fs",
+                "POST %s mode=%s score=%s problem_index=%.1f latency=%.2fs",
                 path,
-                engine.get("mode", "?"),
+                _resolve_mode(),
                 score,
+                problem_index,
                 elapsed,
             )
             log.debug("response body: %s", json.dumps(result, ensure_ascii=False))
@@ -211,7 +239,7 @@ def main():
     load_dotenv()
     mode = _resolve_mode()
     server = HTTPServer(("0.0.0.0", PORT), TCMHandler)
-    log.info("TCM API starting on 0.0.0.0:%d mode=%s", PORT, mode)
+    log.info("TCM API v3 starting on 0.0.0.0:%d mode=%s", PORT, mode)
 
     def shutdown(sig, _frame):
         global _shutting_down

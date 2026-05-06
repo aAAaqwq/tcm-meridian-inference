@@ -1,0 +1,49 @@
+{
+  "_comment": "膀胱经最低点场景: 膀胱经温度最低，需结合肾经分析",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 37.5,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 35.0,
+      "group1_right": 36.0,
+      "group2_left": 37.0,
+      "group2_right": 39.0
+    },
+    "liver": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 36.5,
+      "group1_right": 37.5,
+      "group2_left": 39.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 35.5,
+      "group1_right": 36.5,
+      "group2_left": 38.0,
+      "group2_right": 39.0
+    }
+  },
+  "expected": {
+    "lowest_point": "bladder",
+    "lowest_value": 37.0,
+    "cervical_lumbar": "lumbar",
+    "note": "膀胱经最低点，结合肾左低判断腰椎问题"
+  }
+}

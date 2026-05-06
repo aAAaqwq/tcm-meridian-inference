@@ -1,0 +1,58 @@
+{
+  "test_file": "test_13_side_bias_6.json",
+  "test_name": "左右偏向测试 - 6条经络全部左低: C=6,严重偏侧",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 5.29,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "left_low_count": 6,
+    "right_low_count": 0,
+    "side_bias_result": "head_blood_supply_attention",
+    "side_bias_index_C": 6
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

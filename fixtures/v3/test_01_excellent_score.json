@@ -1,0 +1,50 @@
+{
+  "_comment": "首测 - 健康优秀分数区间(90-100): 所有经络平衡,温差小,问题指数<=10",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "liver": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    }
+  },
+  "expected": {
+    "score": 89,
+    "score_raw": 90.0,
+    "score_level": "健康优秀",
+    "problem_index": 0.0,
+    "note": "首测clamp上限89，所以完美数据也只能得到89分"
+  }
+}

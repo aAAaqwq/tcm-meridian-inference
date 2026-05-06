@@ -1,0 +1,59 @@
+{
+  "test_file": "test_28_diff_change_worsened.json",
+  "test_name": "温差变化测试 - worsened: 温差变大>0.2℃",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 9.1,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 42.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "stomach": {
+      "group1_diff": 2.0,
+      "group2_diff": 4.0,
+      "diff_change": "worsened"
+    }
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

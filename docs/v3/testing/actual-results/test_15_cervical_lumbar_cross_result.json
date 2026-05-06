@@ -1,0 +1,57 @@
+{
+  "test_file": "test_15_cervical_lumbar_cross.json",
+  "test_name": "颈椎腰椎测试 - 肾交叉+膀胱任意: 任意一条交叉→颈椎和腰椎同时存在",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 11.37,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "liver": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "bladder_trend": "cross",
+    "kidney_trend": "stable_left_low",
+    "cervical_lumbar": "cervical_and_lumbar"
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

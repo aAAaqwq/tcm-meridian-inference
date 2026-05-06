@@ -1,0 +1,67 @@
+{
+  "test_file": "test_18_gender_unknown.json",
+  "test_name": "性别过滤测试 - 未知: 只保留中性表达",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 10.77,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "unknown",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "gender": "unknown",
+    "allowed_words": [
+      "生殖系统",
+      "泌尿系统",
+      "腹部手术史"
+    ],
+    "forbidden_words": [
+      "宫寒",
+      "子宫",
+      "前列腺",
+      "子宫肌瘤",
+      "前列腺炎"
+    ]
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

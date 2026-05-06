@@ -1,0 +1,56 @@
+{
+  "test_file": "test_02_mild_imbalance.json",
+  "test_name": "首测 - 轻度失衡分数区间(80-89): 轻微温差,1-2条经络轻度异常",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 12.46,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 37.9,
+        "group1_right": 38.0,
+        "group2_left": 39.8,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 37.8,
+        "group1_right": 38.0,
+        "group2_left": 39.7,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "score_range": "80-89",
+    "score_level": "轻度失衡"
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

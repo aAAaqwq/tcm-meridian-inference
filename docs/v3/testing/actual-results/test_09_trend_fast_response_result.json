@@ -1,0 +1,55 @@
+{
+  "test_file": "test_09_trend_fast_response.json",
+  "test_name": "趋势测试 - fast_response: 第一组左低,第二组平衡,表示调理反应较快",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 5.95,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "stomach_trend": "fast_response"
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

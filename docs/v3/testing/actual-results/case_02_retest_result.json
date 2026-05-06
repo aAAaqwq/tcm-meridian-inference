@@ -1,0 +1,56 @@
+{
+  "test_file": "case_02_retest.json",
+  "test_name": "case_02_retest.json",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 2.96,
+  "request": {
+    "measurement_type": "retest",
+    "gender": "female",
+    "previous_score": 77,
+    "previous_problem_index": 24.9,
+    "usage_days_between_tests": 14,
+    "meridians": {
+      "stomach": {
+        "group1_left": 40.0,
+        "group1_right": 40.5,
+        "group2_left": 42.5,
+        "group2_right": 42.6
+      },
+      "gallbladder": {
+        "group1_left": 37.0,
+        "group1_right": 37.0,
+        "group2_left": 42.2,
+        "group2_right": 42.2
+      },
+      "bladder": {
+        "group1_left": 37.0,
+        "group1_right": 37.2,
+        "group2_left": 40.0,
+        "group2_right": 41.0
+      },
+      "liver": {
+        "group1_left": 37.0,
+        "group1_right": 36.8,
+        "group2_left": 40.0,
+        "group2_right": 40.2
+      },
+      "spleen": {
+        "group1_left": 37.0,
+        "group1_right": 36.8,
+        "group2_left": 40.0,
+        "group2_right": 40.8
+      },
+      "kidney": {
+        "group1_left": 37.0,
+        "group1_right": 37.0,
+        "group2_left": 41.0,
+        "group2_right": 41.5
+      }
+    }
+  },
+  "expected": {},
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

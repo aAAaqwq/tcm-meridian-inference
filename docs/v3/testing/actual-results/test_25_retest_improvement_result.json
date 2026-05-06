@@ -1,0 +1,62 @@
+{
+  "test_file": "test_25_retest_improvement.json",
+  "test_name": "复测测试 - 数据改善: ΔI>0时improvement_bonus=min(3, 0.3*ΔI)",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 15.48,
+  "request": {
+    "measurement_type": "retest",
+    "gender": "female",
+    "previous_score": 70,
+    "previous_problem_index": 30.0,
+    "usage_days_between_tests": 14,
+    "meridians": {
+      "stomach": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "previous_problem_index": 30.0,
+    "current_problem_index": "~10",
+    "delta_I": "~20",
+    "improvement_bonus": 3.0,
+    "improvement_bonus_maxed": true
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

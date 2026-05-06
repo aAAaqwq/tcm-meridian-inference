@@ -1,0 +1,267 @@
+{
+  "engine": {
+    "mode": "hybrid",
+    "version": "3.0",
+    "llmModel": "deepseek-chat",
+    "llmLatency": 12.05
+  },
+  "score_result": {
+    "score": 74,
+    "score_raw": 74.2,
+    "problem_index": 28.5,
+    "problem_index_detail": {
+      "low_temperature_index": 5.0,
+      "temperature_difference_index": 12.0,
+      "side_bias_index": 6.0,
+      "trend_index": 3.0,
+      "combo_index": 2.5
+    }
+  },
+  "lowest_points": {
+    "selected": [
+      {
+        "meridian": "kidney",
+        "side": "right",
+        "value": 36.0,
+        "rank": 1,
+        "must_report": true
+      },
+      {
+        "meridian": "bladder",
+        "side": "right",
+        "value": 37.0,
+        "rank": 2,
+        "must_report": true
+      }
+    ],
+    "tie_candidates": []
+  },
+  "side_bias_summary": {
+    "left_low_count": 0,
+    "right_low_count": 6,
+    "balanced_count": 0,
+    "result": "heart_attention"
+  },
+  "cervical_lumbar_result": {
+    "result": "lumbar",
+    "kidney_trend": "stable_right_low",
+    "bladder_trend": "stable_right_low"
+  },
+  "meridian_analysis": [
+    {
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "group1_status": "right_low",
+      "group2_status": "right_low",
+      "trend": "stable_right_low",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "胃阳不足",
+        "胃胀",
+        "温度特别低时，可能吃什么拉什么"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "gallbladder",
+      "meridian_name": "胆经",
+      "group1_status": "right_low",
+      "group2_status": "right_low",
+      "trend": "stable_right_low",
+      "group1_diff": 1.5,
+      "group2_diff": 1.5,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "胆固醇",
+        "脂肪瘤",
+        "优柔寡断",
+        "决断力不够"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "bladder",
+      "meridian_name": "膀胱经",
+      "group1_status": "right_low",
+      "group2_status": "right_low",
+      "trend": "stable_right_low",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "湿下注与腰部方向需关注",
+        "大便不成形",
+        "湿气下注大肠",
+        "肺右侧功能风险"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "liver",
+      "meridian_name": "肝经",
+      "group1_status": "right_low",
+      "group2_status": "right_low",
+      "trend": "stable_right_low",
+      "group1_diff": 1.5,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "worsened",
+      "matched_rules": [
+        "藏血功能变弱",
+        "血虚",
+        "心脏供血功能不足",
+        "心慌",
+        "胸闷",
+        "心悸",
+        "心律不齐",
+        "容易做梦",
+        "结合肾右低，容易掉发",
+        "温度特别低时，血虚严重，容易抽筋"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "diff_worsened",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "spleen",
+      "meridian_name": "脾经",
+      "group1_status": "right_low",
+      "group2_status": "right_low",
+      "trend": "stable_right_low",
+      "group1_diff": 1.5,
+      "group2_diff": 1.5,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "湿气重",
+        "阳少湿气重",
+        "湿气下注到大肠，结合肝右低、肾右低，容易便溏",
+        "湿气下注到子宫，可能例假长",
+        "湿气下注到小腿，容易腿沉"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "kidney",
+      "meridian_name": "肾经",
+      "group1_status": "right_low",
+      "group2_status": "right_low",
+      "trend": "stable_right_low",
+      "group1_diff": 2.0,
+      "group2_diff": 3.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "serious_problem",
+      "diff_change": "worsened",
+      "matched_rules": [
+        "耳背",
+        "阳虚",
+        "夜尿",
+        "尿长",
+        "怕冷",
+        "宫寒",
+        "结合肝右低，容易掉发"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "second_group_lowest_point",
+        "group2_diff_serious_problem",
+        "diff_worsened",
+        "side_bias_participant"
+      ]
+    }
+  ],
+  "focus_issues": [
+    {
+      "priority": 1,
+      "type": "lowest_point",
+      "meridian": "kidney",
+      "meridian_name": "肾经",
+      "side": "right",
+      "title": "肾经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point",
+        "group2_diff_serious_problem",
+        "diff_worsened"
+      ]
+    },
+    {
+      "priority": 2,
+      "type": "lowest_point",
+      "meridian": "bladder",
+      "meridian_name": "膀胱经",
+      "side": "right",
+      "title": "膀胱经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem"
+      ]
+    },
+    {
+      "priority": 3,
+      "type": "side_bias",
+      "title": "心脏方向需关注",
+      "right_low_count": 6,
+      "reason_codes": [
+        "right_bias_count_high"
+      ]
+    },
+    {
+      "priority": 4,
+      "type": "cervical_lumbar",
+      "title": "腰椎相关问题需关注",
+      "reason_codes": [
+        "lumbar_issue_detected"
+      ]
+    }
+  ],
+  "gender": "female",
+  "measurement_type": "first_test",
+  "summary": "本次检测显示您整体处于中度失衡的亚健康状态（综合健康分74），主要涉及肾、膀胱、肝、脾、胃、胆等多条经络的功能偏弱，以右侧偏低的趋势较为明显，提示循环与心脏供血方面需要关注。同时，结合肾经与膀胱经的同侧偏低表现，腰椎区域可能存在一定劳损风险。建议从温补肾阳、祛湿健脾、调养气血入手，逐步改善体质。",
+  "reportSummary": "本次检测显示您整体处于中度失衡的亚健康状态（综合健康分74），主要涉及肾、膀胱、肝、脾、胃、胆等多条经络的功能偏弱，以右侧偏低的趋势较为明显，提示循环与心脏供血方面需要关注。同时，结合肾经与膀胱经的同侧偏低表现，腰椎区域可能存在一定劳损风险。建议从温补肾阳、祛湿健脾、调养气血入手，逐步改善体质。",
+  "storefront": {
+    "focusHeadline": "整体偏右失衡，肾与膀胱需关注",
+    "clientExplanation": "本次检测通过足部经络温度分析，发现您的多条经络存在功能偏弱的表现，尤其以肾经和膀胱经较为突出。需要说明的是，此项分析属于健康状态参考，不等同于医疗诊断，如有具体不适症状建议及时就医。",
+    "talkTrack": [
+      "从检测结果来看，您的身体整体处于一个需要调理的状态，尤其是右侧的经络能量偏低比较明显。",
+      "肾经和膀胱经是我们身体里跟水分代谢、骨骼、生殖系统关系密切的两条经络，它们现在需要更多关注。",
+      "调理的方向主要是温补肾阳、祛湿健脾、促进气血循环，我们可以从饮食、作息和经络疏通几个方面入手。"
+    ],
+    "retestPrompt": "建议持续调理1-2周后进行复测，观察经络温度的变化情况，以评估调理效果并及时调整方案。"
+  },
+  "recommendations": [
+    "饮食上适当增加温补肾阳的食物，如黑豆、黑芝麻、核桃、山药、羊肉等，避免生冷寒凉。",
+    "作息上尽量在晚上11点前入睡，保证深度睡眠，有助于肾精恢复和气血生成。",
+    "每天可进行轻柔的腰部按摩或艾灸关元、肾俞、命门等穴位，促进肾经和膀胱经的气血流通。",
+    "适当运动如慢跑、瑜伽、八段锦，以微微出汗为度，帮助祛湿、促进循环。"
+  ]
+}

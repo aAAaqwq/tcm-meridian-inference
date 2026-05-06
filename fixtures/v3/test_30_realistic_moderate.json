@@ -1,0 +1,50 @@
+{
+  "_comment": "真实场景 - 中度失衡: 4-5条经络异常，有明显低温点和温差",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 36.5,
+      "group1_right": 38.0,
+      "group2_left": 39.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 39.5,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 35.0,
+      "group1_right": 37.0,
+      "group2_left": 37.0,
+      "group2_right": 40.0
+    },
+    "liver": {
+      "group1_left": 36.0,
+      "group1_right": 38.0,
+      "group2_left": 38.5,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 35.5,
+      "group1_right": 37.0,
+      "group2_left": 38.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 36.0,
+      "group1_right": 37.0,
+      "group2_left": 38.0,
+      "group2_right": 40.0
+    }
+  },
+  "expected": {
+    "score_range": "75-80",
+    "score_level": "中度失衡",
+    "lowest_point": "bladder",
+    "side_bias": "left_low",
+    "note": "常见需要调理的情况，有明确低温点和偏侧"
+  }
+}

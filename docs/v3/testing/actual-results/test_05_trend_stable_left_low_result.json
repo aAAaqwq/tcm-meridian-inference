@@ -1,0 +1,57 @@
+{
+  "test_file": "test_05_trend_stable_left_low.json",
+  "test_name": "趋势测试 - stable_left_low: 两组均左低,肾经和膀胱经同左低→腰椎问题",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 19.8,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 36.5,
+        "group1_right": 38.0,
+        "group2_left": 38.5,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 35.0,
+        "group1_right": 37.0,
+        "group2_left": 37.0,
+        "group2_right": 39.0
+      },
+      "liver": {
+        "group1_left": 36.0,
+        "group1_right": 37.5,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 35.5,
+        "group1_right": 37.0,
+        "group2_left": 38.0,
+        "group2_right": 39.5
+      },
+      "kidney": {
+        "group1_left": 34.0,
+        "group1_right": 36.0,
+        "group2_left": 36.0,
+        "group2_right": 39.0
+      }
+    }
+  },
+  "expected": {
+    "kidney_trend": "stable_left_low",
+    "bladder_trend": "stable_left_low",
+    "cervical_lumbar": "lumbar"
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

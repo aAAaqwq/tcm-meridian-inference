@@ -1,0 +1,49 @@
+{
+  "_comment": "肾经交叉场景: 肾经交叉提示结石/囊肿/手术史风险",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 37.5,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 36.0,
+      "group1_right": 37.0,
+      "group2_left": 39.0,
+      "group2_right": 40.0
+    },
+    "liver": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 36.5,
+      "group1_right": 37.5,
+      "group2_left": 39.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 35.0,
+      "group1_right": 37.0,
+      "group2_left": 40.0,
+      "group2_right": 38.0
+    }
+  },
+  "expected": {
+    "kidney_trend": "cross",
+    "matched_rules": ["结石", "囊肿", "腹部手术史", "女性：剖腹产、人流、子宫肌瘤"],
+    "cervical_lumbar": "cervical_and_lumbar",
+    "note": "肾经交叉，提示阴阳两虚，需关注结石/囊肿/手术史"
+  }
+}

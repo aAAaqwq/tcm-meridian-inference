@@ -1,0 +1,50 @@
+{
+  "_comment": "温差变化测试 - improved: 温差缩小>0.2℃",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 34.0,
+      "group1_right": 38.0,
+      "group2_left": 39.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "liver": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    }
+  },
+  "expected": {
+    "stomach": {
+      "group1_diff": 4.0,
+      "group2_diff": 1.0,
+      "diff_change": "improved"
+    }
+  }
+}

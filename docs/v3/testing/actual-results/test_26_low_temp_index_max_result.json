@@ -1,0 +1,58 @@
+{
+  "test_file": "test_26_low_temp_index_max.json",
+  "test_name": "低温指数测试 - 低温差距>3℃: A=6,最高档",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 6.1,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 44.0,
+        "group2_right": 44.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 44.0,
+        "group2_right": 44.0
+      },
+      "bladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 44.0,
+        "group2_right": 44.0
+      },
+      "spleen": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 44.0,
+        "group2_right": 44.0
+      },
+      "kidney": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 44.0,
+        "group2_right": 44.0
+      }
+    }
+  },
+  "expected": {
+    "low_temperature_index_A": 6.0,
+    "median": 44.0,
+    "lowest_two_avg": 40.0,
+    "gap": 4.0
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

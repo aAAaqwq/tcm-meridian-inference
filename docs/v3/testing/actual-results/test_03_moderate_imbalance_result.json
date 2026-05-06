@@ -1,0 +1,57 @@
+{
+  "test_file": "test_03_moderate_imbalance.json",
+  "test_name": "首测 - 中度失衡分数区间(70-79): 多条经络有温差,偏侧明显",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 20.04,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.5,
+        "group1_right": 38.0,
+        "group2_left": 39.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.5,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 35.0,
+        "group1_right": 37.0,
+        "group2_left": 37.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 36.0,
+        "group1_right": 37.5,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 35.5,
+        "group1_right": 37.0,
+        "group2_left": 38.0,
+        "group2_right": 39.5
+      },
+      "kidney": {
+        "group1_left": 35.0,
+        "group1_right": 36.0,
+        "group2_left": 37.0,
+        "group2_right": 39.0
+      }
+    }
+  },
+  "expected": {
+    "score_range": "70-79",
+    "score_level": "中度失衡",
+    "side_bias": "left_low_count >= 4"
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

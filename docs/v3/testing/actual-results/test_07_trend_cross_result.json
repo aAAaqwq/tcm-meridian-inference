@@ -1,0 +1,56 @@
+{
+  "test_file": "test_07_trend_cross.json",
+  "test_name": "趋势测试 - cross: 两组左右方向相反,肾经左低+膀胱经右低→颈椎问题",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 21.65,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "gallbladder": {
+        "group1_left": 36.5,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 38.5
+      },
+      "bladder": {
+        "group1_left": 35.0,
+        "group1_right": 37.0,
+        "group2_left": 39.0,
+        "group2_right": 37.0
+      },
+      "liver": {
+        "group1_left": 36.0,
+        "group1_right": 37.5,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "spleen": {
+        "group1_left": 35.5,
+        "group1_right": 37.0,
+        "group2_left": 39.5,
+        "group2_right": 38.0
+      },
+      "kidney": {
+        "group1_left": 34.0,
+        "group1_right": 36.0,
+        "group2_left": 39.0,
+        "group2_right": 37.0
+      }
+    }
+  },
+  "expected": {
+    "kidney_trend": "cross",
+    "cervical_lumbar": "cervical_and_lumbar"
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

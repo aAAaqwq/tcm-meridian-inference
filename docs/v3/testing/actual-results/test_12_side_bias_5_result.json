@@ -1,0 +1,58 @@
+{
+  "test_file": "test_12_side_bias_5.json",
+  "test_name": "左右偏向测试 - 5条经络右低: 触发心脏方向关注, C=5",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 5.7,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 38.0,
+        "group1_right": 36.0,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 36.0,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "bladder": {
+        "group1_left": 38.0,
+        "group1_right": 36.0,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "liver": {
+        "group1_left": 38.0,
+        "group1_right": 36.0,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "spleen": {
+        "group1_left": 38.0,
+        "group1_right": 36.0,
+        "group2_left": 40.0,
+        "group2_right": 38.0
+      },
+      "kidney": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "left_low_count": 0,
+    "right_low_count": 5,
+    "side_bias_result": "heart_attention",
+    "side_bias_index_C": 5
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

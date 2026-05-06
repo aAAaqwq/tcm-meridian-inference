@@ -1,0 +1,60 @@
+{
+  "test_file": "test_17_gender_female.json",
+  "test_name": "性别过滤测试 - 女性: 不能出现男性专属表达",
+  "status": "error",
+  "http_status": 400,
+  "response_time_ms": 9.27,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "female",
+    "meridians": {
+      "stomach": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 40.0,
+        "group2_right": 40.0
+      },
+      "bladder": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "liver": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "spleen": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      },
+      "kidney": {
+        "group1_left": 36.0,
+        "group1_right": 38.0,
+        "group2_left": 38.0,
+        "group2_right": 40.0
+      }
+    }
+  },
+  "expected": {
+    "gender": "female",
+    "forbidden_words": [
+      "前列腺",
+      "前列腺炎",
+      "前列腺钙化"
+    ]
+  },
+  "actual": null,
+  "key_fields": null,
+  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+}

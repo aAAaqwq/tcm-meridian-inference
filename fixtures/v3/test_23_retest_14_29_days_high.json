@@ -1,0 +1,53 @@
+{
+  "_comment": "复测测试 - 使用14-29天且上次>=88: usage_bonus=3,保护为max(本次,上次)",
+  "measurement_type": "retest",
+  "gender": "female",
+  "previous_score": 90,
+  "previous_problem_index": 15.0,
+  "usage_days_between_tests": 20,
+  "meridians": {
+    "stomach": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "liver": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    }
+  },
+  "expected": {
+    "usage_days": 20,
+    "usage_bonus": 3,
+    "previous_score": 90,
+    "previous_score_less_than_88": false,
+    "protection": "max(retest_score_base, previous_score)"
+  }
+}

@@ -25,7 +25,7 @@ PROJECT_DIR = SCRIPT_DIR.parent
 
 sys.path.insert(0, str(SCRIPT_DIR))
 
-from infer import infer, load_rules  # noqa: E402
+from infer_v2 import infer, load_rules  # noqa: E402
 from deepseek_client import chat, DeepSeekError  # noqa: E402
 from prompt_builder import build_system_prompt, build_user_prompt  # noqa: E402
 from output_validator import validate_and_fix  # noqa: E402
@@ -53,15 +53,15 @@ def run_hybrid(
     if rules_dir is None:
         rules_dir = PROJECT_DIR / "rules"
 
-    thresholds, meridian_rules, combo_rules, score_rules, followup_policy = load_rules(rules_dir)
+    rules = load_rules(rules_dir)
 
     # Step 1: deterministic rule engine
     t_rule = time.time()
-    rule_result = infer(payload, thresholds, meridian_rules, combo_rules, score_rules, followup_policy)
-    hs = rule_result.get("healthScore", {})
-    score = hs.get("score", 0) if isinstance(hs, dict) else hs
+    rule_result = infer(payload, rules)
+    score_result = rule_result.get("score_result", {})
+    score = score_result.get("score", 0)
     log.info(
-        "rule engine done score=%.1f latency=%.2fs",
+        "rule engine done score=%s latency=%.2fs",
         score,
         time.time() - t_rule,
     )
@@ -72,7 +72,7 @@ def run_hybrid(
         return rule_result
 
     # Step 2: build prompts
-    system_prompt = build_system_prompt(thresholds, meridian_rules, combo_rules)
+    system_prompt = build_system_prompt()
     user_prompt = build_user_prompt(payload, rule_result)
 
     # Step 3: call DeepSeek
@@ -96,7 +96,7 @@ def run_hybrid(
         "llmModel": os.environ.get("DEEPSEEK_MODEL", "deepseek-reasoner"),
         "llmLatency": elapsed,
     }
-    log.info("hybrid inference done score=%.1f llm_latency=%.2fs", merged.get("healthScoreValue", 0), elapsed)
+    log.info("hybrid inference done score=%s llm_latency=%.2fs", merged.get("score_result", {}).get("score", 0), elapsed)
 
     return merged
 

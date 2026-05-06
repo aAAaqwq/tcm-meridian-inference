@@ -1,0 +1,259 @@
+{
+  "engine": {
+    "mode": "hybrid",
+    "version": "3.0",
+    "llmModel": "deepseek-chat",
+    "llmLatency": 10.65
+  },
+  "score_result": {
+    "score": 80,
+    "score_raw": 80.22,
+    "problem_index": 20.5,
+    "problem_index_detail": {
+      "low_temperature_index": 3.0,
+      "temperature_difference_index": 7.5,
+      "side_bias_index": 5.0,
+      "trend_index": 2.5,
+      "combo_index": 2.5
+    }
+  },
+  "lowest_points": {
+    "selected": [
+      {
+        "meridian": "stomach",
+        "side": "left",
+        "value": 38.0,
+        "rank": 1,
+        "must_report": true
+      },
+      {
+        "meridian": "stomach",
+        "side": "right",
+        "value": 40.0,
+        "rank": 2,
+        "must_report": true
+      }
+    ],
+    "tie_candidates": []
+  },
+  "side_bias_summary": {
+    "left_low_count": 5,
+    "right_low_count": 0,
+    "balanced_count": 1,
+    "result": "head_blood_supply_attention"
+  },
+  "cervical_lumbar_result": {
+    "result": "lumbar",
+    "kidney_trend": "stable_left_low",
+    "bladder_trend": "stable_left_low"
+  },
+  "meridian_analysis": [
+    {
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "group1_status": "left_low",
+      "group2_status": "left_low",
+      "trend": "stable_left_low",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "阴虚生内热",
+        "消化快",
+        "容易饿"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "gallbladder",
+      "meridian_name": "胆经",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
+      "group2_diff_level": "balanced",
+      "diff_change": "unchanged",
+      "matched_rules": [],
+      "is_focus": false,
+      "focus_reason": []
+    },
+    {
+      "meridian": "bladder",
+      "meridian_name": "膀胱经",
+      "group1_status": "left_low",
+      "group2_status": "left_low",
+      "trend": "stable_left_low",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "肩颈腰与肠道方向需关注",
+        "便秘",
+        "痔疮",
+        "大肠息肉风险",
+        "肺左侧功能风险"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "liver",
+      "meridian_name": "肝经",
+      "group1_status": "left_low",
+      "group2_status": "left_low",
+      "trend": "stable_left_low",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "气虚",
+        "血液流速不够",
+        "血液循环推动不足",
+        "垃圾容易沉积在血管中",
+        "血稠、血脂、高血压方向",
+        "代谢差",
+        "口臭",
+        "放屁多",
+        "解毒功能变弱",
+        "皮肤易过敏",
+        "湿疹",
+        "容易长斑"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "spleen",
+      "meridian_name": "脾经",
+      "group1_status": "left_low",
+      "group2_status": "left_low",
+      "trend": "stable_left_low",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "过滤能力弱",
+        "温差大时，容易出现血糖高方向问题",
+        "思虑重",
+        "容易操心"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "kidney",
+      "meridian_name": "肾经",
+      "group1_status": "left_low",
+      "group2_status": "left_low",
+      "trend": "stable_left_low",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "耳鸣，尤其是嗡鸣声",
+        "阴虚",
+        "阴虚生内热",
+        "手心脚心热",
+        "体内像有一把火",
+        "容易缺水",
+        "五心烦躁",
+        "尿黄",
+        "尿短"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    }
+  ],
+  "focus_issues": [
+    {
+      "priority": 1,
+      "type": "lowest_point",
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "side": "left",
+      "title": "胃经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem"
+      ]
+    },
+    {
+      "priority": 2,
+      "type": "lowest_point",
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "side": "right",
+      "title": "胃经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem"
+      ]
+    },
+    {
+      "priority": 3,
+      "type": "side_bias",
+      "title": "头部供血需关注",
+      "left_low_count": 5,
+      "reason_codes": [
+        "left_bias_count_high"
+      ]
+    },
+    {
+      "priority": 4,
+      "type": "cervical_lumbar",
+      "title": "腰椎相关问题需关注",
+      "reason_codes": [
+        "lumbar_issue_detected"
+      ]
+    }
+  ],
+  "gender": "unknown",
+  "measurement_type": "first_test",
+  "summary": "本次检测显示整体健康分数为80分，处于轻度失衡状态。主要发现包括：胃经问题较为突出，左右温差较大，提示消化系统可能存在阴虚内热、消化过快等问题；同时身体整体偏向左侧温度较低，需关注头部供血；肾经与膀胱经均左低，提示腰椎区域可能需要注意。建议从脾胃调理入手，兼顾腰部保健。",
+  "reportSummary": "本次检测显示整体健康分数为80分，处于轻度失衡状态。主要发现包括：胃经问题较为突出，左右温差较大，提示消化系统可能存在阴虚内热、消化过快等问题；同时身体整体偏向左侧温度较低，需关注头部供血；肾经与膀胱经均左低，提示腰椎区域可能需要注意。建议从脾胃调理入手，兼顾腰部保健。",
+  "storefront": {
+    "focusHeadline": "脾胃与腰部需重点关注",
+    "clientExplanation": "本次检测基于中医经络理论，提供功能性健康参考，不等同于医疗诊断。请您结合自身感受，理性看待结果。",
+    "talkTrack": [
+      "从数据看，您的胃经左右温差较明显，这通常反映消化系统需要关注，比如容易感到饥饿或体内有内热倾向。",
+      "另外，身体整体左侧温度偏低的情况比较突出，可能与头部供血循环有关，建议注意休息和头部放松。",
+      "肾经和膀胱经的平衡状态提示腰椎区域可能需要加强保健，配合适当活动会有帮助。"
+    ],
+    "retestPrompt": "建议持续调理2-4周后复测，观察改善趋势。"
+  },
+  "recommendations": [
+    "饮食方面：建议少食辛辣、油炸食品，多吃清淡易消化的食物，如小米粥、山药、冬瓜等；避免暴饮暴食，少食多餐。",
+    "作息方面：建议晚上11点前入睡，保证7-8小时睡眠，避免熬夜；白天适当午休15-30分钟。",
+    "运动方面：建议每天进行30分钟左右的散步或瑜伽，重点拉伸腰部；避免久坐，每小时起身活动5分钟。",
+    "仪器使用：可使用足部按摩仪或温灸仪重点刺激胃经、肾经和膀胱经的反射区，每次15-20分钟，每天一次。"
+  ]
+}

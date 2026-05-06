@@ -1,0 +1,51 @@
+{
+  "_comment": "温差等级测试: 覆盖balanced/mild/health_problem/serious_problem四种等级",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 37.8,
+      "group1_right": 38.0,
+      "group2_left": 39.8,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 37.5,
+      "group1_right": 38.0,
+      "group2_left": 38.0,
+      "group2_right": 40.0
+    },
+    "liver": {
+      "group1_left": 36.0,
+      "group1_right": 38.0,
+      "group2_left": 36.0,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 35.0,
+      "group1_right": 38.0,
+      "group2_left": 35.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 34.0,
+      "group1_right": 38.0,
+      "group2_left": 34.0,
+      "group2_right": 40.0
+    }
+  },
+  "expected": {
+    "stomach_diff_level": "balanced",
+    "gallbladder_diff_level": "mild_sub_health",
+    "bladder_diff_level": "health_problem",
+    "liver_diff_level": "health_problem",
+    "spleen_diff_level": "serious_problem",
+    "kidney_diff_level": "serious_problem"
+  }
+}

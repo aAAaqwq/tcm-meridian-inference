@@ -1,0 +1,187 @@
+{
+  "engine": {
+    "mode": "hybrid",
+    "version": "3.0",
+    "llmModel": "deepseek-chat",
+    "llmLatency": 7.67
+  },
+  "score_result": {
+    "score": 89,
+    "score_raw": 90.0,
+    "problem_index": 0.0,
+    "problem_index_detail": {
+      "low_temperature_index": 0.0,
+      "temperature_difference_index": 0.0,
+      "side_bias_index": 0.0,
+      "trend_index": 0.0,
+      "combo_index": 0.0
+    }
+  },
+  "lowest_points": {
+    "selected": [
+      {
+        "meridian": "stomach",
+        "side": "left",
+        "value": 40.0,
+        "rank": 1,
+        "must_report": true
+      },
+      {
+        "meridian": "stomach",
+        "side": "right",
+        "value": 40.0,
+        "rank": 2,
+        "must_report": true
+      }
+    ],
+    "tie_candidates": []
+  },
+  "side_bias_summary": {
+    "left_low_count": 0,
+    "right_low_count": 0,
+    "balanced_count": 6,
+    "result": "none"
+  },
+  "cervical_lumbar_result": {
+    "result": "none",
+    "kidney_trend": "stable_balanced",
+    "bladder_trend": "stable_balanced"
+  },
+  "meridian_analysis": [
+    {
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
+      "group2_diff_level": "balanced",
+      "diff_change": "unchanged",
+      "matched_rules": [],
+      "is_focus": true,
+      "focus_reason": [
+        "second_group_lowest_point"
+      ]
+    },
+    {
+      "meridian": "gallbladder",
+      "meridian_name": "胆经",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
+      "group2_diff_level": "balanced",
+      "diff_change": "unchanged",
+      "matched_rules": [],
+      "is_focus": false,
+      "focus_reason": []
+    },
+    {
+      "meridian": "bladder",
+      "meridian_name": "膀胱经",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
+      "group2_diff_level": "balanced",
+      "diff_change": "unchanged",
+      "matched_rules": [],
+      "is_focus": false,
+      "focus_reason": []
+    },
+    {
+      "meridian": "liver",
+      "meridian_name": "肝经",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
+      "group2_diff_level": "balanced",
+      "diff_change": "unchanged",
+      "matched_rules": [],
+      "is_focus": false,
+      "focus_reason": []
+    },
+    {
+      "meridian": "spleen",
+      "meridian_name": "脾经",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
+      "group2_diff_level": "balanced",
+      "diff_change": "unchanged",
+      "matched_rules": [],
+      "is_focus": false,
+      "focus_reason": []
+    },
+    {
+      "meridian": "kidney",
+      "meridian_name": "肾经",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
+      "group2_diff_level": "balanced",
+      "diff_change": "unchanged",
+      "matched_rules": [],
+      "is_focus": false,
+      "focus_reason": []
+    }
+  ],
+  "focus_issues": [
+    {
+      "priority": 1,
+      "type": "lowest_point",
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "side": "left",
+      "title": "胃经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point"
+      ]
+    },
+    {
+      "priority": 2,
+      "type": "lowest_point",
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "side": "right",
+      "title": "胃经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point"
+      ]
+    }
+  ],
+  "gender": "female",
+  "measurement_type": "first_test",
+  "summary": "本次检测显示您的整体经络状态良好，综合健康分为89分，属于轻度失衡的临界状态。所有经络在两次测量中均保持平衡，但第二组温度整体升高，提示体内可能存在轻微炎症或能量代谢活跃。胃经作为第二组最低点，值得关注，建议从饮食和消化方面进行调理。",
+  "reportSummary": "本次检测显示您的整体经络状态良好，综合健康分为89分，属于轻度失衡的临界状态。所有经络在两次测量中均保持平衡，但第二组温度整体升高，提示体内可能存在轻微炎症或能量代谢活跃。胃经作为第二组最低点，值得关注，建议从饮食和消化方面进行调理。",
+  "storefront": {
+    "focusHeadline": "胃经状态需关注",
+    "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断，旨在提供健康参考。您目前整体经络平衡，但胃经相对较低，提示消化系统可能需要调理。",
+    "talkTrack": [
+      "您看，这次检测您的综合健康分是89分，非常不错，说明整体状态良好。",
+      "不过我们发现胃经的温度在两组测量中都是最低的，可能和消化功能有些关联。",
+      "建议您平时注意饮食规律，避免生冷刺激，后续可以配合一些脾胃调理的手法。"
+    ],
+    "retestPrompt": "建议在1-2周后复测，观察胃经变化趋势，同时可结合饮食调整前后的对比。"
+  },
+  "recommendations": [
+    "建议保持三餐规律，多食温热易消化的食物，如小米粥、南瓜、山药等，避免生冷油腻。",
+    "可适当进行腹部按摩或艾灸足三里、中脘穴，帮助调理脾胃功能。",
+    "注意情绪放松，避免过度思虑，因为思虑过度易伤脾，影响消化。"
+  ]
+}

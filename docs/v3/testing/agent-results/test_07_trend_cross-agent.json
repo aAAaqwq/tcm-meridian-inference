@@ -1,0 +1,256 @@
+{
+  "engine": {
+    "mode": "hybrid",
+    "version": "3.0",
+    "llmModel": "deepseek-chat",
+    "llmLatency": 10.98
+  },
+  "score_result": {
+    "score": 77,
+    "score_raw": 77.0,
+    "problem_index": 25.0,
+    "problem_index_detail": {
+      "low_temperature_index": 3.0,
+      "temperature_difference_index": 9.5,
+      "side_bias_index": 6.0,
+      "trend_index": 4.0,
+      "combo_index": 2.5
+    }
+  },
+  "lowest_points": {
+    "selected": [
+      {
+        "meridian": "bladder",
+        "side": "right",
+        "value": 37.0,
+        "rank": 1,
+        "must_report": true
+      },
+      {
+        "meridian": "stomach",
+        "side": "right",
+        "value": 38.0,
+        "rank": 2,
+        "must_report": true
+      }
+    ],
+    "tie_candidates": []
+  },
+  "side_bias_summary": {
+    "left_low_count": 0,
+    "right_low_count": 6,
+    "balanced_count": 0,
+    "result": "heart_attention"
+  },
+  "cervical_lumbar_result": {
+    "result": "cervical_and_lumbar",
+    "kidney_trend": "cross",
+    "bladder_trend": "cross"
+  },
+  "meridian_analysis": [
+    {
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "group1_status": "left_low",
+      "group2_status": "right_low",
+      "trend": "cross",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "饮食不规律",
+        "胃炎",
+        "胃溃疡",
+        "消化不良"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "gallbladder",
+      "meridian_name": "胆经",
+      "group1_status": "left_low",
+      "group2_status": "right_low",
+      "trend": "cross",
+      "group1_diff": 1.5,
+      "group2_diff": 1.5,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "温度上不去时，容易胆结石、胆囊炎",
+        "不按时吃早餐"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "bladder",
+      "meridian_name": "膀胱经",
+      "group1_status": "left_low",
+      "group2_status": "right_low",
+      "trend": "cross",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "肠道问题需关注",
+        "生殖系统问题需关注",
+        "腰部及循环问题需关注"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "liver",
+      "meridian_name": "肝经",
+      "group1_status": "left_low",
+      "group2_status": "right_low",
+      "trend": "cross",
+      "group1_diff": 1.5,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "worsened",
+      "matched_rules": [
+        "是否熬夜",
+        "气血两虚",
+        "脂肪肝",
+        "酒精肝",
+        "肝囊肿"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "diff_worsened",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "spleen",
+      "meridian_name": "脾经",
+      "group1_status": "left_low",
+      "group2_status": "right_low",
+      "trend": "cross",
+      "group1_diff": 1.5,
+      "group2_diff": 1.5,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "血糖",
+        "思虑重",
+        "湿气",
+        "四肢乏力",
+        "肌肉松弛",
+        "腿沉"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    },
+    {
+      "meridian": "kidney",
+      "meridian_name": "肾经",
+      "group1_status": "left_low",
+      "group2_status": "right_low",
+      "trend": "cross",
+      "group1_diff": 2.0,
+      "group2_diff": 2.0,
+      "group1_diff_level": "health_problem",
+      "group2_diff_level": "health_problem",
+      "diff_change": "unchanged",
+      "matched_rules": [
+        "结石",
+        "囊肿",
+        "腹部手术史",
+        "女性：剖腹产、人流、子宫肌瘤",
+        "男性：前列腺炎、前列腺钙化"
+      ],
+      "is_focus": true,
+      "focus_reason": [
+        "group2_diff_health_problem",
+        "side_bias_participant"
+      ]
+    }
+  ],
+  "focus_issues": [
+    {
+      "priority": 1,
+      "type": "lowest_point",
+      "meridian": "bladder",
+      "meridian_name": "膀胱经",
+      "side": "right",
+      "title": "膀胱经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem"
+      ]
+    },
+    {
+      "priority": 2,
+      "type": "lowest_point",
+      "meridian": "stomach",
+      "meridian_name": "胃经",
+      "side": "right",
+      "title": "胃经问题较突出",
+      "reason_codes": [
+        "second_group_lowest_point",
+        "group2_diff_health_problem"
+      ]
+    },
+    {
+      "priority": 3,
+      "type": "side_bias",
+      "title": "心脏方向需关注",
+      "right_low_count": 6,
+      "reason_codes": [
+        "right_bias_count_high"
+      ]
+    },
+    {
+      "priority": 4,
+      "type": "cervical_lumbar",
+      "title": "颈椎和腰椎问题同时存在",
+      "reason_codes": [
+        "cervical_and_lumbar_detected"
+      ]
+    }
+  ],
+  "gender": "female",
+  "measurement_type": "first_test",
+  "summary": "本次检测显示您的整体健康得分为77分，属于中度失衡状态。六条经络均呈现左右温度交叉现象，提示身体阴阳气血失衡较为明显。重点关注膀胱经和胃经的低温问题，同时存在心脏供血方向需关注以及颈椎腰椎问题。建议从调理脾胃功能、疏通膀胱经、改善气血循环入手，结合生活习惯调整，促进身体恢复平衡。",
+  "reportSummary": "本次检测显示您的整体健康得分为77分，属于中度失衡状态。六条经络均呈现左右温度交叉现象，提示身体阴阳气血失衡较为明显。重点关注膀胱经和胃经的低温问题，同时存在心脏供血方向需关注以及颈椎腰椎问题。建议从调理脾胃功能、疏通膀胱经、改善气血循环入手，结合生活习惯调整，促进身体恢复平衡。",
+  "storefront": {
+    "focusHeadline": "气血失衡，关注脾胃与膀胱",
+    "clientExplanation": "本次检测基于中医经络学说，通过足部温度数据反映身体状态，结果仅供参考，不等同于医疗诊断。",
+    "talkTrack": [
+      "您的检测结果显示，身体整体处于中度失衡状态，六条经络都有左右温差，说明气血运行不太顺畅。",
+      "特别需要注意的是膀胱经和胃经，在第二次测量时温度偏低，可能与消化、腰部循环以及免疫调节有关系。",
+      "另外，您的心血管循环方面也需要关注，所有经络都呈现右侧偏低，提示心脏供血方向要引起重视，建议结合日常作息和饮食进行调整。"
+    ],
+    "retestPrompt": "建议您持续调理2-4周后进行复测，观察经络变化趋势，以便更精准地评估调理效果。"
+  },
+  "recommendations": [
+    "饮食方面，建议规律三餐，避免暴饮暴食，适当增加易消化的温热食物，如小米粥、山药、南瓜等，减轻胃的负担。",
+    "作息方面，尽量在23点前入睡，保证充足睡眠，避免熬夜，以助于肝经修复和气血恢复。",
+    "运动方面，推荐每日进行温和的拉伸或散步，可重点伸展腰背部和腿部膀胱经，如猫牛式、前屈等，促进气血循环。"
+  ]
+}
