@@ -1,0 +1,49 @@
+{
+  "_comment": "复测测试 - 91分场景: 上次82分，7-13天使用(usage_bonus=2)，数据中度改善",
+  "measurement_type": "retest",
+  "gender": "female",
+  "previous_score": 82,
+  "previous_problem_index": 20.0,
+  "usage_days_between_tests": 10,
+  "meridians": {
+    "stomach": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "gallbladder": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "bladder": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "liver": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "spleen": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    },
+    "kidney": {
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 40.0,
+      "group2_right": 40.0
+    }
+  },
+  "expected": {
+    "note": "上次82分，usage_bonus=2，目标91分"
+  }
+}

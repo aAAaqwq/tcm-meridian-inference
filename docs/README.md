@@ -99,7 +99,7 @@ cd tests && python3 record_actual_outputs.py
 cd tests && python3 record_agent_outputs.py
 
 # 运行单个测试（CLI）
-python3 scripts/infer_v2.py fixtures/v3/case_01_first_test.json --pretty
+python3 scripts/infer_v3.py fixtures/v3/case_01_first_test.json --pretty
 ```
 
 ---

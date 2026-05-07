@@ -7,7 +7,7 @@
 python3 run_tests_v3.py
 
 # 运行单个测试
-python3 scripts/infer_v2.py fixtures/v3/case_01_first_test.json --pretty
+python3 scripts/infer_v3.py fixtures/v3/case_01_first_test.json --pretty
 ```
 
 ---

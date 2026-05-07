@@ -13,8 +13,8 @@
     ↓
 tcm_api.py (HTTP Server, port 18790)
     ↓ TCM_INFER_MODE
-    ├─ hybrid → infer_v2.py 混合推理（规则 + DeepSeek）← 默认
-    ├─ rule   → infer_v2.py 纯规则引擎（确定性，无需 API Key）
+    ├─ hybrid → infer_v3.py 混合推理（规则 + DeepSeek）← 默认
+    ├─ rule   → infer_v3.py 纯规则引擎（确定性，无需 API Key）
     └─ auto   → 有 DEEPSEEK_API_KEY 用 hybrid，否则 fallback rule
 ```
 
@@ -25,7 +25,7 @@ tcm_api.py (HTTP Server, port 18790)
 | 文件 | 说明 |
 |------|------|
 | `scripts/tcm_api.py` | HTTP API 服务 |
-| `scripts/infer_v2.py` | v3 规则引擎（问题指数算法） |
+| `scripts/infer_v3.py` | v3 规则引擎（问题指数算法） |
 | `scripts/infer_agent.py` | Hybrid 混合推理（v2 兼容层） |
 | `scripts/infer.py` | v2 规则引擎（已废弃） |
 | `scripts/deepseek_client.py` | DeepSeek API 客户端 |
@@ -60,8 +60,8 @@ curl -s -X POST http://127.0.0.1:18790/api/inference/meridian-diagnosis \
 ### 命令行推理（不走 HTTP）
 
 ```bash
-python3 scripts/infer_v2.py fixtures/v3/test_01_excellent_score.json        # v3 纯规则
-python3 scripts/infer_v2.py fixtures/v3/test_01_excellent_score.json --pretty  # 格式化输出
+python3 scripts/infer_v3.py fixtures/v3/test_01_excellent_score.json        # v3 纯规则
+python3 scripts/infer_v3.py fixtures/v3/test_01_excellent_score.json --pretty  # 格式化输出
 python3 scripts/infer_agent.py fixtures/v3/test_01_excellent_score.json      # Hybrid（如配置了 DeepSeek）
 ```
 
@@ -196,11 +196,11 @@ display_score = clamp(score_raw, 65, 89)
 
 ```bash
 # v3 引擎测试
-python3 scripts/test_infer_v2.py            # 规则引擎单元测试
+python3 tests/run_tests_v3.py            # 规则引擎单元测试
 
 # 运行所有 v3 测试 case
 for f in fixtures/v3/test_*.json; do
-  python3 scripts/infer_v2.py "$f" --pretty
+  python3 scripts/infer_v3.py "$f" --pretty
 done
 
 # API 冒烟测试

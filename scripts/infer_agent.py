@@ -25,7 +25,7 @@ PROJECT_DIR = SCRIPT_DIR.parent
 
 sys.path.insert(0, str(SCRIPT_DIR))
 
-from infer_v2 import infer, load_rules  # noqa: E402
+from infer_v3 import infer, load_rules  # noqa: E402
 from deepseek_client import chat, DeepSeekError  # noqa: E402
 from prompt_builder import build_system_prompt, build_user_prompt  # noqa: E402
 from output_validator import validate_and_fix  # noqa: E402

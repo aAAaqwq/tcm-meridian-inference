@@ -71,7 +71,16 @@ def validate_and_fix(
 
     # --- meridianNarrative enrichment ---
     narrative = llm_output.get("meridianNarrative")
-    if isinstance(narrative, dict):
+    if isinstance(narrative, dict) and len(narrative) > 0:
+        # Add meridianNarrative as a top-level field for easy access
+        result["meridianNarrative"] = narrative
+        # Also enrich meridian_analysis with narrative if it exists
+        meridian_analysis = result.get("meridian_analysis", [])
+        for ma in meridian_analysis:
+            mid = ma.get("meridian", "")
+            if mid in narrative and isinstance(narrative[mid], str):
+                ma["narrative"] = narrative[mid]
+        # Also legacy meridianDetails enrichment
         details = result.get("meridianDetails", [])
         for md in details:
             mid = md.get("meridianId", "")

@@ -980,6 +980,100 @@ def calculate_retest_score(
 
 
 # ============================================================================
+# Step 9.5: 组合规则检测 (combination_rules.json)
+# ============================================================================
+
+def detect_combination_rules(meridian_analysis: List[dict]) -> List[dict]:
+    """
+    检测组合规则，返回触发的组合问题列表。
+
+    基于 rules/combination_rules.json 定义的规则：
+    - combo_liver_gall: 肝经+胆经联合异常
+    - combo_liver_gall_spleen_mass: 胆经左低+肝经络异常+脾经右低
+    - combo_multi_cross: 3条以上经络交叉
+    - combo_reproductive: 肾经+膀胱经同时交叉
+    - combo_intestine_lung: 膀胱经异常+脾经湿气
+    """
+    combos = []
+
+    # 收集各经络状态
+    ma_map = {ma["meridian"]: ma for ma in meridian_analysis}
+
+    liver = ma_map.get("liver", {})
+    gallbladder = ma_map.get("gallbladder", {})
+    spleen = ma_map.get("spleen", {})
+    kidney = ma_map.get("kidney", {})
+    bladder = ma_map.get("bladder", {})
+
+    liver_trend = liver.get("trend", "")
+    gallbladder_trend = gallbladder.get("trend", "")
+    spleen_trend = spleen.get("trend", "")
+    kidney_trend = kidney.get("trend", "")
+    bladder_trend = bladder.get("trend", "")
+
+    # 1. 肝胆代谢关注 (combo_liver_gall)
+    # 肝经和胆经都非平衡状态
+    liver_abnormal = liver_trend in ("stable_left_low", "stable_right_low", "cross")
+    gallbladder_abnormal = gallbladder_trend in ("stable_left_low", "stable_right_low", "cross")
+    if liver_abnormal and gallbladder_abnormal:
+        combos.append({
+            "rule_id": "combo_liver_gall",
+            "title": "肝胆代谢压力需关注",
+            "description": "肝胆联动异常，提示代谢、解毒及相关风险需关注。",
+            "priority": "B",
+        })
+
+    # 2. 结节/囊肿/息肉风险 (combo_liver_gall_spleen_mass)
+    # 胆经左低 + 肝经络异常 + 脾经右低
+    gallbladder_left_low = gallbladder_trend == "stable_left_low"
+    spleen_right_low = spleen_trend == "stable_right_low"
+    if gallbladder_left_low and liver_abnormal and spleen_right_low:
+        combos.append({
+            "rule_id": "combo_liver_gall_spleen_mass",
+            "title": "结节、囊肿、息肉方向需关注",
+            "description": "肝胆代谢与湿气问题叠加，此方向风险更高。",
+            "priority": "A",
+        })
+
+    # 3. 多经络交叉失衡 (combo_multi_cross)
+    # 3条以上经络交叉
+    cross_count = sum(1 for ma in meridian_analysis if ma.get("trend") == "cross")
+    if cross_count >= 3:
+        combos.append({
+            "rule_id": "combo_multi_cross",
+            "title": "多经络交叉失衡需重点关注",
+            "description": "当前不是单一经络问题，而是整体经络调节状态较不稳定。",
+            "priority": "A",
+        })
+
+    # 4. 生殖系统关注 (combo_reproductive)
+    # 肾经与膀胱经同时交叉
+    kidney_cross = kidney_trend == "cross"
+    bladder_cross = bladder_trend == "cross"
+    if kidney_cross and bladder_cross:
+        combos.append({
+            "rule_id": "combo_reproductive",
+            "title": "生殖系统相关风险需重点关注",
+            "description": "肾经与膀胱经同时交叉，优先提示生殖系统方向需提前预防。",
+            "priority": "A",
+        })
+
+    # 5. 肠道与肺方向关注 (combo_intestine_lung)
+    # 膀胱经异常 + 脾经湿气/肠道异常
+    bladder_abnormal = bladder_trend in ("stable_left_low", "stable_right_low", "cross")
+    spleen_damp = spleen_trend == "stable_right_low"  # 脾经右低=湿气重
+    if bladder_abnormal and spleen_damp:
+        combos.append({
+            "rule_id": "combo_intestine_lung",
+            "title": "肠道及肺部情况需关注",
+            "description": "优先提示肠道，再提示肺部功能或相关风险。",
+            "priority": "B",
+        })
+
+    return combos
+
+
+# ============================================================================
 # Step 10: 重点问题排序
 # ============================================================================
 
@@ -988,6 +1082,7 @@ def build_focus_issues(
     side_bias: dict,
     cervical_lumbar_result: dict,
     meridian_analysis: List[dict],
+    combo_rules: List[dict] = None,
 ) -> List[dict]:
     """
     构建本次重点关注的问题列表（控制在3-4个）。
@@ -997,7 +1092,8 @@ def build_focus_issues(
     2. 温差严重或加重问题
     3. 第二组整体左右偏向问题
     4. 颈椎/腰椎组合问题
-    5. 交叉问题中同时伴随温差明显或最低点候选的问题
+    5. 其他组合规则问题
+    6. 交叉问题中同时伴随温差明显或最低点候选的问题
     """
     issues = []
     priority = 1
@@ -1073,6 +1169,34 @@ def build_focus_issues(
             "reason_codes": ["cervical_and_lumbar_detected"],
         })
         priority += 1
+
+    # 4. 其他组合规则问题（按优先级A/B排序）
+    if combo_rules:
+        # 先处理优先级A的组合
+        for combo in combo_rules:
+            if combo.get("priority") == "A":
+                issues.append({
+                    "priority": priority,
+                    "type": "combo_rule",
+                    "title": combo["title"],
+                    "rule_id": combo["rule_id"],
+                    "description": combo.get("description", ""),
+                    "reason_codes": [f"combo_{combo['rule_id']}"],
+                })
+                priority += 1
+
+        # 再处理优先级B的组合（如果还有空间）
+        for combo in combo_rules:
+            if combo.get("priority") == "B" and len(issues) < 4:
+                issues.append({
+                    "priority": priority,
+                    "type": "combo_rule",
+                    "title": combo["title"],
+                    "rule_id": combo["rule_id"],
+                    "description": combo.get("description", ""),
+                    "reason_codes": [f"combo_{combo['rule_id']}"],
+                })
+                priority += 1
 
     # 限制在3-4个重点问题
     return issues[:4]
@@ -1270,9 +1394,10 @@ def build_final_output(
     # 分数等级
     score_level, score_summary = get_score_level(display_score)
 
-    # 重点问题
+    # 重点问题（包含组合规则）
+    combo_rules = detect_combination_rules(meridian_analysis)
     focus_issues = build_focus_issues(
-        lowest_points, side_bias, cervical_lumbar_result, meridian_analysis
+        lowest_points, side_bias, cervical_lumbar_result, meridian_analysis, combo_rules
     )
 
     # 构建输出
@@ -1399,7 +1524,7 @@ def infer(payload: dict, rules: dict) -> dict:
 # ============================================================================
 
 def build_argparser() -> argparse.ArgumentParser:
-    ap = argparse.ArgumentParser(prog="infer_v2.py", description="TCM Meridian Inference Engine v3.0 - Mulinsen Report Edition")
+    ap = argparse.ArgumentParser(prog="infer_v3.py", description="TCM Meridian Inference Engine v3.0 - Mulinsen Report Edition")
     ap.add_argument("input", nargs="?", help="Input JSON file")
     ap.add_argument("--rules-dir", default="rules", help="Rules directory (default: ./rules)")
     ap.add_argument("--pretty", action="store_true", help="Pretty-print JSON output")

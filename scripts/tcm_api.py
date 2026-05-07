@@ -29,7 +29,7 @@ from logger import get_logger, load_dotenv
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_DIR = os.path.dirname(SCRIPT_DIR)
-INFER_SCRIPT = os.path.join(SCRIPT_DIR, "infer_v2.py")  # v3 inference engine
+INFER_SCRIPT = os.path.join(SCRIPT_DIR, "infer_v3.py")  # v3 inference engine
 AGENT_SCRIPT = os.path.join(SCRIPT_DIR, "infer_agent.py")
 RULES_DIR = os.path.join(PROJECT_DIR, "rules")
 PORT = int(os.environ.get("TCM_API_PORT", 18790))
@@ -47,7 +47,7 @@ def load_infer():
     global _infer_mod
     if _infer_mod is not None:
         return _infer_mod
-    spec = importlib_util.spec_from_file_location("infer_v2", INFER_SCRIPT)
+    spec = importlib_util.spec_from_file_location("infer_v3", INFER_SCRIPT)
     _infer_mod = importlib_util.module_from_spec(spec)
     spec.loader.exec_module(_infer_mod)
     return _infer_mod

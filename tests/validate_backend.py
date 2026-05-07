@@ -11,7 +11,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
-from infer_v2 import infer, load_rules
+from infer_v3 import infer, load_rules
 
 
 def validate_score_ranges(rules):

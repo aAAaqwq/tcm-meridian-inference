@@ -2,7 +2,7 @@
 
 ## 验证方法
 
-所有测试用例均通过**后端真实运行数据**验证，使用 `scripts/infer_v2.py` 推理引擎实际执行，确保测试结果真实可靠。
+所有测试用例均通过**后端真实运行数据**验证，使用 `scripts/infer_v3.py` 推理引擎实际执行，确保测试结果真实可靠。
 
 **验证脚本**: `validate_backend.py`
 
@@ -204,7 +204,7 @@ python3 run_tests_v3.py
 python3 validate_backend.py
 
 # 单个测试验证
-python3 scripts/infer_v2.py fixtures/v3/case_01_first_test.json --pretty
+python3 scripts/infer_v3.py fixtures/v3/case_01_first_test.json --pretty
 ```
 
 ---

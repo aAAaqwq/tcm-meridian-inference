@@ -14,7 +14,7 @@
     ↓
 tcm_api.py (HTTP Server)
     ↓ TCM_INFER_MODE
-    ├─ rule  → infer_v2.py v3 规则引擎（确定性，无需 API Key）
+    ├─ rule  → infer_v3.py v3 规则引擎（确定性，无需 API Key）
     ├─ agent → infer_agent.py 混合推理（规则引擎 + DeepSeek 自然语言）
     └─ auto  → 有 LLM API Key 时用 agent，否则 fallback 到 rule
 ```
@@ -383,7 +383,7 @@ else:            score_raw = 71.4 - 1.0 * (I - 32)
 
 ```bash
 # 使用 v3 推理引擎
-python3 scripts/infer_v2.py fixtures/v3/case_01_first_test.json --pretty
+python3 scripts/infer_v3.py fixtures/v3/case_01_first_test.json --pretty
 
 # 运行全部测试
 python3 run_tests_v3.py

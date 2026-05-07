@@ -2,9 +2,11 @@
 """Test runner for v3 inference engine.
 
 Runs all test cases in fixtures/v3/ and generates a report.
+Supports rule-only and hybrid (agent) modes based on environment config.
 """
 
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -12,7 +14,47 @@ from typing import Dict, List, Tuple
 # Add scripts directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
 
-from infer_v2 import infer, load_rules
+# Load .env file first
+from logger import load_dotenv
+load_dotenv(Path(__file__).parent.parent / ".env")
+
+from infer_v3 import infer, load_rules
+
+# Try to import agent mode
+try:
+    from infer_agent import run_hybrid
+    AGENT_AVAILABLE = True
+except ImportError:
+    AGENT_AVAILABLE = False
+
+# Load environment config
+INFER_MODE = os.environ.get("TCM_INFER_MODE", "auto").lower()
+DEEPSEEK_API_KEY = os.environ.get("DEEPSEEK_API_KEY", "").strip()
+
+
+def resolve_mode() -> str:
+    """Determine inference mode based on config and available keys."""
+    if INFER_MODE == "agent":
+        return "agent"
+    if INFER_MODE == "rule":
+        return "rule"
+    # auto: use agent if API key is available
+    if DEEPSEEK_API_KEY:
+        return "agent"
+    return "rule"
+
+
+def run_inference(payload: dict, rules: dict) -> dict:
+    """Run inference with appropriate mode."""
+    mode = resolve_mode()
+
+    if mode == "agent" and AGENT_AVAILABLE:
+        # Use hybrid mode (rule engine + DeepSeek)
+        project_dir = Path(__file__).parent.parent
+        return run_hybrid(payload, rules_dir=project_dir / "rules")
+    else:
+        # Use rule-only mode
+        return infer(payload, rules)
 
 # Test cases to run
 TEST_CASES = [
@@ -62,6 +104,20 @@ TEST_CASES = [
     ("test_27_diff_change_improved.json", "温差变化-改善"),
     ("test_28_diff_change_worsened.json", "温差变化-恶化"),
 
+    # Realistic scenarios
+    ("test_29_realistic_mild.json", "真实-轻度"),
+    ("test_30_realistic_moderate.json", "真实-中度"),
+
+    # Special cases
+    ("test_31_bladder_lowest.json", "膀胱最低"),
+    ("test_32_kidney_cross.json", "肾交叉"),
+
+    # Retest high score cases (90-95 range)
+    ("test_33_retest_92_score.json", "复测-92分"),
+    ("test_34_retest_91_score.json", "复测-91分"),
+    ("test_35_retest_93_score.json", "复测-93分"),
+    ("test_36_retest_94_score.json", "复测-94分"),
+
     # Original cases
     ("case_01_first_test.json", "PRD示例-首测"),
     ("case_02_retest.json", "PRD示例-复测"),
@@ -80,7 +136,7 @@ def run_test(test_file: str, description: str, rules: dict) -> Tuple[bool, dict]
         payload.pop("_comment", None)
         payload.pop("expected", None)
 
-        result = infer(payload, rules)
+        result = run_inference(payload, rules)
 
         return True, result
 
@@ -180,7 +236,7 @@ def main():
         "results": results
     }
 
-    report_path = Path("test_report_v3.json")
+    report_path = Path(__file__).parent.parent / "docs" / "v3" / "testing" / "test_report_v3.json"
     with open(report_path, "w") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 
