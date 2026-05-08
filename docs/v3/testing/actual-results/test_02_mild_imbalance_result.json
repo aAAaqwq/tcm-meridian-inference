@@ -1,9 +1,9 @@
 {
   "test_file": "test_02_mild_imbalance.json",
   "test_name": "首测 - 轻度失衡分数区间(80-89): 轻微温差,1-2条经络轻度异常",
-  "status": "error",
-  "http_status": 400,
-  "response_time_ms": 12.46,
+  "status": "success",
+  "http_status": 200,
+  "response_time_ms": 8058.14,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -50,7 +50,269 @@
     "score_range": "80-89",
     "score_level": "轻度失衡"
   },
-  "actual": null,
-  "key_fields": null,
-  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+  "actual": {
+    "engine": {
+      "mode": "hybrid",
+      "version": "3.0",
+      "llmModel": "deepseek-chat",
+      "llmLatency": 8.05
+    },
+    "score_result": {
+      "score": 89,
+      "score_raw": 89.4,
+      "problem_index": 1.5,
+      "problem_index_detail": {
+        "low_temperature_index": 0.0,
+        "temperature_difference_index": 0.5,
+        "side_bias_index": 0.0,
+        "trend_index": 1.0,
+        "combo_index": 0.0
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "spleen",
+          "side": "left",
+          "value": 39.7,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "liver",
+          "side": "left",
+          "value": 39.8,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 2,
+      "right_low_count": 0,
+      "balanced_count": 4,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "胃经两组温度均衡，温差0.0°C属于平衡状态，显示胃功能良好。"
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "胆经两组温度均衡，温差0.0°C属于平衡状态，显示胆功能良好。"
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "膀胱经两组温度均衡，温差0.0°C属于平衡状态，显示膀胱功能良好。"
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.1,
+        "group2_diff": 0.2,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "气虚",
+          "血液流速不够",
+          "血液循环推动不足",
+          "垃圾容易沉积在血管中",
+          "血稠、血脂、高血压方向",
+          "代谢差",
+          "口臭",
+          "放屁多",
+          "解毒功能变弱",
+          "皮肤易过敏",
+          "湿疹",
+          "容易长斑"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point"
+        ],
+        "narrative": "肝经关注点：两组均左低，提示气虚、血液流速不足，血液循环推动力弱，垃圾易沉积，需关注血稠、血脂、高血压方向，以及代谢差、皮肤易过敏等问题。第二组温差0.2°C属平衡。"
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.2,
+        "group2_diff": 0.3,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "mild_sub_health",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "过滤能力弱",
+          "温差大时，容易出现血糖高方向问题",
+          "思虑重",
+          "容易操心"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point"
+        ],
+        "narrative": "脾经关注点：两组均左低，提示过滤能力弱，温差0.3°C属有一定亚健康，思虑重易操心，温差大时需关注血糖方向。"
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "肾经两组温度均衡，温差0.0°C属于平衡状态，显示肾功能良好。"
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "side": "left",
+        "title": "脾经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "side": "left",
+        "title": "肝经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      }
+    ],
+    "gender": "female",
+    "measurement_type": "first_test",
+    "summary": "本次检测显示您的综合健康评分为89分，处于轻度失衡的亚健康状态。主要关注点集中在脾经和肝经，这两条经络温度相对偏低，提示消化代谢和气血循环方面需要适当调理。整体经络平衡性良好，建议通过饮食作息改善。",
+    "reportSummary": "本次检测显示您的综合健康评分为89分，处于轻度失衡的亚健康状态。主要关注点集中在脾经和肝经，这两条经络温度相对偏低，提示消化代谢和气血循环方面需要适当调理。整体经络平衡性良好，建议通过饮食作息改善。",
+    "storefront": {
+      "focusHeadline": "脾肝代谢需关注",
+      "clientExplanation": "本次检测基于中医经络理论，通过足部温度变化分析身体状态，不等同于医疗诊断，仅供参考。",
+      "talkTrack": [
+        "您的整体经络平衡性很不错，综合健康评分89分。",
+        "不过我们发现脾经和肝经的温度稍微偏低一些，这提示消化和代谢方面可能有点小负担。",
+        "可以适当调整饮食和作息，帮助身体恢复更好的状态。"
+      ],
+      "retestPrompt": "建议2-4周后复测，观察脾经和肝经的变化。"
+    },
+    "recommendations": [
+      "饮食上避免高油高糖，多吃绿叶蔬菜和优质蛋白，促进代谢。",
+      "每天安排15分钟腹式呼吸或散步，帮助气血循环。",
+      "减少思虑，保证晚上11点前入睡，帮助肝经排毒。"
+    ],
+    "meridianNarrative": {
+      "stomach": "胃经两组温度均衡，温差0.0°C属于平衡状态，显示胃功能良好。",
+      "gallbladder": "胆经两组温度均衡，温差0.0°C属于平衡状态，显示胆功能良好。",
+      "bladder": "膀胱经两组温度均衡，温差0.0°C属于平衡状态，显示膀胱功能良好。",
+      "liver": "肝经关注点：两组均左低，提示气虚、血液流速不足，血液循环推动力弱，垃圾易沉积，需关注血稠、血脂、高血压方向，以及代谢差、皮肤易过敏等问题。第二组温差0.2°C属平衡。",
+      "spleen": "脾经关注点：两组均左低，提示过滤能力弱，温差0.3°C属有一定亚健康，思虑重易操心，温差大时需关注血糖方向。",
+      "kidney": "肾经两组温度均衡，温差0.0°C属于平衡状态，显示肾功能良好。"
+    }
+  },
+  "key_fields": {
+    "score": 89,
+    "problem_index": 1.5,
+    "problem_index_detail": {
+      "low_temperature_index": 0.0,
+      "temperature_difference_index": 0.5,
+      "side_bias_index": 0.0,
+      "trend_index": 1.0,
+      "combo_index": 0.0
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "spleen",
+          "side": "left",
+          "value": 39.7,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "liver",
+          "side": "left",
+          "value": 39.8,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 2,
+      "right_low_count": 0,
+      "balanced_count": 4,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "trend_result": null,
+    "retest_analysis": null
+  },
+  "error": null
 }

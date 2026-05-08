@@ -1,9 +1,9 @@
 {
   "test_file": "test_22_retest_14_29_days_low.json",
   "test_name": "复测测试 - 使用14-29天且上次<88: usage_bonus=3,保护为max(本次,上次+1)",
-  "status": "error",
-  "http_status": 400,
-  "response_time_ms": 7.51,
+  "status": "success",
+  "http_status": 200,
+  "response_time_ms": 12587.97,
   "request": {
     "measurement_type": "retest",
     "gender": "female",
@@ -56,7 +56,346 @@
     "previous_score_less_than_88": true,
     "protection": "max(retest_score_base, previous_score + 1)"
   },
-  "actual": null,
-  "key_fields": null,
-  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+  "actual": {
+    "engine": {
+      "mode": "hybrid",
+      "version": "3.0",
+      "llmModel": "deepseek-chat",
+      "llmLatency": 12.58
+    },
+    "score_result": {
+      "score": 80,
+      "score_raw": 76.2,
+      "problem_index": 26.0,
+      "problem_index_detail": {
+        "low_temperature_index": 3.0,
+        "temperature_difference_index": 11.5,
+        "side_bias_index": 6.0,
+        "trend_index": 3.0,
+        "combo_index": 2.5
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "left",
+          "value": 37.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "liver",
+          "side": "left",
+          "value": 38.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 6,
+      "right_low_count": 0,
+      "balanced_count": 0,
+      "result": "head_blood_supply_attention"
+    },
+    "cervical_lumbar_result": {
+      "result": "lumbar",
+      "kidney_trend": "stable_left_low",
+      "bladder_trend": "stable_left_low"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.5,
+        "group2_diff": 1.0,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "improved",
+        "matched_rules": [
+          "阴虚生内热",
+          "消化快",
+          "容易饿"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ],
+        "narrative": "胃经呈左低趋势（阴虚生内热），第二组温差1.0°C属于有健康问题，表现为消化快、容易饿，但较上次有所好转。"
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 2.0,
+        "group2_diff": 1.5,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "improved",
+        "matched_rules": [
+          "胆红素高",
+          "皮肤黄",
+          "眼白黄",
+          "偏头痛"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ],
+        "narrative": "胆经呈左低趋势，第二组温差1.5°C属于有健康问题，需关注胆红素偏高、偏头痛等问题，较上次有所好转。"
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 2.0,
+        "group2_diff": 3.0,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "肩颈腰与肠道方向需关注",
+          "便秘",
+          "痔疮",
+          "大肠息肉风险",
+          "肺左侧功能风险"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ],
+        "narrative": "膀胱经是第二组最低点，呈左低趋势，第二组温差3.0°C属于有比较严重的问题，且温差加剧，需重点关注肩颈腰、便秘、痔疮、大肠息肉及肺左侧功能风险。"
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.5,
+        "group2_diff": 2.0,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "气虚",
+          "血液流速不够",
+          "血液循环推动不足",
+          "垃圾容易沉积在血管中",
+          "血稠、血脂、高血压方向",
+          "代谢差",
+          "口臭",
+          "放屁多",
+          "解毒功能变弱",
+          "皮肤易过敏",
+          "湿疹",
+          "容易长斑"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "group2_diff_health_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ],
+        "narrative": "肝经是第二组最低点之一，呈左低趋势，第二组温差2.0°C属于有健康问题且温差加剧，需关注气虚、血液循环不足、代谢差、血稠血脂高血压风险，以及皮肤易过敏、长斑等问题。"
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.5,
+        "group2_diff": 1.5,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "过滤能力弱",
+          "温差大时，容易出现血糖高方向问题",
+          "思虑重",
+          "容易操心"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ],
+        "narrative": "脾经呈左低趋势，第二组温差1.5°C属于有健康问题，表现为过滤能力弱、思虑重、易操心，温差大时需关注血糖方向。"
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.0,
+        "group2_diff": 2.0,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "耳鸣，尤其是嗡鸣声",
+          "阴虚",
+          "阴虚生内热",
+          "手心脚心热",
+          "体内像有一把火",
+          "容易缺水",
+          "五心烦躁",
+          "尿黄",
+          "尿短"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ],
+        "narrative": "肾经呈左低趋势（阴虚生内热），第二组温差2.0°C属于有健康问题且温差加剧，需关注耳鸣、手心脚心热、易缺水、五心烦躁等问题。"
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "side": "left",
+        "title": "膀胱经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem",
+          "diff_worsened"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "side": "left",
+        "title": "肝经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_health_problem",
+          "diff_worsened"
+        ]
+      },
+      {
+        "priority": 3,
+        "type": "side_bias",
+        "title": "头部供血需关注",
+        "left_low_count": 6,
+        "reason_codes": [
+          "left_bias_count_high"
+        ]
+      },
+      {
+        "priority": 4,
+        "type": "cervical_lumbar",
+        "title": "腰椎相关问题需关注",
+        "reason_codes": [
+          "lumbar_issue_detected"
+        ]
+      }
+    ],
+    "gender": "female",
+    "measurement_type": "retest",
+    "retest_detail": {
+      "usage_days": 20,
+      "usage_bonus": 3.0,
+      "delta_I": 2.0,
+      "improvement_bonus": 0.6,
+      "retest_score_base": 79.8,
+      "protected_score": 79.8,
+      "previous_score": 75,
+      "previous_problem_index": 28.0,
+      "current_problem_index": 26.0
+    },
+    "summary": "本次复测显示综合健康分从75提升至80，经络整体温度有所回升，但左右失衡问题依然存在。六条经络均呈现左侧温度偏低，提示头部供血方向需重点关注。膀胱经左侧温度最低，温差较大（3.0°C），结合肾经同侧偏低，提示腰椎问题需关注。肝经代谢、解毒功能偏弱，需注意血液循环和血脂健康。整体而言，身体处于调理改善期，但部分经络问题仍较突出，建议继续坚持调理并定期复测。",
+    "reportSummary": "本次复测显示综合健康分从75提升至80，经络整体温度有所回升，但左右失衡问题依然存在。六条经络均呈现左侧温度偏低，提示头部供血方向需重点关注。膀胱经左侧温度最低，温差较大（3.0°C），结合肾经同侧偏低，提示腰椎问题需关注。肝经代谢、解毒功能偏弱，需注意血液循环和血脂健康。整体而言，身体处于调理改善期，但部分经络问题仍较突出，建议继续坚持调理并定期复测。",
+    "storefront": {
+      "focusHeadline": "头部供血与腰椎需关注",
+      "clientExplanation": "本次检测结果显示您身体整体处于调理改善中，但部分经络左右差异较大，提示头部供血和腰椎方向需重点关注。请注意，此分析基于经络温度数据，不等同于医疗诊断，仅供参考。",
+      "talkTrack": [
+        "您这次复测整体分数比上次有所提升，说明调理有效果，但还有几个地方需要特别关注。",
+        "最明显的是膀胱经和肝经，左侧温度偏低，这通常和头部供血、血液循环以及腰椎有关。",
+        "建议您继续坚持调理，同时平时可以多注意颈腰部的保暖和活动，饮食上避免生冷油腻。"
+      ],
+      "retestPrompt": "建议继续调理20-30天后复测，重点关注膀胱经和肝经的改善情况。"
+    },
+    "recommendations": [
+      "饮食上避免生冷、油腻、辛辣食物，可适当增加温补食材如山药、枸杞、红枣，多吃绿叶蔬菜和富含纤维的食物以促进肠道健康。",
+      "作息上建议晚上11点前入睡，保证7-8小时睡眠，避免熬夜。",
+      "运动上可进行快走、瑜伽等舒缓运动，每周3-5次，每次30分钟，注意腰部和肩颈的拉伸。",
+      "日常注意腰部和颈部的保暖，避免久坐，每隔1小时起身活动。可结合仪器进行膀胱经和肝经的疏通调理，每周2-3次。"
+    ],
+    "meridianNarrative": {
+      "stomach": "胃经呈左低趋势（阴虚生内热），第二组温差1.0°C属于有健康问题，表现为消化快、容易饿，但较上次有所好转。",
+      "gallbladder": "胆经呈左低趋势，第二组温差1.5°C属于有健康问题，需关注胆红素偏高、偏头痛等问题，较上次有所好转。",
+      "bladder": "膀胱经是第二组最低点，呈左低趋势，第二组温差3.0°C属于有比较严重的问题，且温差加剧，需重点关注肩颈腰、便秘、痔疮、大肠息肉及肺左侧功能风险。",
+      "liver": "肝经是第二组最低点之一，呈左低趋势，第二组温差2.0°C属于有健康问题且温差加剧，需关注气虚、血液循环不足、代谢差、血稠血脂高血压风险，以及皮肤易过敏、长斑等问题。",
+      "spleen": "脾经呈左低趋势，第二组温差1.5°C属于有健康问题，表现为过滤能力弱、思虑重、易操心，温差大时需关注血糖方向。",
+      "kidney": "肾经呈左低趋势（阴虚生内热），第二组温差2.0°C属于有健康问题且温差加剧，需关注耳鸣、手心脚心热、易缺水、五心烦躁等问题。"
+    }
+  },
+  "key_fields": {
+    "score": 80,
+    "problem_index": 26.0,
+    "problem_index_detail": {
+      "low_temperature_index": 3.0,
+      "temperature_difference_index": 11.5,
+      "side_bias_index": 6.0,
+      "trend_index": 3.0,
+      "combo_index": 2.5
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "left",
+          "value": 37.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "liver",
+          "side": "left",
+          "value": 38.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 6,
+      "right_low_count": 0,
+      "balanced_count": 0,
+      "result": "head_blood_supply_attention"
+    },
+    "cervical_lumbar_result": {
+      "result": "lumbar",
+      "kidney_trend": "stable_left_low",
+      "bladder_trend": "stable_left_low"
+    },
+    "trend_result": null,
+    "retest_analysis": null
+  },
+  "error": null
 }

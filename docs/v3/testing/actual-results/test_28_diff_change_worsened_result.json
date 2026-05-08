@@ -1,9 +1,9 @@
 {
   "test_file": "test_28_diff_change_worsened.json",
   "test_name": "温差变化测试 - worsened: 温差变大>0.2℃",
-  "status": "error",
-  "http_status": 400,
-  "response_time_ms": 9.1,
+  "status": "success",
+  "http_status": 200,
+  "response_time_ms": 6769.29,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -53,7 +53,259 @@
       "diff_change": "worsened"
     }
   },
-  "actual": null,
-  "key_fields": null,
-  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+  "actual": {
+    "engine": {
+      "mode": "hybrid",
+      "version": "3.0",
+      "llmModel": "deepseek-chat",
+      "llmLatency": 6.77
+    },
+    "score_result": {
+      "score": 88,
+      "score_raw": 87.8,
+      "problem_index": 5.5,
+      "problem_index_detail": {
+        "low_temperature_index": 1.0,
+        "temperature_difference_index": 4.0,
+        "side_bias_index": 0.0,
+        "trend_index": 0.5,
+        "combo_index": 0.0
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "stomach",
+          "side": "left",
+          "value": 38.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "gallbladder",
+          "side": "left",
+          "value": 40.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 1,
+      "right_low_count": 0,
+      "balanced_count": 5,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 2.0,
+        "group2_diff": 4.0,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "阴虚生内热",
+          "消化快",
+          "容易饿"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem",
+          "diff_worsened"
+        ],
+        "narrative": "胃经呈现左低趋势（阴虚生内热），第二组温差高达4.0°C，属于有比较严重的问题，主要表现为消化快、容易饿，提示胃阴不足。"
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point"
+        ],
+        "narrative": "胆经左右平衡，温差0.0°C，状态良好。"
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "膀胱经左右平衡，温差0.0°C，状态良好。"
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "肝经左右平衡，温差0.0°C，状态良好。"
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "脾经左右平衡，温差0.0°C，状态良好。"
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "肾经左右平衡，温差0.0°C，状态良好。"
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "side": "left",
+        "title": "胃经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem",
+          "diff_worsened"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "side": "left",
+        "title": "胆经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      }
+    ],
+    "gender": "female",
+    "measurement_type": "first_test",
+    "summary": "本次检测显示您的整体健康状态良好，综合评分88分。主要提示胃经和胆经存在一定波动，胃经温差较大，提示消化系统功能可能处于不稳定状态，建议关注饮食规律和情绪调节。",
+    "reportSummary": "本次检测显示您的整体健康状态良好，综合评分88分。主要提示胃经和胆经存在一定波动，胃经温差较大，提示消化系统功能可能处于不稳定状态，建议关注饮食规律和情绪调节。",
+    "storefront": {
+      "focusHeadline": "胃经与胆经需关注",
+      "clientExplanation": "本报告基于经络温度数据进行健康分析，不等同于医疗诊断，仅供参考。",
+      "talkTrack": [
+        "您的整体健康评分不错，有88分呢。",
+        "不过胃经和胆经这边有些小提示，胃经两侧温度差异比较大，可能跟消化偏快或容易饿有关。",
+        "建议日常注意饮食节奏，少食多餐，避免辛辣刺激，帮助胃经慢慢调整回来。"
+      ],
+      "retestPrompt": "建议在调整生活饮食一周后复测，观察胃经波动是否改善。"
+    },
+    "recommendations": [
+      "饮食上建议少食多餐，避免过饥过饱，减少辛辣、油炸等刺激性食物。",
+      "注意调节情绪，避免过度焦虑，可尝试深呼吸或冥想放松。",
+      "适度运动如散步、瑜伽，有助于调理经络平衡。"
+    ],
+    "meridianNarrative": {
+      "stomach": "胃经呈现左低趋势（阴虚生内热），第二组温差高达4.0°C，属于有比较严重的问题，主要表现为消化快、容易饿，提示胃阴不足。",
+      "gallbladder": "胆经左右平衡，温差0.0°C，状态良好。",
+      "bladder": "膀胱经左右平衡，温差0.0°C，状态良好。",
+      "liver": "肝经左右平衡，温差0.0°C，状态良好。",
+      "spleen": "脾经左右平衡，温差0.0°C，状态良好。",
+      "kidney": "肾经左右平衡，温差0.0°C，状态良好。"
+    }
+  },
+  "key_fields": {
+    "score": 88,
+    "problem_index": 5.5,
+    "problem_index_detail": {
+      "low_temperature_index": 1.0,
+      "temperature_difference_index": 4.0,
+      "side_bias_index": 0.0,
+      "trend_index": 0.5,
+      "combo_index": 0.0
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "stomach",
+          "side": "left",
+          "value": 38.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "gallbladder",
+          "side": "left",
+          "value": 40.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 1,
+      "right_low_count": 0,
+      "balanced_count": 5,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "trend_result": null,
+    "retest_analysis": null
+  },
+  "error": null
 }

@@ -1,9 +1,9 @@
 {
   "test_file": "test_25_retest_improvement.json",
   "test_name": "复测测试 - 数据改善: ΔI>0时improvement_bonus=min(3, 0.3*ΔI)",
-  "status": "error",
-  "http_status": 400,
-  "response_time_ms": 15.48,
+  "status": "success",
+  "http_status": 200,
+  "response_time_ms": 9010.72,
   "request": {
     "measurement_type": "retest",
     "gender": "female",
@@ -56,7 +56,260 @@
     "improvement_bonus": 3.0,
     "improvement_bonus_maxed": true
   },
-  "actual": null,
-  "key_fields": null,
-  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+  "actual": {
+    "engine": {
+      "mode": "hybrid",
+      "version": "3.0",
+      "llmModel": "deepseek-chat",
+      "llmLatency": 9.01
+    },
+    "score_result": {
+      "score": 95,
+      "score_raw": 90.0,
+      "problem_index": 0.0,
+      "problem_index_detail": {
+        "low_temperature_index": 0.0,
+        "temperature_difference_index": 0.0,
+        "side_bias_index": 0.0,
+        "trend_index": 0.0,
+        "combo_index": 0.0
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "stomach",
+          "side": "left",
+          "value": 40.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "stomach",
+          "side": "right",
+          "value": 40.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 0,
+      "right_low_count": 0,
+      "balanced_count": 6,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point"
+        ],
+        "narrative": "胃经是本次第二组最低点之一，两次测量温差较大（从38.0°C升至40.0°C），虽然左右平衡，但升温明显，提示胃部功能可能处于活跃或敏感状态，建议关注饮食规律和消化负担。"
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "胆经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "膀胱经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "肝经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "脾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "肾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "side": "left",
+        "title": "胃经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "side": "right",
+        "title": "胃经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      }
+    ],
+    "gender": "female",
+    "measurement_type": "retest",
+    "retest_detail": {
+      "usage_days": 14,
+      "usage_bonus": 3.0,
+      "delta_I": 30.0,
+      "improvement_bonus": 3.0,
+      "retest_score_base": 96.0,
+      "protected_score": 96.0,
+      "previous_score": 70,
+      "previous_problem_index": 30.0,
+      "current_problem_index": 0.0
+    },
+    "summary": "本次复测结果显示，您的整体经络状态非常优秀，综合健康分从70分跃升至95分，反映出近期的调理取得了显著成效。所有经络在两次测量中均保持平衡，仅胃经因温差变化较大而需稍加关注。建议继续保持良好的生活习惯，巩固调理成果。",
+    "reportSummary": "本次复测结果显示，您的整体经络状态非常优秀，综合健康分从70分跃升至95分，反映出近期的调理取得了显著成效。所有经络在两次测量中均保持平衡，仅胃经因温差变化较大而需稍加关注。建议继续保持良好的生活习惯，巩固调理成果。",
+    "storefront": {
+      "focusHeadline": "经络状态显著提升",
+      "clientExplanation": "本次复测结果基于足部经络温度数据分析，不等同于医疗诊断，主要作为健康管理的参考。",
+      "talkTrack": [
+        "您的整体经络平衡度非常好，六条经络都达到了理想的平衡状态。",
+        "胃经是本次唯一需要关注的经络，两次测量温差较大，提示消化功能可能需要持续养护。",
+        "与上次相比，您的健康分提升了25分，说明这段时间的调理非常有效，请继续保持。"
+      ],
+      "retestPrompt": "建议继续按照目前的调理方案坚持14天左右，再进行一次复测，以巩固和观察胃经的改善情况。"
+    },
+    "recommendations": [
+      "饮食上注意三餐规律，避免暴饮暴食和生冷刺激性食物，可适当食用山药、小米等养胃食材。",
+      "建议进行温和的运动，如散步或瑜伽，以促进气血循环，帮助胃经保持稳定。",
+      "保持良好作息，避免熬夜，有助于整体经络的平衡和消化系统的修复。"
+    ],
+    "meridianNarrative": {
+      "stomach": "胃经是本次第二组最低点之一，两次测量温差较大（从38.0°C升至40.0°C），虽然左右平衡，但升温明显，提示胃部功能可能处于活跃或敏感状态，建议关注饮食规律和消化负担。",
+      "gallbladder": "胆经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
+      "bladder": "膀胱经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
+      "liver": "肝经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
+      "spleen": "脾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
+      "kidney": "肾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+    }
+  },
+  "key_fields": {
+    "score": 95,
+    "problem_index": 0.0,
+    "problem_index_detail": {
+      "low_temperature_index": 0.0,
+      "temperature_difference_index": 0.0,
+      "side_bias_index": 0.0,
+      "trend_index": 0.0,
+      "combo_index": 0.0
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "stomach",
+          "side": "left",
+          "value": 40.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "stomach",
+          "side": "right",
+          "value": 40.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 0,
+      "right_low_count": 0,
+      "balanced_count": 6,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "trend_result": null,
+    "retest_analysis": null
+  },
+  "error": null
 }

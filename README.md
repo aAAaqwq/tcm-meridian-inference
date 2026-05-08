@@ -195,16 +195,25 @@ display_score = clamp(score_raw, 65, 89)
 ## 测试
 
 ```bash
-# v3 引擎测试
-python3 tests/run_tests_v3.py            # 规则引擎单元测试
+# 统一测试脚本 - 支持本地/API多种模式
+python3 tests/run_v3_tests.py                          # 本地自动模式(有KEY用hybrid)
+python3 tests/run_v3_tests.py --mode rule              # 本地纯规则引擎
+python3 tests/run_v3_tests.py --mode agent             # 本地hybrid模式(需DEEPSEEK_API_KEY)
+python3 tests/run_v3_tests.py --url http://127.0.0.1:18790/api/inference/meridian-diagnosis  # 本地API
+python3 tests/run_v3_tests.py --port 18790             # 指定端口（默认127.0.0.1）
+python3 tests/run_v3_tests.py --sequential            # 顺序执行(便于调试)
 
-# 运行所有 v3 测试 case
-for f in fixtures/v3/test_*.json; do
-  python3 scripts/infer_v3.py "$f" --pretty
-done
+# 运行单个测试
+python3 scripts/infer_v3.py fixtures/v3/test_01_excellent_score.json --pretty  # 纯规则
+python3 scripts/infer_agent.py fixtures/v3/test_01_excellent_score.json      # Hybrid
 
 # API 冒烟测试
 bash scripts/test_api_remote.sh
+```
+
+**测试结果**: 38个测试用例结果保存在 `docs/v3/testing/actual-results/`
+```bash
+ls docs/v3/testing/actual-results/
 ```
 
 ---

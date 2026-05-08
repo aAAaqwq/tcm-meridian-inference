@@ -1,9 +1,9 @@
 {
   "test_file": "test_26_low_temp_index_max.json",
   "test_name": "低温指数测试 - 低温差距>3℃: A=6,最高档",
-  "status": "error",
-  "http_status": 400,
-  "response_time_ms": 6.1,
+  "status": "success",
+  "http_status": 200,
+  "response_time_ms": 9628.75,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -52,7 +52,251 @@
     "lowest_two_avg": 40.0,
     "gap": 4.0
   },
-  "actual": null,
-  "key_fields": null,
-  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+  "actual": {
+    "engine": {
+      "mode": "hybrid",
+      "version": "3.0",
+      "llmModel": "deepseek-chat",
+      "llmLatency": 9.63
+    },
+    "score_result": {
+      "score": 88,
+      "score_raw": 87.6,
+      "problem_index": 6.0,
+      "problem_index_detail": {
+        "low_temperature_index": 6.0,
+        "temperature_difference_index": 0.0,
+        "side_bias_index": 0.0,
+        "trend_index": 0.0,
+        "combo_index": 0.0
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "left",
+          "value": 40.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "stomach",
+          "side": "left",
+          "value": 44.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 0,
+      "right_low_count": 0,
+      "balanced_count": 6,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point"
+        ],
+        "narrative": "胃经整体平衡，第二组温差0.0°C，状态良好，但作为第二组最低点之一，建议关注消化功能的日常保养。"
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "胆经整体平衡，温差0.0°C，状态良好，无需特别关注。"
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point"
+        ],
+        "narrative": "膀胱经整体平衡，温差0.0°C，作为第二组温度最低的经络（左侧40.0°C），是本次重点关注对象，提示肩颈、腰部、泌尿、生殖、消化、呼吸系统方向需要多加关注。"
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "肝经整体平衡，温差0.0°C，状态良好，代谢功能正常。"
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "脾经整体平衡，温差0.0°C，状态良好，运化功能正常。"
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": [],
+        "narrative": "肾经整体平衡，温差0.0°C，状态良好，无需特别关注。"
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "side": "left",
+        "title": "膀胱经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "side": "left",
+        "title": "胃经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      }
+    ],
+    "gender": "female",
+    "measurement_type": "first_test",
+    "summary": "检测结果显示您整体状态良好，综合健康分88分，经络左右平衡。本次重点关注膀胱经和胃经，膀胱经温度相对较低，提示肩颈腰、泌尿生殖或肠道方面可能需要注意；胃经温度也偏低，需关注消化功能。其他经络均处于平衡状态，建议继续保持良好生活习惯，并关注局部调理。",
+    "reportSummary": "检测结果显示您整体状态良好，综合健康分88分，经络左右平衡。本次重点关注膀胱经和胃经，膀胱经温度相对较低，提示肩颈腰、泌尿生殖或肠道方面可能需要注意；胃经温度也偏低，需关注消化功能。其他经络均处于平衡状态，建议继续保持良好生活习惯，并关注局部调理。",
+    "storefront": {
+      "focusHeadline": "膀胱与胃经需关注",
+      "clientExplanation": "本次检测结果反映您当前的身体经络状态，不等同于医疗诊断，请结合个人感受综合判断。",
+      "talkTrack": [
+        "您的整体经络状态非常平衡，健康评分88分，说明您的身体基础不错。",
+        "不过我们注意到膀胱经和胃经的温度相对较低，可能提示肩颈、腰部、消化系统方面需要多一些关注和保养。",
+        "建议后续可以通过适当的热敷、按摩或针对性调理来改善这两个区域的气血循环。"
+      ],
+      "retestPrompt": "建议1-2周后复测，观察调理效果，特别是膀胱经和胃经的变化。"
+    },
+    "recommendations": [
+      "膀胱经调理：建议多做背部膀胱经刮痧或按摩，尤其是肩颈和腰部区域；适当进行伸展运动，如瑜伽或八段锦，促进气血流通。",
+      "胃经调理：注意规律饮食，避免生冷食物，可适当补充温热性食材如生姜、红枣；饭后散步助消化，避免久坐。",
+      "日常保养：保持充足睡眠，避免熬夜；每周3-5次有氧运动如快走或游泳，增强整体气血循环。"
+    ],
+    "meridianNarrative": {
+      "stomach": "胃经整体平衡，第二组温差0.0°C，状态良好，但作为第二组最低点之一，建议关注消化功能的日常保养。",
+      "gallbladder": "胆经整体平衡，温差0.0°C，状态良好，无需特别关注。",
+      "bladder": "膀胱经整体平衡，温差0.0°C，作为第二组温度最低的经络（左侧40.0°C），是本次重点关注对象，提示肩颈、腰部、泌尿、生殖、消化、呼吸系统方向需要多加关注。",
+      "liver": "肝经整体平衡，温差0.0°C，状态良好，代谢功能正常。",
+      "spleen": "脾经整体平衡，温差0.0°C，状态良好，运化功能正常。",
+      "kidney": "肾经整体平衡，温差0.0°C，状态良好，无需特别关注。"
+    }
+  },
+  "key_fields": {
+    "score": 88,
+    "problem_index": 6.0,
+    "problem_index_detail": {
+      "low_temperature_index": 6.0,
+      "temperature_difference_index": 0.0,
+      "side_bias_index": 0.0,
+      "trend_index": 0.0,
+      "combo_index": 0.0
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "left",
+          "value": 40.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "stomach",
+          "side": "left",
+          "value": 44.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 0,
+      "right_low_count": 0,
+      "balanced_count": 6,
+      "result": "none"
+    },
+    "cervical_lumbar_result": {
+      "result": "none",
+      "kidney_trend": "stable_balanced",
+      "bladder_trend": "stable_balanced"
+    },
+    "trend_result": null,
+    "retest_analysis": null
+  },
+  "error": null
 }

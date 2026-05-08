@@ -3,7 +3,7 @@
 面向：前端 / 调用方 / 集成开发  
 项目：`tcm-meridian-inference-mvp`  
 当前版本：`3.0`  
-更新日期：2026-05-04
+更新日期：2026-05-07
 
 ---
 
@@ -37,9 +37,31 @@ tcm_api.py (HTTP Server)
 
 ---
 
-## 3. 完整请求/响应示例
+## 3. 测试指南
 
-### 3.0 测试用例索引
+### 统一测试脚本
+
+```bash
+# 本地测试（推荐）
+python3 tests/run_v3_tests.py                    # 自动模式(有KEY用hybrid)
+python3 tests/run_v3_tests.py --mode rule        # 纯规则引擎
+python3 tests/run_v3_tests.py --mode agent       # Hybrid模式(需DEEPSEEK_API_KEY)
+
+# 线上API测试
+python3 tests/run_v3_tests.py --url http://180.76.137.183:18970/api/inference/meridian-diagnosis
+python3 tests/run_v3_tests.py --port 18970      # 指定端口
+
+# 顺序执行（便于调试）
+python3 tests/run_v3_tests.py --sequential
+```
+
+**测试用例**: 38个测试用例位于 `fixtures/v3/` 目录，测试结果记录在 `docs/v3/testing/actual-results/`
+
+---
+
+## 4. 完整请求/响应示例
+
+### 4.1 测试用例索引
 
 | 测试场景 | 测试文件 | 说明 |
 |----------|----------|------|
@@ -56,7 +78,7 @@ tcm_api.py (HTTP Server)
 
 ---
 
-### 3.1 首次检测请求体
+### 4.2 首次检测请求体
 
 ```json
 {
@@ -103,7 +125,7 @@ tcm_api.py (HTTP Server)
 }
 ```
 
-### 3.2 复测请求体（额外字段）
+### 4.3 复测请求体（额外字段）
 
 ```json
 {
@@ -123,7 +145,7 @@ tcm_api.py (HTTP Server)
 }
 ```
 
-### 3.3 字段说明
+### 4.4 字段说明
 
 #### 顶层字段
 
@@ -151,44 +173,39 @@ tcm_api.py (HTTP Server)
 
 ---
 
-## 4. 响应规范
+## 5. 响应规范
 
-### 4.1 核心输出结构
+### 5.1 核心输出结构
 
 ```json
 {
   "engine": {
-    "mode": "rule-based-v3",
-    "version": "3.0"
+    "mode": "hybrid",
+    "version": "3.0",
+    "llmModel": "deepseek-chat",
+    "llmLatency": 8.83
   },
 
   "score_result": {
-    "score": 77,
-    "score_raw": 77.08,
-    "problem_index": 24.9,
+    "score": 89,
+    "score_raw": 90.0,
+    "problem_index": 0.0,
     "problem_index_detail": {
-      "low_temperature_index": 5.0,
-      "temperature_difference_index": 8.5,
-      "side_bias_index": 5.0,
-      "trend_index": 3.9,
-      "combo_index": 2.5
+      "low_temperature_index": 0.0,
+      "temperature_difference_index": 0.0,
+      "side_bias_index": 0.0,
+      "trend_index": 0.0,
+      "combo_index": 0.0
     }
   },
 
   "lowest_points": {
     "selected": [
       {
-        "meridian": "bladder",
+        "meridian": "stomach",
         "side": "left",
-        "value": 37.9,
+        "value": 40.0,
         "rank": 1,
-        "must_report": true
-      },
-      {
-        "meridian": "spleen",
-        "side": "left",
-        "value": 39.1,
-        "rank": 2,
         "must_report": true
       }
     ],
@@ -196,33 +213,34 @@ tcm_api.py (HTTP Server)
   },
 
   "side_bias_summary": {
-    "left_low_count": 5,
+    "left_low_count": 0,
     "right_low_count": 0,
-    "balanced_count": 1,
-    "result": "head_blood_supply_attention"
+    "balanced_count": 6,
+    "result": "none"
   },
 
   "cervical_lumbar_result": {
-    "result": "lumbar",
-    "kidney_trend": "stable_left_low",
-    "bladder_trend": "stable_left_low"
+    "result": "none",
+    "kidney_trend": "stable_balanced",
+    "bladder_trend": "stable_balanced"
   },
 
   "meridian_analysis": [
     {
       "meridian": "stomach",
       "meridian_name": "胃经",
-      "group1_status": "left_low",
-      "group2_status": "left_low",
-      "trend": "stable_left_low",
-      "group1_diff": 1.0,
-      "group2_diff": 0.1,
-      "group1_diff_level": "health_problem",
+      "group1_status": "balanced",
+      "group2_status": "balanced",
+      "trend": "stable_balanced",
+      "group1_diff": 0.0,
+      "group2_diff": 0.0,
+      "group1_diff_level": "balanced",
       "group2_diff_level": "balanced",
-      "diff_change": "improved",
-      "matched_rules": ["阴虚生内热", "消化快", "容易饿"],
+      "diff_change": "unchanged",
+      "matched_rules": [],
       "is_focus": true,
-      "focus_reason": ["side_bias_participant"]
+      "focus_reason": ["second_group_lowest_point"],
+      "narrative": "胃经是本次重点关注经络，两组测量均左右平衡..."
     }
   ],
 
@@ -230,20 +248,38 @@ tcm_api.py (HTTP Server)
     {
       "priority": 1,
       "type": "lowest_point",
-      "meridian": "bladder",
-      "meridian_name": "膀胱经",
+      "meridian": "stomach",
+      "meridian_name": "胃经",
       "side": "left",
-      "title": "膀胱经问题较突出",
-      "reason_codes": ["second_group_lowest_point", "group2_diff_serious_problem", "diff_worsened"]
+      "title": "胃经问题较突出",
+      "reason_codes": ["second_group_lowest_point"]
     }
   ],
 
   "gender": "female",
-  "measurement_type": "first_test"
+  "measurement_type": "first_test",
+
+  "summary": "您的经络检测结果显示整体健康状态良好...",
+  "reportSummary": "您的经络检测结果显示整体健康状态良好...",
+  "storefront": {
+    "focusHeadline": "胃经需关注，整体状态佳",
+    "clientExplanation": "本次检测结果整体良好...",
+    "talkTrack": ["...", "...", "..."],
+    "retestPrompt": "建议一个月后进行复测..."
+  },
+  "recommendations": ["...", "...", "..."],
+  "meridianNarrative": {
+    "stomach": "...",
+    "gallbladder": "...",
+    "bladder": "...",
+    "liver": "...",
+    "spleen": "...",
+    "kidney": "..."
+  }
 }
 ```
 
-### 4.2 复测额外字段
+### 5.2 复测额外字段
 
 ```json
 {
@@ -263,9 +299,18 @@ tcm_api.py (HTTP Server)
 
 ---
 
-## 5. 关键字段说明
+## 6. 关键字段说明
 
-### 5.1 score_result
+### 6.1 engine
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `mode` | string | `hybrid` / `rule-based-v3` / `rule-fallback` |
+| `version` | string | 引擎版本 |
+| `llmModel` | string | LLM模型 (hybrid模式) |
+| `llmLatency` | float | LLM调用耗时秒数 (hybrid模式) |
+
+### 6.2 score_result
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
@@ -274,7 +319,7 @@ tcm_api.py (HTTP Server)
 | `problem_index` | float | 问题指数 I = A+B+C+D+E |
 | `problem_index_detail` | object | 各分量详情 |
 
-### 5.2 problem_index_detail
+### 6.2 problem_index_detail
 
 | 字段 | 说明 | 最大值 |
 |------|------|--------|
@@ -284,11 +329,11 @@ tcm_api.py (HTTP Server)
 | `trend_index` | D: 趋势指数 | 4 (封顶) |
 | `combo_index` | E: 组合指数 | 2.5 |
 
-### 5.3 lowest_points
+### 6.4 lowest_points
 
 第二组（20分钟）温度最低的两个点，报告必讲项。
 
-### 5.4 side_bias_summary
+### 6.5 side_bias_summary
 
 | 字段 | 说明 |
 |------|------|
@@ -296,7 +341,7 @@ tcm_api.py (HTTP Server)
 | `right_low_count` | 第二组右低经络数 |
 | `result` | `head_blood_supply_attention` / `heart_attention` / `none` |
 
-### 5.5 cervical_lumbar_result
+### 6.6 cervical_lumbar_result
 
 | result值 | 说明 |
 |----------|------|
@@ -305,24 +350,62 @@ tcm_api.py (HTTP Server)
 | `lumbar` | 腰椎问题 |
 | `cervical_and_lumbar` | 颈椎和腰椎同时存在 |
 
-### 5.6 meridian_analysis
+### 6.7 meridian_analysis
 
 每条经络的详细分析：
 
 | 字段 | 说明 |
 |------|------|
-| `trend` | 趋势类型: `stable_left_low` / `stable_right_low` / `cross` / `stable_balanced` / `potential_symptom` / `fast_response` |
-| `group1/2_diff_level` | 温差等级: `balanced` / `mild_sub_health` / `health_problem` / `serious_problem` |
-| `diff_change` | 温差变化: `improved` / `worsened` / `unchanged` |
-| `matched_rules` | 匹配到的问题列表 |
-| `is_focus` | 是否属于重点关注 |
-| `focus_reason` | 重点关注原因 |
+| `meridian` | 经络英文名: `stomach`/`gallbladder`/`bladder`/`liver`/`spleen`/`kidney` |
+| `meridian_name` | 经络中文名 |
+| `group1_status` | 第一组状态: `balanced`/`left_low`/`right_low` |
+| `group2_status` | 第二组状态: `balanced`/`left_low`/`right_low` |
+| `trend` | 趋势类型: `stable_left_low`/`stable_right_low`/`cross`/`stable_balanced`/`potential_symptom`/`fast_response` |
+| `group1_diff` | 第一组温差绝对值 |
+| `group2_diff` | 第二组温差绝对值 |
+| `group1_diff_level` | 第一组温差等级: `balanced`/`mild_sub_health`/`health_problem`/`serious_problem` |
+| `group2_diff_level` | 第二组温差等级: `balanced`/`mild_sub_health`/`health_problem`/`serious_problem` |
+| `diff_change` | 温差变化: `improved`/`worsened`/`unchanged` |
+| `matched_rules` | 匹配到的问题规则列表 |
+| `is_focus` | 是否属于重点关注经络 |
+| `focus_reason` | 重点关注原因列表 |
+| `narrative` | LLM生成的自然语言描述（Hybrid模式）|
+
+### 6.8 自然语言输出字段 (Hybrid模式)
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `summary` | string | 综合健康解读文案 |
+| `reportSummary` | string | 报告摘要（与summary相同） |
+| `storefront` | object | 门店展示话术对象 |
+| `storefront.focusHeadline` | string | 关注标题，一句话总结 |
+| `storefront.clientExplanation` | string | 向客户解释检测结果 |
+| `storefront.talkTrack` | array[string] | 对话要点（3条） |
+| `storefront.retestPrompt` | string | 复测建议提示 |
+| `recommendations` | array[string] | 调理建议列表（3-5条） |
+| `meridianNarrative` | object | 各经络自然语言描述 {meridian: narrative} |
+
+### 6.9 复测额外字段 (retest_detail)
+
+仅当 `measurement_type` 为 `retest` 时返回：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| `retest_detail.usage_days` | int | 两次测试间使用仪器天数 |
+| `retest_detail.usage_bonus` | float | 使用天数加分（0-4分） |
+| `retest_detail.delta_I` | float | 问题指数变化量（上次-本次） |
+| `retest_detail.improvement_bonus` | float | 改善奖励分（如适用） |
+| `retest_detail.retest_score_base` | float | 复测基础分数（加分前） |
+| `retest_detail.protected_score` | float | 保护后的分数（不低于上次） |
+| `retest_detail.previous_score` | int | 上次展示分数 |
+| `retest_detail.previous_problem_index` | float | 上次问题指数 |
+| `retest_detail.current_problem_index` | float | 本次问题指数 |
 
 ---
 
-## 6. 评分算法摘要
+## 7. 评分算法摘要
 
-### 6.1 问题指数计算
+### 7.1 问题指数计算
 
 ```
 I = A + B + C + D + E
@@ -354,7 +437,7 @@ E (组合指数):
   有颈椎或腰椎: 2.5 (不叠加)
 ```
 
-### 6.2 分数映射
+### 7.2 分数映射
 
 ```
 if I <= 10:      score_raw = 90 - 0.4 * I
@@ -366,7 +449,7 @@ else:            score_raw = 71.4 - 1.0 * (I - 32)
 复测: clamp(score_raw + usage_bonus + improvement_bonus, 65, 95)
 ```
 
-### 6.3 分数等级
+### 7.3 分数等级
 
 | 分数 | 等级 | 说明 |
 |------|------|------|
@@ -377,9 +460,9 @@ else:            score_raw = 71.4 - 1.0 * (I - 32)
 
 ---
 
-## 7. 调用示例
+## 8. 调用示例
 
-### 7.1 CLI 直接运行
+### 8.1 CLI 直接运行
 
 ```bash
 # 使用 v3 推理引擎
@@ -392,7 +475,7 @@ python3 run_tests_v3.py
 python3 validate_backend.py
 ```
 
-### 7.2 HTTP 调用
+### 8.2 HTTP 调用
 
 ```bash
 curl -X POST http://127.0.0.1:18790/api/inference/meridian-diagnosis \
@@ -400,7 +483,7 @@ curl -X POST http://127.0.0.1:18790/api/inference/meridian-diagnosis \
   --data @fixtures/v3/case_01_first_test.json
 ```
 
-### 7.3 健康检查
+### 8.3 健康检查
 
 ```bash
 curl http://127.0.0.1:18790/healthz
@@ -408,7 +491,7 @@ curl http://127.0.0.1:18790/healthz
 
 ---
 
-## 8. 环境变量
+## 9. 环境变量
 
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
@@ -418,11 +501,11 @@ curl http://127.0.0.1:18790/healthz
 
 ---
 
-## 5. Agent 模式输出（LLM 增强）
+## 10. Agent 模式输出（LLM 增强）
 
 当 `TCM_INFER_MODE=agent` 或 `auto`（且配置了 `DEEPSEEK_API_KEY`）时，响应会包含 LLM 生成的自然语言字段：
 
-### 5.1 完整响应示例（Agent 模式）
+### 10.1 完整响应示例（Agent 模式）
 
 ```json
 {
@@ -460,7 +543,7 @@ curl http://127.0.0.1:18790/healthz
 }
 ```
 
-### 5.2 LLM 生成字段说明
+### 10.2 LLM 生成字段说明
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
@@ -473,7 +556,7 @@ curl http://127.0.0.1:18790/healthz
 | `reportSummary` | string | 报告摘要（完整版） |
 | `recommendations` | string[] | 养生建议列表（3-5条） |
 
-### 5.3 Rule-only vs Agent 模式对比
+### 10.3 Rule-only vs Agent 模式对比
 
 | 模式 | 环境变量 | 输出字段 |
 |------|----------|----------|
@@ -482,7 +565,7 @@ curl http://127.0.0.1:18790/healthz
 
 ---
 
-## 6. 错误响应
+## 11. 错误响应
 
 | HTTP 状态码 | 场景 | 响应示例 |
 |-------------|------|----------|
@@ -494,7 +577,7 @@ curl http://127.0.0.1:18790/healthz
 
 ---
 
-## 10. v2 vs v3 变更对照
+## 12. v2 vs v3 变更对照
 
 | 项目 | v2 | v3 |
 |------|----|----|

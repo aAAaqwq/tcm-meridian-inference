@@ -17,6 +17,18 @@
 | 测试报告 | [v3/testing/test-report.md](v3/testing/test-report.md) | 30个测试用例结果 |
 | 验证报告 | [v3/testing/validation-report.md](v3/testing/validation-report.md) | 后端真实数据验证 |
 | Agent模式测试规范 | [v3/testing/agent-test-specification.md](v3/testing/agent-test-specification.md) | Agent模式(LLM)输入输出规范 |
+| 测试结果记录 | [v3/testing/actual-results/](v3/testing/actual-results/) | 38个测试用例输入输出JSON |
+
+**测试运行命令**:
+```bash
+# 本地测试
+python3 tests/run_v3_tests.py                    # 自动模式(有KEY用hybrid)
+python3 tests/run_v3_tests.py --mode rule        # 纯规则引擎
+python3 tests/run_v3_tests.py --mode agent      # Hybrid模式
+
+# 线上API测试
+python3 tests/run_v3_tests.py --url http://180.76.137.183:18970/api/inference/meridian-diagnosis
+```
 
 #### 分析文档
 | 文档 | 路径 | 说明 |
@@ -86,19 +98,14 @@
 
 ### 3. 运行测试
 ```bash
-# 运行所有测试
-cd tests && python3 run_tests_v3.py
+# 统一测试脚本 (推荐)
+cd tests
+python3 run_v3_tests.py                       # 本地自动模式
+python3 run_v3_tests.py --mode rule           # 纯规则引擎
+python3 run_v3_tests.py --mode agent          # Hybrid模式(需DEEPSEEK_API_KEY)
+python3 run_v3_tests.py --port 18970          # 测试线上API
 
-# 运行后端验证
-cd tests && python3 validate_backend.py
-
-# 记录 Rule-only 输出
-cd tests && python3 record_actual_outputs.py
-
-# 记录 Agent 输出
-cd tests && python3 record_agent_outputs.py
-
-# 运行单个测试（CLI）
+# 单个测试
 python3 scripts/infer_v3.py fixtures/v3/case_01_first_test.json --pretty
 ```
 
@@ -158,7 +165,8 @@ docs/
 │   ├── testing/                 # 测试文档
 │   │   ├── cheatsheet.md        # 测试速查表
 │   │   ├── test-report.md       # 测试报告
-│   │   └── validation-report.md # 后端验证报告
+│   │   ├── validation-report.md # 后端验证报告
+│   │   └── actual-results/      # 38个测试用例结果JSON
 │   └── analysis/                # 分析文档
 │       └── algorithm-limits.md  # 算法边界分析
 ├── api/                         # API文档
@@ -181,4 +189,4 @@ docs/
 
 ---
 
-*最后更新: 2026-05-04*
+*最后更新: 2026-05-07*

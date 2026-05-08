@@ -1,9 +1,22 @@
 # TCM v3 API 测试用例文档（真实数据记录）
 
 > **说明**: 本文档基于 v3 规则引擎实际运行输出记录，包含完整输入和关键输出字段。
-> **引擎版本**: rule-based-v3 v3.0
+> **引擎版本**: hybrid v3.0 (规则引擎 + DeepSeek LLM)
 > **测试用例总数**: 38 个（首测26个 + 复测12个）
 > **生成时间**: 2026-05-07
+> 
+> **测试输入文件**: `fixtures/v3/*.json`
+> **测试结果记录**: `docs/v3/testing/actual-results/*_result.json`
+> 
+> **运行测试**:
+> ```bash
+> # 本地测试
+> python3 tests/run_v3_tests.py --mode rule        # 纯规则引擎
+> python3 tests/run_v3_tests.py --mode agent       # Hybrid模式
+> 
+> # 测试API服务
+> python3 tests/run_v3_tests.py --port 18790
+> ```
 
 ---
 
@@ -62,6 +75,9 @@
 ## 1. case_01_first_test (PRD标准示例)
 
 **类型**: 首测
+**输入**: `fixtures/v3/case_01_first_test.json` | **结果**: `docs/v3/testing/actual-results/case_01_first_test_result.json`
+**输入文件**: `fixtures/v3/case_01_first_test.json`
+**结果文件**: `docs/v3/testing/actual-results/case_01_first_test_result.json`
 
 ### 输入
 
@@ -227,6 +243,7 @@
 ## 2. case_02_retest (PRD复测示例)
 
 **类型**: 复测
+**输入**: `fixtures/v3/case_02_retest.json` | **结果**: `docs/v3/testing/actual-results/case_02_retest_result.json`
 
 ### 输入
 
@@ -396,6 +413,7 @@
 ## 3. test_01_excellent_score (健康优秀)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_01_excellent_score.json` | **结果**: `docs/v3/testing/actual-results/test_01_excellent_score_result.json`
 
 ### 输入
 
@@ -540,6 +558,7 @@
 ## 4. test_02_mild_imbalance (轻度失衡)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_02_mild_imbalance.json` | **结果**: `docs/v3/testing/actual-results/test_02_mild_imbalance_result.json`
 
 ### 输入
 
@@ -684,6 +703,7 @@
 ## 5. test_03_moderate_imbalance (中度失衡)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_03_moderate_imbalance.json` | **结果**: `docs/v3/testing/actual-results/test_03_moderate_imbalance_result.json`
 
 ### 输入
 
@@ -849,6 +869,7 @@
 ## 6. test_04_significant_imbalance (明显失衡)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_04_significant_imbalance.json` | **结果**: `docs/v3/testing/actual-results/test_04_significant_imbalance_result.json`
 
 ### 输入
 
@@ -1013,6 +1034,7 @@
 ## 7. test_05_trend_stable_left_low (趋势-左低)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_05_trend_stable_left_low.json` | **结果**: `docs/v3/testing/actual-results/test_05_trend_stable_left_low_result.json`
 
 ### 输入
 
@@ -1177,6 +1199,7 @@
 ## 8. test_06_trend_stable_right_low (趋势-右低)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_06_trend_stable_right_low.json` | **结果**: `docs/v3/testing/actual-results/test_06_trend_stable_right_low_result.json`
 
 ### 输入
 
@@ -1341,6 +1364,7 @@
 ## 9. test_07_trend_cross (趋势-交叉)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_07_trend_cross.json` | **结果**: `docs/v3/testing/actual-results/test_07_trend_cross_result.json`
 
 ### 输入
 
@@ -1504,6 +1528,7 @@
 ## 10. test_08_trend_potential_symptom (趋势-潜在症状)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_08_trend_potential_symptom.json` | **结果**: `docs/v3/testing/actual-results/test_08_trend_potential_symptom_result.json`
 
 ### 输入
 
@@ -1652,6 +1677,7 @@
 ## 11. test_09_trend_fast_response (趋势-快速恢复)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_09_trend_fast_response.json` | **结果**: `docs/v3/testing/actual-results/test_09_trend_fast_response_result.json`
 
 ### 输入
 
@@ -1796,6 +1822,7 @@
 ## 12. test_10_diff_levels (温差等级)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_10_diff_levels.json` | **结果**: `docs/v3/testing/actual-results/test_10_diff_levels_result.json`
 
 ### 输入
 
@@ -1961,6 +1988,7 @@
 ## 13. test_11_side_bias_4 (偏侧4条)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_11_side_bias_4.json` | **结果**: `docs/v3/testing/actual-results/test_11_side_bias_4_result.json`
 
 ### 输入
 
@@ -2116,6 +2144,7 @@
 ## 14. test_12_side_bias_5 (偏侧5条)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_12_side_bias_5.json` | **结果**: `docs/v3/testing/actual-results/test_12_side_bias_5_result.json`
 
 ### 输入
 
@@ -2271,6 +2300,7 @@
 ## 15. test_13_side_bias_6 (偏侧6条)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_13_side_bias_6.json` | **结果**: `docs/v3/testing/actual-results/test_13_side_bias_6_result.json`
 
 ### 输入
 
@@ -2434,6 +2464,7 @@
 ## 16. test_14_cervical_opposite (颈椎-相反低)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_14_cervical_opposite.json` | **结果**: `docs/v3/testing/actual-results/test_14_cervical_opposite_result.json`
 
 ### 输入
 
@@ -2587,6 +2618,7 @@
 ## 17. test_15_cervical_lumbar_cross (交叉=颈+腰)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_15_cervical_lumbar_cross.json` | **结果**: `docs/v3/testing/actual-results/test_15_cervical_lumbar_cross_result.json`
 
 ### 输入
 
@@ -2740,6 +2772,7 @@
 ## 18. test_16_gender_male (性别-男性)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_16_gender_male.json` | **结果**: `docs/v3/testing/actual-results/test_16_gender_male_result.json`
 
 ### 输入
 
@@ -2903,6 +2936,7 @@
 ## 19. test_17_gender_female (性别-女性)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_17_gender_female.json` | **结果**: `docs/v3/testing/actual-results/test_17_gender_female_result.json`
 
 ### 输入
 
@@ -3066,6 +3100,7 @@
 ## 20. test_18_gender_unknown (性别-未知)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_18_gender_unknown.json` | **结果**: `docs/v3/testing/actual-results/test_18_gender_unknown_result.json`
 
 ### 输入
 
@@ -3229,6 +3264,7 @@
 ## 21. test_19_retest_0_2_days (0-2天)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_19_retest_0_2_days.json` | **结果**: `docs/v3/testing/actual-results/test_19_retest_0_2_days_result.json`
 
 ### 输入
 
@@ -3408,6 +3444,7 @@
 ## 22. test_20_retest_3_6_days (3-6天)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_20_retest_3_6_days.json` | **结果**: `docs/v3/testing/actual-results/test_20_retest_3_6_days_result.json`
 
 ### 输入
 
@@ -3587,6 +3624,7 @@
 ## 23. test_21_retest_7_13_days (7-13天)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_21_retest_7_13_days.json` | **结果**: `docs/v3/testing/actual-results/test_21_retest_7_13_days_result.json`
 
 ### 输入
 
@@ -4103,6 +4141,7 @@
 ## 26. test_24_retest_30_plus_days (30天+)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_24_retest_30_plus_days.json` | **结果**: `docs/v3/testing/actual-results/test_24_retest_30_plus_days_result.json`
 
 ### 输入
 
@@ -4282,6 +4321,7 @@
 ## 27. test_25_retest_improvement (数据改善→95分)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_25_retest_improvement.json` | **结果**: `docs/v3/testing/actual-results/test_25_retest_improvement_result.json`
 
 ### 输入
 
@@ -4440,6 +4480,7 @@
 ## 28. test_26_low_temp_index_max (低温指数最大)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_26_low_temp_index_max.json` | **结果**: `docs/v3/testing/actual-results/test_26_low_temp_index_max_result.json`
 
 ### 输入
 
@@ -4584,6 +4625,7 @@
 ## 29. test_27_diff_change_improved (温差改善)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_27_diff_change_improved.json` | **结果**: `docs/v3/testing/actual-results/test_27_diff_change_improved_result.json`
 
 ### 输入
 
@@ -4730,6 +4772,7 @@
 ## 30. test_28_diff_change_worsened (温差恶化)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_28_diff_change_worsened.json` | **结果**: `docs/v3/testing/actual-results/test_28_diff_change_worsened_result.json`
 
 ### 输入
 
@@ -4876,6 +4919,7 @@
 ## 31. test_29_realistic_mild (真实-轻度)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_29_realistic_mild.json` | **结果**: `docs/v3/testing/actual-results/test_29_realistic_mild_result.json`
 
 ### 输入
 
@@ -5020,6 +5064,7 @@
 ## 32. test_30_realistic_moderate (真实-中度)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_30_realistic_moderate.json` | **结果**: `docs/v3/testing/actual-results/test_30_realistic_moderate_result.json`
 
 ### 输入
 
@@ -5185,6 +5230,7 @@
 ## 33. test_31_bladder_lowest (膀胱最低)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_31_bladder_lowest.json` | **结果**: `docs/v3/testing/actual-results/test_31_bladder_lowest_result.json`
 
 ### 输入
 
@@ -5340,6 +5386,7 @@
 ## 34. test_32_kidney_cross (肾交叉)
 
 **类型**: 首测
+**输入**: `fixtures/v3/test_32_kidney_cross.json` | **结果**: `docs/v3/testing/actual-results/test_32_kidney_cross_result.json`
 
 ### 输入
 
@@ -5494,6 +5541,7 @@
 ## 35. test_33_retest_92_score (92分-中等高分)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_33_retest_92_score.json` | **结果**: `docs/v3/testing/actual-results/test_33_retest_92_score_result.json`
 
 ### 输入
 
@@ -5652,6 +5700,7 @@
 ## 36. test_34_retest_91_score (91分-高分起步)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_34_retest_91_score.json` | **结果**: `docs/v3/testing/actual-results/test_34_retest_91_score_result.json`
 
 ### 输入
 
@@ -5810,6 +5859,7 @@
 ## 37. test_35_retest_93_score (93分-接近封顶)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_35_retest_93_score.json` | **结果**: `docs/v3/testing/actual-results/test_35_retest_93_score_result.json`
 
 ### 输入
 
@@ -5968,6 +6018,7 @@
 ## 38. test_36_retest_94_score (94分-保护机制)
 
 **类型**: 复测
+**输入**: `fixtures/v3/test_36_retest_94_score.json` | **结果**: `docs/v3/testing/actual-results/test_36_retest_94_score_result.json`
 
 ### 输入
 

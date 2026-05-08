@@ -1,9 +1,9 @@
 {
   "test_file": "test_04_significant_imbalance.json",
   "test_name": "首测 - 严重失衡: 极端温差,多交叉,最高问题指数~30.5,分数~73",
-  "status": "error",
-  "http_status": 400,
-  "response_time_ms": 13.72,
+  "status": "success",
+  "http_status": 200,
+  "response_time_ms": 10177.4,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -54,7 +54,320 @@
     "cross_count": 6,
     "note": "这是理论上的极端情况，实际临床很少见"
   },
-  "actual": null,
-  "key_fields": null,
-  "error": "400 Client Error: Bad Request for url: http://localhost:18790/api/inference/meridian-diagnosis"
+  "actual": {
+    "engine": {
+      "mode": "hybrid",
+      "version": "3.0",
+      "llmModel": "deepseek-chat",
+      "llmLatency": 10.17
+    },
+    "score_result": {
+      "score": 75,
+      "score_raw": 74.6,
+      "problem_index": 28.0,
+      "problem_index_detail": {
+        "low_temperature_index": 6.0,
+        "temperature_difference_index": 12.0,
+        "side_bias_index": 3.5,
+        "trend_index": 4.0,
+        "combo_index": 2.5
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "right",
+          "value": 30.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "stomach",
+          "side": "right",
+          "value": 32.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 2,
+      "right_low_count": 4,
+      "balanced_count": 0,
+      "result": "heart_attention"
+    },
+    "cervical_lumbar_result": {
+      "result": "cervical_and_lumbar",
+      "kidney_trend": "cross",
+      "bladder_trend": "cross"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "left_low",
+        "group2_status": "right_low",
+        "trend": "cross",
+        "group1_diff": 10.0,
+        "group2_diff": 10.0,
+        "group1_diff_level": "serious_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "饮食不规律",
+          "胃炎",
+          "胃溃疡",
+          "消化不良"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem",
+          "side_bias_participant"
+        ],
+        "narrative": "胃经呈交叉失衡，第二组温差10.0°C属严重问题，且是第二组最低点之一。提示饮食不规律、胃炎、消化不良等风险，需注重规律饮食。"
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "right_low",
+        "group2_status": "left_low",
+        "trend": "cross",
+        "group1_diff": 10.0,
+        "group2_diff": 10.0,
+        "group1_diff_level": "serious_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "温度上不去时，容易胆结石、胆囊炎",
+          "不按时吃早餐"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_serious_problem"
+        ],
+        "narrative": "胆经呈交叉失衡，第二组温差10.0°C属严重问题。提示胆结石、胆囊炎风险，与不吃早餐习惯相关，需调整饮食作息。"
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "left_low",
+        "group2_status": "right_low",
+        "trend": "cross",
+        "group1_diff": 8.0,
+        "group2_diff": 14.0,
+        "group1_diff_level": "serious_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "肠道问题需关注",
+          "生殖系统问题需关注",
+          "腰部及循环问题需关注"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ],
+        "narrative": "膀胱经呈交叉失衡，第二组温差14.0°C属严重问题且恶化。作为第二组最低点，提示肠道、生殖系统、腰部循环需关注。"
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "left_low",
+        "group2_status": "right_low",
+        "trend": "cross",
+        "group1_diff": 8.0,
+        "group2_diff": 10.0,
+        "group1_diff_level": "serious_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "是否熬夜",
+          "气血两虚",
+          "脂肪肝",
+          "酒精肝",
+          "肝囊肿"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_serious_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ],
+        "narrative": "肝经呈交叉失衡，第二组温差10.0°C属严重问题且恶化。提示气血两虚，脂肪肝、酒精肝、肝囊肿风险，需避免熬夜。"
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "right_low",
+        "group2_status": "left_low",
+        "trend": "cross",
+        "group1_diff": 10.0,
+        "group2_diff": 10.0,
+        "group1_diff_level": "serious_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "血糖",
+          "思虑重",
+          "湿气",
+          "四肢乏力",
+          "肌肉松弛",
+          "腿沉"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_serious_problem"
+        ],
+        "narrative": "脾经呈交叉失衡，第二组温差10.0°C属严重问题。提示血糖代谢、湿气、思虑过重、四肢乏力等风险，需健脾祛湿。"
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "left_low",
+        "group2_status": "right_low",
+        "trend": "cross",
+        "group1_diff": 9.0,
+        "group2_diff": 13.0,
+        "group1_diff_level": "serious_problem",
+        "group2_diff_level": "serious_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "结石",
+          "囊肿",
+          "腹部手术史",
+          "女性：剖腹产、人流、子宫肌瘤",
+          "男性：前列腺炎、前列腺钙化"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_serious_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ],
+        "narrative": "肾经呈交叉失衡，第二组温差13.0°C属严重问题且恶化。提示结石、囊肿风险及腹部手术史相关方向，需关注生殖系统健康。"
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "side": "right",
+        "title": "膀胱经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem",
+          "diff_worsened"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "side": "right",
+        "title": "胃经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_serious_problem"
+        ]
+      },
+      {
+        "priority": 3,
+        "type": "side_bias",
+        "title": "心脏方向需关注",
+        "right_low_count": 4,
+        "reason_codes": [
+          "right_bias_count_high"
+        ]
+      },
+      {
+        "priority": 4,
+        "type": "cervical_lumbar",
+        "title": "颈椎和腰椎问题同时存在",
+        "reason_codes": [
+          "cervical_and_lumbar_detected"
+        ]
+      }
+    ],
+    "gender": "female",
+    "measurement_type": "first_test",
+    "summary": "首测显示整体经络状态中度失衡，问题指数28.0。六条经络均出现交叉趋势，其中膀胱经、胃经、肝经、肾经温差严重且恶化，提示脏腑功能紊乱。整体偏右明显，需重点关注心脏供血方向。同时颈椎和腰椎问题均需注意。建议综合调理，改善作息和饮食。",
+    "reportSummary": "首测显示整体经络状态中度失衡，问题指数28.0。六条经络均出现交叉趋势，其中膀胱经、胃经、肝经、肾经温差严重且恶化，提示脏腑功能紊乱。整体偏右明显，需重点关注心脏供血方向。同时颈椎和腰椎问题均需注意。建议综合调理，改善作息和饮食。",
+    "storefront": {
+      "focusHeadline": "全身经络交叉失衡",
+      "clientExplanation": "本次检测显示您身体的经络能量出现较大的左右波动，提示多个脏腑功能可能处于不稳定状态。这不等同于医疗诊断，而是反映身体需要调养的信号。",
+      "talkTrack": [
+        "您的检测结果显示，六条经络都出现了左右交替的异常，说明身体整体调节能力需要加强。",
+        "特别是膀胱经和胃经的问题比较突出，温差很大，需要重点关注。",
+        "另外，整体偏向右侧，提示心脏方向需要多留意，同时颈椎和腰椎也有压力。"
+      ],
+      "retestPrompt": "建议连续调理一个周期后复测，观察经络平衡改善情况。"
+    },
+    "recommendations": [
+      "饮食规律，避免暴饮暴食，少食生冷辛辣，早餐按时吃。",
+      "适度运动如散步、瑜伽，避免久坐，促进腰背循环。",
+      "保持良好作息，避免熬夜，减轻压力，可尝试冥想或深呼吸。",
+      "建议定期监测，结合专业调理如经络疏通或艾灸。"
+    ],
+    "meridianNarrative": {
+      "stomach": "胃经呈交叉失衡，第二组温差10.0°C属严重问题，且是第二组最低点之一。提示饮食不规律、胃炎、消化不良等风险，需注重规律饮食。",
+      "gallbladder": "胆经呈交叉失衡，第二组温差10.0°C属严重问题。提示胆结石、胆囊炎风险，与不吃早餐习惯相关，需调整饮食作息。",
+      "bladder": "膀胱经呈交叉失衡，第二组温差14.0°C属严重问题且恶化。作为第二组最低点，提示肠道、生殖系统、腰部循环需关注。",
+      "liver": "肝经呈交叉失衡，第二组温差10.0°C属严重问题且恶化。提示气血两虚，脂肪肝、酒精肝、肝囊肿风险，需避免熬夜。",
+      "spleen": "脾经呈交叉失衡，第二组温差10.0°C属严重问题。提示血糖代谢、湿气、思虑过重、四肢乏力等风险，需健脾祛湿。",
+      "kidney": "肾经呈交叉失衡，第二组温差13.0°C属严重问题且恶化。提示结石、囊肿风险及腹部手术史相关方向，需关注生殖系统健康。"
+    }
+  },
+  "key_fields": {
+    "score": 75,
+    "problem_index": 28.0,
+    "problem_index_detail": {
+      "low_temperature_index": 6.0,
+      "temperature_difference_index": 12.0,
+      "side_bias_index": 3.5,
+      "trend_index": 4.0,
+      "combo_index": 2.5
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "right",
+          "value": 30.0,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "stomach",
+          "side": "right",
+          "value": 32.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 2,
+      "right_low_count": 4,
+      "balanced_count": 0,
+      "result": "heart_attention"
+    },
+    "cervical_lumbar_result": {
+      "result": "cervical_and_lumbar",
+      "kidney_trend": "cross",
+      "bladder_trend": "cross"
+    },
+    "trend_result": null,
+    "retest_analysis": null
+  },
+  "error": null
 }
