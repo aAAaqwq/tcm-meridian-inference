@@ -1,0 +1,42 @@
+{
+  "measurement_type": "first_test",
+  "gender": "male",
+  "meridians": {
+    "liver": {
+      "group1_left": 37.9,
+      "group1_right": 38.8,
+      "group2_left": 38.4,
+      "group2_right": 39.0
+    },
+    "spleen": {
+      "group1_left": 38.6,
+      "group1_right": 38.0,
+      "group2_left": 39.8,
+      "group2_right": 39.6
+    },
+    "kidney": {
+      "group1_left": 38.9,
+      "group1_right": 38.2,
+      "group2_left": 39.6,
+      "group2_right": 40.2
+    },
+    "stomach": {
+      "group1_left": 39.7,
+      "group1_right": 39.5,
+      "group2_left": 40.1,
+      "group2_right": 40.2
+    },
+    "gallbladder": {
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 39.5,
+      "group2_right": 40.3
+    },
+    "bladder": {
+      "group1_left": 38.1,
+      "group1_right": 38.5,
+      "group2_left": 40.6,
+      "group2_right": 40.6
+    }
+  }
+}
