@@ -24,9 +24,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
 
-      - name: Pull cache from Aliyun ACR
+      - name: Pull cache from Aliyun ACR (ignore if not exists)
         run: |
-          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache || true
+          docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache || echo "Cache image not found, will build without cache"
 
       - name: Login to Aliyun Container Registry
         uses: docker/login-action@v4
@@ -41,7 +41,21 @@ jobs:
           timeout_minutes: 25
           max_attempts: 3
           retry_wait_seconds: 30
-          command: docker buildx build --platform linux/amd64 --push --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max .
+          command: |
+            # Check if cache exists and set appropriate flags
+            CACHE_TAG="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache"
+            if docker manifest inspect "$CACHE_TAG" > /dev/null 2>&1; then
+              CACHE_ARGS="--cache-from type=registry,ref=$CACHE_TAG --cache-to type=registry,ref=$CACHE_TAG,mode=max"
+              echo "Using existing cache..."
+            else
+              CACHE_ARGS=""
+              echo "No cache found, building from scratch..."
+            fi
+
+            docker buildx build --platform linux/amd64 --push \
+              --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+              --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} \
+              $CACHE_ARGS .
         env:
           DOCKER_BUILDKIT: 1
 
