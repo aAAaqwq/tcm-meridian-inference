@@ -35,25 +35,15 @@ jobs:
           username: ${{ secrets.ALIYUN_USERNAME }}
           password: ${{ secrets.ALIYUN_PASSWORD }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v7
+      - name: Build and push Docker image with retry
+        uses: nick-fields/retry@v3
         with:
-          context: .
-          push: true
-          tags: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-          cache-from: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache
-          cache-to: type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max
-          # Retry mechanism for network issues
-          retry:
-            enabled: true
-            max-duration: 300
-            max-attempts: 3
+          timeout_minutes: 25
+          max_attempts: 3
+          retry_wait_seconds: 30
+          command: docker buildx build --platform linux/amd64 --push --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }} --cache-from type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache --cache-to type=registry,ref=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:buildcache,mode=max .
         env:
-          # Network stability settings for Aliyun ACR
           DOCKER_BUILDKIT: 1
-          BUILDKIT_PROGRESS: plain
 
   deploy:
     needs: build
