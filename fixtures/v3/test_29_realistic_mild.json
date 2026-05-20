@@ -1,48 +1,48 @@
 {
-  "_comment": "真实场景 - 轻度亚健康: 1-2条经络轻度异常，温差0.3-0.5",
+  "_comment": "真实场景 - 轻度亚健康，目标分数约72-73",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
     "stomach": {
-      "group1_left": 37.8,
-      "group1_right": 38.0,
-      "group2_left": 39.8,
-      "group2_right": 40.0
+      "group1_left": 37.0,
+      "group1_right": 37.5,
+      "group2_left": 39.0,
+      "group2_right": 39.5
     },
     "gallbladder": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
-      "group2_right": 40.0
+      "group1_left": 36.8,
+      "group1_right": 37.2,
+      "group2_left": 38.8,
+      "group2_right": 39.2
     },
     "bladder": {
-      "group1_left": 37.5,
-      "group1_right": 38.0,
-      "group2_left": 39.5,
-      "group2_right": 40.0
+      "group1_left": 36.5,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 39.5
     },
     "liver": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
-      "group2_right": 40.0
+      "group1_left": 37.2,
+      "group1_right": 37.2,
+      "group2_left": 39.2,
+      "group2_right": 39.2
     },
     "spleen": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
-      "group2_right": 40.0
+      "group1_left": 36.8,
+      "group1_right": 37.5,
+      "group2_left": 38.8,
+      "group2_right": 39.5
     },
     "kidney": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
-      "group2_right": 40.0
+      "group1_left": 36.5,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 39.5
     }
   },
   "expected": {
-    "score_range": "85-89",
-    "score_level": "轻度失衡",
+    "target_score": 72,
+    "score_level": "中度失衡",
     "note": "常见亚健康状态，3条经络轻度温差"
   }
 }

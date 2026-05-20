@@ -3,17 +3,17 @@
     "mode": "hybrid",
     "version": "3.0",
     "llmModel": "deepseek-chat",
-    "llmLatency": 7.3
+    "llmLatency": 4.58
   },
   "score_result": {
-    "score": 89,
-    "score_raw": 89.88,
-    "problem_index": 0.3,
+    "score": 75,
+    "score_raw": 87.2,
+    "problem_index": 0.5,
     "problem_index_detail": {
       "low_temperature_index": 0.0,
       "temperature_difference_index": 0.0,
       "side_bias_index": 0.0,
-      "trend_index": 0.3,
+      "trend_index": 0.5,
       "combo_index": 0.0
     }
   },
@@ -63,7 +63,8 @@
       "is_focus": true,
       "focus_reason": [
         "second_group_lowest_point"
-      ]
+      ],
+      "narrative": "胃经呈现调理反应较快趋势，第二组温差0.0°C属于平衡，提示该经之前可能存在的轻度失衡已快速恢复。作为本次第二组最低点之一，建议继续关注消化健康。"
     },
     {
       "meridian": "gallbladder",
@@ -78,7 +79,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "胆经两组均平衡，温差0.0°C，整体状态良好，无需特别关注。"
     },
     {
       "meridian": "bladder",
@@ -93,7 +95,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "膀胱经两组均平衡，温差0.0°C，整体状态良好。"
     },
     {
       "meridian": "liver",
@@ -108,7 +111,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "肝经两组均平衡，温差0.0°C，代谢功能稳定。"
     },
     {
       "meridian": "spleen",
@@ -123,7 +127,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "脾经两组均平衡，温差0.0°C，运化功能正常。"
     },
     {
       "meridian": "kidney",
@@ -138,7 +143,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "肾经两组均平衡，温差0.0°C，肾气充足。"
     }
   ],
   "focus_issues": [
@@ -167,21 +173,29 @@
   ],
   "gender": "female",
   "measurement_type": "first_test",
-  "summary": "本次检测显示您的整体健康状况良好，经络平衡度较高，仅胃经在第一组存在短暂偏态，但在调理过程中迅速恢复平衡，表明胃经问题较为表浅且响应积极。后续建议继续保持当前调理节奏，关注消化系统保养。",
-  "reportSummary": "本次检测显示您的整体健康状况良好，经络平衡度较高，仅胃经在第一组存在短暂偏态，但在调理过程中迅速恢复平衡，表明胃经问题较为表浅且响应积极。后续建议继续保持当前调理节奏，关注消化系统保养。",
+  "summary": "本次检测显示您的整体经络状态良好，胃经有快速调理反应，提示消化系统可能存在轻微波动，但恢复较快。建议关注饮食习惯，继续维持健康的生活方式。",
+  "reportSummary": "本次检测显示您的整体经络状态良好，胃经有快速调理反应，提示消化系统可能存在轻微波动，但恢复较快。建议关注饮食习惯，继续维持健康的生活方式。",
   "storefront": {
-    "focusHeadline": "胃经改善明显",
-    "clientExplanation": "本次检测显示您大部分经络处于平衡状态，仅胃经在初期有轻微失衡，但调理后已恢复平衡。请注意，本报告仅基于足部温度分析，不等同于医疗诊断，如有不适请及时就医。",
+    "focusHeadline": "胃经快速改善",
+    "clientExplanation": "本报告依据中医经络理论分析，提供健康参考，不等同于医疗诊断。",
     "talkTrack": [
-      "您看，六条经络在第二组测量时全部达到了左右平衡，说明整体状态很稳定。",
-      "其中胃经虽然第一组有点波动，但20分钟后完全恢复正常，这是非常积极的表现。",
-      "下一步建议继续巩固脾胃调理，保持良好饮食习惯，让这个好状态持续下去。"
+      "您的检测结果显示整体经络状态非常平稳，说明身体基础不错。",
+      "胃经有快速改善的表现，提示之前可能存在一些消化方面的小波动，但现在恢复得不错。",
+      "建议继续保持良好的饮食和作息习惯，帮助身体维持在最佳状态。"
     ],
-    "retestPrompt": "建议1-2周后复测，观察胃经的长期稳定性。"
+    "retestPrompt": "建议定期复查，观察胃经等经络的长期稳定趋势。"
   },
   "recommendations": [
-    "继续保持规律饮食，避免生冷油腻，可适当食用山药、小米等健脾和胃的食物。",
-    "坚持足部热敷或按摩胃经反射区（如冲阳穴），有助于巩固脾胃功能。",
-    "保持良好作息，避免过度思虑，饮食后适当散步促进消化。"
-  ]
+    "保持规律三餐，避免暴饮暴食，多吃温热易消化的食物如小米粥、南瓜。",
+    "适当进行腹部按摩或艾灸中脘穴，帮助巩固胃经功能。",
+    "保持良好作息，避免熬夜，有助于脾胃功能的稳定。"
+  ],
+  "meridianNarrative": {
+    "stomach": "胃经呈现调理反应较快趋势，第二组温差0.0°C属于平衡，提示该经之前可能存在的轻度失衡已快速恢复。作为本次第二组最低点之一，建议继续关注消化健康。",
+    "gallbladder": "胆经两组均平衡，温差0.0°C，整体状态良好，无需特别关注。",
+    "bladder": "膀胱经两组均平衡，温差0.0°C，整体状态良好。",
+    "liver": "肝经两组均平衡，温差0.0°C，代谢功能稳定。",
+    "spleen": "脾经两组均平衡，温差0.0°C，运化功能正常。",
+    "kidney": "肾经两组均平衡，温差0.0°C，肾气充足。"
+  }
 }

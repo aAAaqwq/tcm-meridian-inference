@@ -2,8 +2,7 @@
   "test_file": "test_36_retest_94_score.json",
   "test_name": "复测测试 - 94分场景: 上次90分，7-13天使用(usage_bonus=2)，数据中度改善，保护机制保底",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 8948.03,
+  "response_time_ms": 0.06,
   "request": {
     "measurement_type": "retest",
     "gender": "female",
@@ -55,20 +54,18 @@
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 8.94
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 94,
-      "score_raw": 89.28,
-      "problem_index": 1.8,
+      "score": 88,
+      "score_raw": 83.2,
+      "problem_index": 3.0,
       "problem_index_detail": {
         "low_temperature_index": 0.0,
         "temperature_difference_index": 0.0,
         "side_bias_index": 0.0,
-        "trend_index": 1.8,
+        "trend_index": 3.0,
         "combo_index": 0.0
       }
     },
@@ -118,8 +115,7 @@
         "is_focus": true,
         "focus_reason": [
           "second_group_lowest_point"
-        ],
-        "narrative": "胃经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，问题有所好转。作为第二组最低点之一，需继续关注。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -134,8 +130,7 @@
         "diff_change": "improved",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。"
+        "focus_reason": []
       },
       {
         "meridian": "bladder",
@@ -150,8 +145,7 @@
         "diff_change": "improved",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "膀胱经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。"
+        "focus_reason": []
       },
       {
         "meridian": "liver",
@@ -166,8 +160,7 @@
         "diff_change": "improved",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肝经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。"
+        "focus_reason": []
       },
       {
         "meridian": "spleen",
@@ -182,8 +175,7 @@
         "diff_change": "improved",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "脾经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。"
+        "focus_reason": []
       },
       {
         "meridian": "kidney",
@@ -198,8 +190,7 @@
         "diff_change": "improved",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肾经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。"
+        "focus_reason": []
       }
     ],
     "focus_issues": [
@@ -229,50 +220,42 @@
     "gender": "female",
     "measurement_type": "retest",
     "retest_detail": {
+      "test_number": 2,
+      "test_bonus": 4.0,
       "usage_days": 10,
-      "usage_bonus": 2.0,
-      "delta_I": 10.2,
-      "improvement_bonus": 3.0,
-      "retest_score_base": 94.28,
-      "protected_score": 94.28,
+      "delta_I": 9.0,
+      "improvement_bonus": 2.6999999999999997,
+      "retest_score_base": 89.9,
+      "protected_score": 90,
       "previous_score": 90,
       "previous_problem_index": 12.0,
-      "current_problem_index": 1.8
+      "current_problem_index": 3.0
     },
-    "summary": "本次复测显示您的经络状态整体改善明显，综合健康分从90提升至94，属于健康优秀水平。所有经络在第二组测量中均恢复平衡，尤其是胃经作为重点关注经络，温差已从首测的异常降至0.0°C，反馈调理反应较快。建议继续保持现有调理方案，关注胃经的持续稳定。",
-    "reportSummary": "本次复测显示您的经络状态整体改善明显，综合健康分从90提升至94，属于健康优秀水平。所有经络在第二组测量中均恢复平衡，尤其是胃经作为重点关注经络，温差已从首测的异常降至0.0°C，反馈调理反应较快。建议继续保持现有调理方案，关注胃经的持续稳定。",
+    "summary": "本次复测显示您的健康状况保持稳定，综合健康分88分。虽然变化不大，但也没有恶化，建议继续调理。",
+    "reportSummary": "本次复测显示您的健康状况保持稳定，综合健康分88分。虽然变化不大，但也没有恶化，建议继续调理。",
     "storefront": {
-      "focusHeadline": "经络状态良好，胃经改善显著",
-      "clientExplanation": "本次检测结果显示您的经络整体平衡，胃经问题有明显好转，但请注意这不等同于医疗诊断，仅供参考。",
+      "focusHeadline": "状态稳定，持续调理",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您这次复测结果非常棒，健康分从90升到了94，属于优秀水平。",
-        "之前胃经的问题改善特别明显，从第一组的不平衡到第二组完全平衡了。",
-        "说明您坚持的调理方法很有效果，继续保持就好。"
+        "您的健康分保持在88分，状态比较稳定。",
+        "调理需要时间，建议继续当前的方案，耐心等待改善。"
       ],
-      "retestPrompt": "建议您继续按计划调理，一个月后再次复测，以持续跟踪经络状态。"
+      "retestPrompt": "建议3-6个月后定期复测，持续跟踪健康状态。"
     },
     "recommendations": [
-      "继续保持规律作息，避免暴饮暴食，以巩固胃经的平衡状态。",
-      "建议适当增加温和运动，如散步或瑜伽，促进整体气血流通。",
-      "定期进行经络检测，及时了解身体变化，维持健康水平。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，问题有所好转。作为第二组最低点之一，需继续关注。",
-      "gallbladder": "胆经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。",
-      "bladder": "膀胱经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。",
-      "liver": "肝经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。",
-      "spleen": "脾经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。",
-      "kidney": "肾经呈调理反应较快趋势，第一组有异常，第二组恢复平衡，温差0.0°C属正常范围，状态良好。"
-    }
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 94,
-    "problem_index": 1.8,
+    "score": 88,
+    "problem_index": 3.0,
     "problem_index_detail": {
       "low_temperature_index": 0.0,
       "temperature_difference_index": 0.0,
       "side_bias_index": 0.0,
-      "trend_index": 1.8,
+      "trend_index": 3.0,
       "combo_index": 0.0
     },
     "lowest_points": {

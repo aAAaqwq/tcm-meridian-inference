@@ -1,71 +1,66 @@
 {
   "test_file": "test_23_retest_14_29_days_high.json",
-  "test_name": "复测测试 - 使用14-29天且上次>=88: usage_bonus=3,保护为max(本次,上次)",
+  "test_name": "复测测试 - 第5次检测: test_bonus=7",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 7739.07,
+  "response_time_ms": 0.1,
   "request": {
     "measurement_type": "retest",
     "gender": "female",
     "previous_score": 90,
-    "previous_problem_index": 15.0,
+    "previous_problem_index": 15,
     "usage_days_between_tests": 20,
     "meridians": {
       "stomach": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
-        "group2_right": 40.0
+        "group1_left": 38,
+        "group1_right": 38,
+        "group2_left": 40,
+        "group2_right": 40
       },
       "gallbladder": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
-        "group2_right": 40.0
+        "group1_left": 38,
+        "group1_right": 38,
+        "group2_left": 40,
+        "group2_right": 40
       },
       "bladder": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
-        "group2_right": 40.0
+        "group1_left": 38,
+        "group1_right": 38,
+        "group2_left": 40,
+        "group2_right": 40
       },
       "liver": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
-        "group2_right": 40.0
+        "group1_left": 38,
+        "group1_right": 38,
+        "group2_left": 40,
+        "group2_right": 40
       },
       "spleen": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
-        "group2_right": 40.0
+        "group1_left": 38,
+        "group1_right": 38,
+        "group2_left": 40,
+        "group2_right": 40
       },
       "kidney": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
-        "group2_right": 40.0
+        "group1_left": 38,
+        "group1_right": 38,
+        "group2_left": 40,
+        "group2_right": 40
       }
-    }
+    },
+    "test_number": 5
   },
   "expected": {
-    "usage_days": 20,
-    "usage_bonus": 3,
-    "previous_score": 90,
-    "previous_score_less_than_88": false,
-    "protection": "max(retest_score_base, previous_score)"
+    "test_number": 5,
+    "test_bonus": 7
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 7.74
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 95,
-      "score_raw": 90.0,
+      "score": 88,
+      "score_raw": 88.0,
       "problem_index": 0.0,
       "problem_index_detail": {
         "low_temperature_index": 0.0,
@@ -80,14 +75,14 @@
         {
           "meridian": "stomach",
           "side": "left",
-          "value": 40.0,
+          "value": 40,
           "rank": 1,
           "must_report": true
         },
         {
           "meridian": "stomach",
           "side": "right",
-          "value": 40.0,
+          "value": 40,
           "rank": 2,
           "must_report": true
         }
@@ -121,8 +116,7 @@
         "is_focus": true,
         "focus_reason": [
           "second_group_lowest_point"
-        ],
-        "narrative": "胃经整体平衡，温差0.0°C属于平衡状态，本次为第二组最低点之一，提示消化系统仍需持续关注，建议保持饮食规律。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -137,8 +131,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经两侧平衡，温差0.0°C，整体状态良好。"
+        "focus_reason": []
       },
       {
         "meridian": "bladder",
@@ -153,8 +146,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "膀胱经两侧平衡，温差0.0°C，整体状态良好。"
+        "focus_reason": []
       },
       {
         "meridian": "liver",
@@ -169,8 +161,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肝经两侧平衡，温差0.0°C，代谢功能表现稳定。"
+        "focus_reason": []
       },
       {
         "meridian": "spleen",
@@ -185,8 +176,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "脾经两侧平衡，温差0.0°C，运化功能良好。"
+        "focus_reason": []
       },
       {
         "meridian": "kidney",
@@ -201,8 +191,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肾经两侧平衡，温差0.0°C，基础状态稳定。"
+        "focus_reason": []
       }
     ],
     "focus_issues": [
@@ -232,44 +221,36 @@
     "gender": "female",
     "measurement_type": "retest",
     "retest_detail": {
+      "test_number": 5,
+      "test_bonus": 7.0,
       "usage_days": 20,
-      "usage_bonus": 3.0,
       "delta_I": 15.0,
       "improvement_bonus": 3.0,
-      "retest_score_base": 96.0,
-      "protected_score": 96.0,
+      "retest_score_base": 98.0,
+      "protected_score": 98.0,
       "previous_score": 90,
-      "previous_problem_index": 15.0,
+      "previous_problem_index": 15,
       "current_problem_index": 0.0
     },
-    "summary": "本次复测显示您的经络状态整体平衡，综合健康分高达95分，较上次有明显改善。所有经络均表现为平衡状态，且温差极小，说明身体调节能力良好。胃经作为第二组最低点，提示消化功能仍需持续关注。整体趋势向好，建议继续保持当前调理方案。",
-    "reportSummary": "本次复测显示您的经络状态整体平衡，综合健康分高达95分，较上次有明显改善。所有经络均表现为平衡状态，且温差极小，说明身体调节能力良好。胃经作为第二组最低点，提示消化功能仍需持续关注。整体趋势向好，建议继续保持当前调理方案。",
+    "summary": "本次复测显示您的健康状况保持稳定，综合健康分88分。虽然变化不大，但也没有恶化，建议继续调理。",
+    "reportSummary": "本次复测显示您的健康状况保持稳定，综合健康分88分。虽然变化不大，但也没有恶化，建议继续调理。",
     "storefront": {
-      "focusHeadline": "整体平衡，胃经需关注",
-      "clientExplanation": "您的经络检测结果显示整体状态良好，不等同于医疗诊断，但可作为健康调理的参考。",
+      "focusHeadline": "状态稳定，持续调理",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "恭喜您，这次复测结果非常理想，各项经络都达到了平衡状态，比上次有明显进步。",
-        "不过我们注意到胃经是本次检测中温度最低的经络，虽然温差很小，但说明消化系统仍然是需要持续呵护的重点。",
-        "您这20天的调理效果很好，继续保持规律作息和饮食习惯，下次复测时胃经状态有望进一步提升。"
+        "您的健康分保持在88分，状态比较稳定。",
+        "调理需要时间，建议继续当前的方案，耐心等待改善。"
       ],
-      "retestPrompt": "建议继续保持当前调理方案，每1-2个月复测一次以跟踪改善情况。"
+      "retestPrompt": "建议3-6个月后定期复测，持续跟踪健康状态。"
     },
     "recommendations": [
-      "保持三餐规律，避免暴饮暴食，适当增加温热易消化的食物如小米粥、山药等。",
-      "注意腹部保暖，避免生冷食物刺激胃部，可饭后轻柔按摩腹部促进消化。",
-      "维持现有良好的作息和运动习惯，推荐饭后散步或瑜伽等温和运动。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经整体平衡，温差0.0°C属于平衡状态，本次为第二组最低点之一，提示消化系统仍需持续关注，建议保持饮食规律。",
-      "gallbladder": "胆经两侧平衡，温差0.0°C，整体状态良好。",
-      "bladder": "膀胱经两侧平衡，温差0.0°C，整体状态良好。",
-      "liver": "肝经两侧平衡，温差0.0°C，代谢功能表现稳定。",
-      "spleen": "脾经两侧平衡，温差0.0°C，运化功能良好。",
-      "kidney": "肾经两侧平衡，温差0.0°C，基础状态稳定。"
-    }
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 95,
+    "score": 88,
     "problem_index": 0.0,
     "problem_index_detail": {
       "low_temperature_index": 0.0,
@@ -283,14 +264,14 @@
         {
           "meridian": "stomach",
           "side": "left",
-          "value": 40.0,
+          "value": 40,
           "rank": 1,
           "must_report": true
         },
         {
           "meridian": "stomach",
           "side": "right",
-          "value": 40.0,
+          "value": 40,
           "rank": 2,
           "must_report": true
         }

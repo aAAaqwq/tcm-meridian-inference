@@ -2,8 +2,7 @@
   "test_file": "case_01_first_test.json",
   "test_name": "case_01_first_test.json",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 10950.61,
+  "response_time_ms": 0.09,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -49,21 +48,19 @@
   "expected": {},
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 10.95
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 77,
-      "score_raw": 77.08,
-      "problem_index": 24.9,
+      "score": 63,
+      "score_raw": 63.0,
+      "problem_index": 34.5,
       "problem_index_detail": {
-        "low_temperature_index": 5.0,
-        "temperature_difference_index": 8.5,
-        "side_bias_index": 5.0,
-        "trend_index": 3.9000000000000004,
-        "combo_index": 2.5
+        "low_temperature_index": 6.0,
+        "temperature_difference_index": 12.5,
+        "side_bias_index": 6.0,
+        "trend_index": 7.0,
+        "combo_index": 3.0
       }
     },
     "lowest_points": {
@@ -116,8 +113,7 @@
         "is_focus": true,
         "focus_reason": [
           "side_bias_participant"
-        ],
-        "narrative": "胃经呈胃阴不足表现（左低趋势），第二组温差0.1°C属平衡，主要表现为阴虚生内热、消化快、容易饿。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -132,8 +128,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经两组均平衡，第二组温差0.0°C，整体状态良好。"
+        "focus_reason": []
       },
       {
         "meridian": "bladder",
@@ -159,8 +154,7 @@
           "group2_diff_serious_problem",
           "diff_worsened",
           "side_bias_participant"
-        ],
-        "narrative": "膀胱经是第二组最低点，呈肩颈腰与肠道方向需关注表现（左低趋势），第二组温差3.2°C属有比较严重的问题，需关注便秘、痔疮、大肠息肉风险及肺左侧功能风险。"
+        ]
       },
       {
         "meridian": "liver",
@@ -183,8 +177,7 @@
         "is_focus": true,
         "focus_reason": [
           "side_bias_participant"
-        ],
-        "narrative": "肝经呈气血两虚表现（交叉趋势），第二组温差0.3°C属有一定亚健康，需关注脂肪肝、酒精肝、肝囊肿等风险及熬夜影响。"
+        ]
       },
       {
         "meridian": "spleen",
@@ -211,8 +204,7 @@
           "group2_diff_health_problem",
           "diff_worsened",
           "side_bias_participant"
-        ],
-        "narrative": "脾经是第二组最低点之一，呈血糖/代谢紊乱提示（交叉趋势），第二组温差1.5°C属有健康问题，需关注血糖、思虑重、湿气、四肢乏力、肌肉松弛、腿沉等问题。"
+        ]
       },
       {
         "meridian": "kidney",
@@ -241,8 +233,7 @@
           "group2_diff_health_problem",
           "diff_worsened",
           "side_bias_participant"
-        ],
-        "narrative": "肾经呈阴虚表现（左低趋势），第二组温差1.1°C属有健康问题，需关注耳鸣、阴虚生内热、手心脚心热、易缺水、尿黄尿短等症状。"
+        ]
       }
     ],
     "focus_issues": [
@@ -292,42 +283,35 @@
     ],
     "gender": "female",
     "measurement_type": "first_test",
-    "summary": "本次检测显示，您的膀胱经和脾经问题较为突出，同时存在头部供血和腰椎方面的潜在风险。膀胱经左侧温度偏低且温差较大，提示肩颈腰及肠道方向需多加关注；脾经交叉失衡且温差明显，与血糖、湿气、四肢乏力等问题相关。整体来看，您的健康状态处于中度失衡，建议通过规律作息、饮食调整和适当运动进行调理。",
-    "reportSummary": "本次检测显示，您的膀胱经和脾经问题较为突出，同时存在头部供血和腰椎方面的潜在风险。膀胱经左侧温度偏低且温差较大，提示肩颈腰及肠道方向需多加关注；脾经交叉失衡且温差明显，与血糖、湿气、四肢乏力等问题相关。整体来看，您的健康状态处于中度失衡，建议通过规律作息、饮食调整和适当运动进行调理。",
+    "summary": "本次检测显示您的综合健康分63分，属于明显失衡状态。膀胱经、脾经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
+    "reportSummary": "本次检测显示您的综合健康分63分，属于明显失衡状态。膀胱经、脾经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
     "storefront": {
-      "focusHeadline": "重点关注膀胱和脾经",
-      "clientExplanation": "本次报告基于足部经络温度数据生成，不等同于医疗诊断，仅供参考。",
+      "focusHeadline": "膀胱经、脾经问题需紧急关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您的检测结果显示膀胱经和脾经的问题比较明显，需要重点关注。",
-        "膀胱经温度偏低且温差较大，提示肩颈腰和肠道方向可能需要多加调理。",
-        "脾经也出现了失衡，与血糖、湿气和四肢乏力有关，建议您通过饮食和作息来改善。"
+        "您的检测结果显示，膀胱经、脾经等多个经络问题比较突出。",
+        "整体健康分63分，属于明显失衡状态，需要重点关注和调理。"
       ],
-      "retestPrompt": "建议您在调理2-4周后复测，观察经络平衡的变化。"
+      "retestPrompt": "建议坚持调理2-3周后复测，密切观察改善情况。"
     },
     "recommendations": [
-      "饮食上建议少吃辛辣刺激食物，多食滋阴润燥的食材如银耳、百合、梨，同时搭配山药、芡实等健脾祛湿的食物。",
-      "作息上建议晚上11点前入睡，避免熬夜，每天保证7-8小时睡眠，以利于肝经和肾经的修复。",
-      "运动上建议进行温和的有氧运动如快走、瑜伽或八段锦，每次30分钟左右，避免过度出汗耗伤阴液。",
-      "针对膀胱经和腰椎问题，可适当进行腰部拉伸和热敷，避免久坐久站。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经呈胃阴不足表现（左低趋势），第二组温差0.1°C属平衡，主要表现为阴虚生内热、消化快、容易饿。",
-      "gallbladder": "胆经两组均平衡，第二组温差0.0°C，整体状态良好。",
-      "bladder": "膀胱经是第二组最低点，呈肩颈腰与肠道方向需关注表现（左低趋势），第二组温差3.2°C属有比较严重的问题，需关注便秘、痔疮、大肠息肉风险及肺左侧功能风险。",
-      "liver": "肝经呈气血两虚表现（交叉趋势），第二组温差0.3°C属有一定亚健康，需关注脂肪肝、酒精肝、肝囊肿等风险及熬夜影响。",
-      "spleen": "脾经是第二组最低点之一，呈血糖/代谢紊乱提示（交叉趋势），第二组温差1.5°C属有健康问题，需关注血糖、思虑重、湿气、四肢乏力、肌肉松弛、腿沉等问题。",
-      "kidney": "肾经呈阴虚表现（左低趋势），第二组温差1.1°C属有健康问题，需关注耳鸣、阴虚生内热、手心脚心热、易缺水、尿黄尿短等症状。"
-    }
+      "【膀胱经】注意腰部保暖，避免久坐，适当进行腰背拉伸。",
+      "【脾经】少吃生冷油腻食物，多吃健脾祛湿食材如薏米、山药、红豆。",
+      "【头部供血需关注】注意头部保暖，避免冷风直吹。",
+      "【腰椎问题】注意腰部保暖，避免久坐久站。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 77,
-    "problem_index": 24.9,
+    "score": 63,
+    "problem_index": 34.5,
     "problem_index_detail": {
-      "low_temperature_index": 5.0,
-      "temperature_difference_index": 8.5,
-      "side_bias_index": 5.0,
-      "trend_index": 3.9000000000000004,
-      "combo_index": 2.5
+      "low_temperature_index": 6.0,
+      "temperature_difference_index": 12.5,
+      "side_bias_index": 6.0,
+      "trend_index": 7.0,
+      "combo_index": 3.0
     },
     "lowest_points": {
       "selected": [

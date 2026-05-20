@@ -3,18 +3,18 @@
     "mode": "hybrid",
     "version": "3.0",
     "llmModel": "deepseek-chat",
-    "llmLatency": 7.92
+    "llmLatency": 5.77
   },
   "score_result": {
-    "score": 89,
-    "score_raw": 89.4,
-    "problem_index": 1.5,
+    "score": 75,
+    "score_raw": 79.29,
+    "problem_index": 6.0,
     "problem_index_detail": {
       "low_temperature_index": 0.0,
-      "temperature_difference_index": 0.5,
+      "temperature_difference_index": 1.0,
       "side_bias_index": 0.0,
-      "trend_index": 1.0,
-      "combo_index": 0.0
+      "trend_index": 2.0,
+      "combo_index": 3.0
     }
   },
   "lowest_points": {
@@ -61,7 +61,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "胃经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
     },
     {
       "meridian": "gallbladder",
@@ -76,7 +77,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "胆经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
     },
     {
       "meridian": "bladder",
@@ -91,7 +93,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "膀胱经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
     },
     {
       "meridian": "liver",
@@ -121,7 +124,8 @@
       "is_focus": true,
       "focus_reason": [
         "second_group_lowest_point"
-      ]
+      ],
+      "narrative": "肝经呈现气虚倾向（左低趋势），温差0.2°C属于平衡范围，作为第二组最低点之一，需关注血液流速不够、血稠风险、代谢较弱、皮肤易过敏等问题。"
     },
     {
       "meridian": "spleen",
@@ -143,7 +147,8 @@
       "is_focus": true,
       "focus_reason": [
         "second_group_lowest_point"
-      ]
+      ],
+      "narrative": "脾经呈现脾气偏虚表现（左低趋势），温差0.3°C属于有一定亚健康，作为第二组最低点之一，需关注过滤能力弱、思虑重、容易操心，温差大时血糖方向需留意。"
     },
     {
       "meridian": "kidney",
@@ -158,7 +163,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "肾经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
     }
   ],
   "focus_issues": [
@@ -187,21 +193,29 @@
   ],
   "gender": "female",
   "measurement_type": "first_test",
-  "summary": "您的检测结果显示整体状态良好，经络温度都在正常范围。但脾经和肝经存在轻微不平衡。脾经与消化、思虑相关，略低提示过滤功能和气血方面需稍加关注；肝经与代谢、解毒相关，左侧略低提示血液循环和代谢有提升空间。建议在饮食、作息上做相应调理，保持良好状态。",
-  "reportSummary": "您的检测结果显示整体状态良好，经络温度都在正常范围。但脾经和肝经存在轻微不平衡。脾经与消化、思虑相关，略低提示过滤功能和气血方面需稍加关注；肝经与代谢、解毒相关，左侧略低提示血液循环和代谢有提升空间。建议在饮食、作息上做相应调理，保持良好状态。",
+  "summary": "本次检测显示您的整体健康状态属于轻度失衡，综合健康分75分。重点关注脾经和肝经的亚健康信号，主要与代谢、过滤功能和气血推动力有关。建议通过调整饮食和作息来改善。",
+  "reportSummary": "本次检测显示您的整体健康状态属于轻度失衡，综合健康分75分。重点关注脾经和肝经的亚健康信号，主要与代谢、过滤功能和气血推动力有关。建议通过调整饮食和作息来改善。",
   "storefront": {
-    "focusHeadline": "脾经肝经需温和调理",
-    "clientExplanation": "本次检测基于中医经络理论，结果仅反映当前状态，不等同于医疗诊断。",
+    "focusHeadline": "脾肝代谢需关注",
+    "clientExplanation": "本次足部经络检测显示您的脾经和肝经存在亚健康信号，提示代谢和过滤方面需要调理。请注意，此报告不等同于医疗诊断，仅供参考。",
     "talkTrack": [
-      "您这次的检测结果整体不错，脏腑功能基本平衡。",
-      "不过脾经和肝经有一点小提示，可能与消化、思虑或代谢有关。",
-      "通过一些生活习惯的小调整，可以帮助改善这些方面，让身体状态更好。"
+      "从数据看，您的脾经和肝经是本次检测中需要重点关注的方向。",
+      "脾经提示过滤能力偏弱和思虑较多，肝经则提示气血推动力不足和代谢问题。",
+      "这些可以通过调整饮食和作息来改善，建议继续关注复测变化。"
     ],
-    "retestPrompt": "建议一个月后复测，观察调理效果。"
+    "retestPrompt": "建议在1-2周后进行一次复测，观察调理效果。"
   },
   "recommendations": [
-    "饮食上可适当增加山药、茯苓、薏米等健脾祛湿的食物，少吃油腻甜食，减轻脾的负担。",
-    "保持规律作息，尽量在晚上11点前入睡，以利于肝的代谢解毒功能。",
-    "推荐每天进行30分钟有氧运动，如快走、瑜伽，促进血液循环和气血运行。"
-  ]
+    "饮食上建议多食健脾食物如山药、薏米、小米，减少油腻和甜食摄入，减轻脾的负担。",
+    "可尝试适度运动如散步或瑜伽，促进气血循环，帮助改善肝经的推动力。",
+    "注意调节情绪，避免过度思虑，保证充足睡眠，有利于肝脾功能的恢复。"
+  ],
+  "meridianNarrative": {
+    "stomach": "胃经左右平衡，温差0.0°C属于正常范围，整体状态良好。",
+    "gallbladder": "胆经左右平衡，温差0.0°C属于正常范围，整体状态良好。",
+    "bladder": "膀胱经左右平衡，温差0.0°C属于正常范围，整体状态良好。",
+    "liver": "肝经呈现气虚倾向（左低趋势），温差0.2°C属于平衡范围，作为第二组最低点之一，需关注血液流速不够、血稠风险、代谢较弱、皮肤易过敏等问题。",
+    "spleen": "脾经呈现脾气偏虚表现（左低趋势），温差0.3°C属于有一定亚健康，作为第二组最低点之一，需关注过滤能力弱、思虑重、容易操心，温差大时血糖方向需留意。",
+    "kidney": "肾经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
+  }
 }

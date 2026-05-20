@@ -1,0 +1,47 @@
+{
+  "_comment": "首测 - 目标65分: 需要问题指数≥46。使用极端低温度+大温差+多偏侧+交叉趋势",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 34.0,
+      "group1_right": 36.0,
+      "group2_left": 35.5,
+      "group2_right": 38.0
+    },
+    "gallbladder": {
+      "group1_left": 33.5,
+      "group1_right": 35.5,
+      "group2_left": 35.0,
+      "group2_right": 37.5
+    },
+    "bladder": {
+      "group1_left": 33.0,
+      "group1_right": 36.5,
+      "group2_left": 34.5,
+      "group2_right": 38.5
+    },
+    "liver": {
+      "group1_left": 34.5,
+      "group1_right": 34.5,
+      "group2_left": 36.0,
+      "group2_right": 36.0
+    },
+    "spleen": {
+      "group1_left": 33.5,
+      "group1_right": 36.5,
+      "group2_left": 35.0,
+      "group2_right": 38.5
+    },
+    "kidney": {
+      "group1_left": 33.0,
+      "group1_right": 36.0,
+      "group2_left": 34.5,
+      "group2_right": 38.0
+    }
+  },
+  "expected": {
+    "score": 65,
+    "note": "极端数据设计：低温+大温差+交叉"
+  }
+}

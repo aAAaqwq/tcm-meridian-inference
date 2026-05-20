@@ -2,8 +2,7 @@
   "test_file": "test_12_side_bias_5.json",
   "test_name": "左右偏向测试 - 5条经络右低: 触发心脏方向关注, C=5",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 10576.11,
+  "response_time_ms": 0.07,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -54,20 +53,18 @@
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 10.57
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 82,
-      "score_raw": 81.6,
-      "problem_index": 18.0,
+      "score": 65,
+      "score_raw": 64.75,
+      "problem_index": 27.5,
       "problem_index_detail": {
-        "low_temperature_index": 3.0,
-        "temperature_difference_index": 7.5,
-        "side_bias_index": 5.0,
-        "trend_index": 2.5,
+        "low_temperature_index": 4.0,
+        "temperature_difference_index": 12.5,
+        "side_bias_index": 6.0,
+        "trend_index": 5.0,
         "combo_index": 0.0
       }
     },
@@ -123,8 +120,7 @@
           "second_group_lowest_point",
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "胃经呈现胃阳不足表现（右低趋势），温差2.0°C属于有健康问题，主要表现为胃胀、消化不良，温度低时可能吃什么拉什么。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -147,8 +143,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "胆经呈现胆脂代谢需关注表现（右低趋势），温差2.0°C属于有健康问题，主要表现为胆固醇风险、脂肪瘤风险，可能影响决策力。"
+        ]
       },
       {
         "meridian": "bladder",
@@ -171,8 +166,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "膀胱经呈现湿下注与腰部方向需关注表现（右低趋势），温差2.0°C属于有健康问题，主要提示大便不成形、湿气下注大肠、肺右侧功能风险。"
+        ]
       },
       {
         "meridian": "liver",
@@ -201,8 +195,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "肝经呈现血虚/藏血不足表现（右低趋势），温差2.0°C属于有健康问题，主要表现为心脏供血不足、心慌、容易做梦，结合肾右低容易掉发。"
+        ]
       },
       {
         "meridian": "spleen",
@@ -226,8 +219,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "脾经呈现湿气偏重表现（右低趋势），温差2.0°C属于有健康问题，主要表现湿气重、大便溏稀、例假长、腿沉。"
+        ]
       },
       {
         "meridian": "kidney",
@@ -242,8 +234,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肾经左右平衡，温差0.0°C属于平衡状态，整体功能正常。"
+        "focus_reason": []
       }
     ],
     "focus_issues": [
@@ -293,41 +284,32 @@
     ],
     "gender": "female",
     "measurement_type": "first_test",
-    "summary": "您的整体健康评分为82分，属于轻度失衡状态。本次检测显示多经络偏右，提示循环系统和心脏供血方向需重点关注，其中胃经问题最为突出，同时肝、胆、脾、膀胱经均存在不同程度的失衡。建议从调理消化和促进血液循环入手，改善生活习惯。",
-    "reportSummary": "您的整体健康评分为82分，属于轻度失衡状态。本次检测显示多经络偏右，提示循环系统和心脏供血方向需重点关注，其中胃经问题最为突出，同时肝、胆、脾、膀胱经均存在不同程度的失衡。建议从调理消化和促进血液循环入手，改善生活习惯。",
+    "summary": "本次检测显示您的综合健康分65分，属于明显失衡状态。胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
+    "reportSummary": "本次检测显示您的综合健康分65分，属于明显失衡状态。胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
     "storefront": {
-      "focusHeadline": "心脏与消化需关注",
-      "clientExplanation": "本次检测通过足部经络温度分析，发现身体存在一些不平衡倾向，但不等同于医疗诊断，仅供参考和健康管理方向。",
+      "focusHeadline": "胃经问题需紧急关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您的检测结果显示，胃经的问题比较突出，可能影响消化和吸收。",
-        "另外，多条经络偏右，提示心脏和循环系统需要多加关注。",
-        "我们会根据这些数据为您提供一些生活调理建议，帮助改善整体状态。"
+        "您的检测结果显示，胃经等多个经络问题比较突出。",
+        "整体健康分65分，属于明显失衡状态，需要重点关注和调理。"
       ],
-      "retestPrompt": "建议您在2-4周调理后复测，观察改善效果。"
+      "retestPrompt": "建议坚持调理2-3周后复测，密切观察改善情况。"
     },
     "recommendations": [
-      "饮食调理：避免生冷寒凉食物，多吃温性易消化食物如小米粥、山药、南瓜，少量多餐，减轻胃部负担。",
-      "作息调整：保证充足睡眠，尽量在晚上11点前入睡，午间小憩15-30分钟，有助于养心血。",
-      "运动建议：适当进行散步、瑜伽或太极拳等温和运动，避免过度出汗，促进气血循环。",
-      "可以使用足部按摩或温热敷于足三里、三阴交等穴位，每次15分钟，每日1次，注意不要烫伤。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经呈现胃阳不足表现（右低趋势），温差2.0°C属于有健康问题，主要表现为胃胀、消化不良，温度低时可能吃什么拉什么。",
-      "gallbladder": "胆经呈现胆脂代谢需关注表现（右低趋势），温差2.0°C属于有健康问题，主要表现为胆固醇风险、脂肪瘤风险，可能影响决策力。",
-      "bladder": "膀胱经呈现湿下注与腰部方向需关注表现（右低趋势），温差2.0°C属于有健康问题，主要提示大便不成形、湿气下注大肠、肺右侧功能风险。",
-      "liver": "肝经呈现血虚/藏血不足表现（右低趋势），温差2.0°C属于有健康问题，主要表现为心脏供血不足、心慌、容易做梦，结合肾右低容易掉发。",
-      "spleen": "脾经呈现湿气偏重表现（右低趋势），温差2.0°C属于有健康问题，主要表现湿气重、大便溏稀、例假长、腿沉。",
-      "kidney": "肾经左右平衡，温差0.0°C属于平衡状态，整体功能正常。"
-    }
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "【心脏方向需关注】保持情绪平稳，避免过度激动。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 82,
-    "problem_index": 18.0,
+    "score": 65,
+    "problem_index": 27.5,
     "problem_index_detail": {
-      "low_temperature_index": 3.0,
-      "temperature_difference_index": 7.5,
-      "side_bias_index": 5.0,
-      "trend_index": 2.5,
+      "low_temperature_index": 4.0,
+      "temperature_difference_index": 12.5,
+      "side_bias_index": 6.0,
+      "trend_index": 5.0,
       "combo_index": 0.0
     },
     "lowest_points": {

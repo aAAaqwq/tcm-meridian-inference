@@ -1,0 +1,52 @@
+{
+  "_comment": "复测 - 目标分数85分: 第6次复测+8分可从77分提升到85",
+  "measurement_type": "retest",
+  "gender": "female",
+  "test_number": 6,
+  "previous_score": 77,
+  "previous_problem_index": 15,
+  "usage_days_between_tests": 25,
+  "meridians": {
+    "stomach": {
+      "group1_left": 38.5,
+      "group1_right": 38.5,
+      "group2_left": 40.5,
+      "group2_right": 40.5
+    },
+    "gallbladder": {
+      "group1_left": 38.2,
+      "group1_right": 38.8,
+      "group2_left": 40.2,
+      "group2_right": 40.8
+    },
+    "bladder": {
+      "group1_left": 38,
+      "group1_right": 38.5,
+      "group2_left": 40,
+      "group2_right": 40.5
+    },
+    "liver": {
+      "group1_left": 38.5,
+      "group1_right": 38.5,
+      "group2_left": 40.5,
+      "group2_right": 40.5
+    },
+    "spleen": {
+      "group1_left": 38.2,
+      "group1_right": 38.8,
+      "group2_left": 40.2,
+      "group2_right": 40.8
+    },
+    "kidney": {
+      "group1_left": 38,
+      "group1_right": 38.5,
+      "group2_left": 40,
+      "group2_right": 40.5
+    }
+  },
+  "expected": {
+    "score": 79,
+    "score_level": "轻度失衡",
+    "note": "复测+8分后79分"
+  }
+}

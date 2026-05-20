@@ -1,50 +1,51 @@
 {
-  "_comment": "温差变化测试 - worsened: 温差变大>0.2℃",
+  "_comment": "温差变化测试 - worsened: 温差变大，分数约72-73",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
     "stomach": {
-      "group1_left": 36.0,
+      "group1_left": 36.5,
       "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 42.0
+      "group2_left": 37.5,
+      "group2_right": 40.5
     },
     "gallbladder": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
+      "group1_left": 37.0,
+      "group1_right": 37.5,
+      "group2_left": 39.0,
       "group2_right": 40.0
     },
     "bladder": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
+      "group1_left": 36.8,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
       "group2_right": 40.0
     },
     "liver": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
+      "group1_left": 37.2,
+      "group1_right": 37.2,
+      "group2_left": 39.0,
       "group2_right": 40.0
     },
     "spleen": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
+      "group1_left": 36.5,
+      "group1_right": 37.8,
+      "group2_left": 38.5,
       "group2_right": 40.0
     },
     "kidney": {
-      "group1_left": 38.0,
-      "group1_right": 38.0,
-      "group2_left": 40.0,
+      "group1_left": 36.8,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
       "group2_right": 40.0
     }
   },
   "expected": {
     "stomach": {
-      "group1_diff": 2.0,
-      "group2_diff": 4.0,
+      "group1_diff": 1.5,
+      "group2_diff": 3.0,
       "diff_change": "worsened"
-    }
+    },
+    "target_score": 72
   }
 }

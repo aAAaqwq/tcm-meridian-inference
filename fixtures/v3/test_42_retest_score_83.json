@@ -1,0 +1,52 @@
+{
+  "_comment": "复测 - 目标分数83分: 第5次复测+7分可从76分提升到83",
+  "measurement_type": "retest",
+  "gender": "female",
+  "test_number": 5,
+  "previous_score": 76,
+  "previous_problem_index": 18,
+  "usage_days_between_tests": 20,
+  "meridians": {
+    "stomach": {
+      "group1_left": 38.2,
+      "group1_right": 38.2,
+      "group2_left": 40.2,
+      "group2_right": 40.2
+    },
+    "gallbladder": {
+      "group1_left": 38,
+      "group1_right": 38.5,
+      "group2_left": 40,
+      "group2_right": 40.5
+    },
+    "bladder": {
+      "group1_left": 37.8,
+      "group1_right": 38.2,
+      "group2_left": 39.8,
+      "group2_right": 40.2
+    },
+    "liver": {
+      "group1_left": 38.2,
+      "group1_right": 38.2,
+      "group2_left": 40.2,
+      "group2_right": 40.2
+    },
+    "spleen": {
+      "group1_left": 38,
+      "group1_right": 38.5,
+      "group2_left": 40,
+      "group2_right": 40.5
+    },
+    "kidney": {
+      "group1_left": 37.8,
+      "group1_right": 38.2,
+      "group2_left": 39.8,
+      "group2_right": 40.2
+    }
+  },
+  "expected": {
+    "score": 81,
+    "score_level": "整体状态良好",
+    "note": "复测+7分后81分"
+  }
+}

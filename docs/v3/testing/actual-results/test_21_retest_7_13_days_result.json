@@ -1,76 +1,73 @@
 {
   "test_file": "test_21_retest_7_13_days.json",
-  "test_name": "复测测试 - 使用7-13天: usage_bonus=2,保护为max(本次,上次)",
+  "test_name": "复测测试 - 第3次检测: test_bonus=5",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 10413.58,
+  "response_time_ms": 0.07,
   "request": {
     "measurement_type": "retest",
     "gender": "female",
     "previous_score": 75,
-    "previous_problem_index": 28.0,
+    "previous_problem_index": 28,
     "usage_days_between_tests": 10,
     "meridians": {
       "stomach": {
         "group1_left": 36.5,
-        "group1_right": 38.0,
-        "group2_left": 39.0,
-        "group2_right": 40.0
+        "group1_right": 38,
+        "group2_left": 39,
+        "group2_right": 40
       },
       "gallbladder": {
-        "group1_left": 36.0,
-        "group1_right": 38.0,
+        "group1_left": 36,
+        "group1_right": 38,
         "group2_left": 38.5,
-        "group2_right": 40.0
+        "group2_right": 40
       },
       "bladder": {
-        "group1_left": 35.0,
-        "group1_right": 37.0,
-        "group2_left": 37.0,
-        "group2_right": 40.0
+        "group1_left": 35,
+        "group1_right": 37,
+        "group2_left": 37,
+        "group2_right": 40
       },
       "liver": {
-        "group1_left": 36.0,
+        "group1_left": 36,
         "group1_right": 37.5,
-        "group2_left": 38.0,
-        "group2_right": 40.0
+        "group2_left": 38,
+        "group2_right": 40
       },
       "spleen": {
         "group1_left": 35.5,
-        "group1_right": 37.0,
-        "group2_left": 38.0,
+        "group1_right": 37,
+        "group2_left": 38,
         "group2_right": 39.5
       },
       "kidney": {
-        "group1_left": 35.0,
-        "group1_right": 36.0,
-        "group2_left": 37.0,
-        "group2_right": 39.0
+        "group1_left": 35,
+        "group1_right": 36,
+        "group2_left": 37,
+        "group2_right": 39
       }
-    }
+    },
+    "test_number": 3
   },
   "expected": {
-    "usage_days": 10,
-    "usage_bonus": 2,
-    "protection": "max(retest_score_base, previous_score)"
+    "test_number": 3,
+    "test_bonus": 5
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 10.41
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 79,
-      "score_raw": 76.2,
-      "problem_index": 26.0,
+      "score": 75,
+      "score_raw": 63.0,
+      "problem_index": 40.0,
       "problem_index_detail": {
-        "low_temperature_index": 3.0,
-        "temperature_difference_index": 11.5,
-        "side_bias_index": 6.0,
-        "trend_index": 3.0,
-        "combo_index": 2.5
+        "low_temperature_index": 4.0,
+        "temperature_difference_index": 16.0,
+        "side_bias_index": 8.0,
+        "trend_index": 6.0,
+        "combo_index": 6.0
       }
     },
     "lowest_points": {
@@ -78,14 +75,14 @@
         {
           "meridian": "bladder",
           "side": "left",
-          "value": 37.0,
+          "value": 37,
           "rank": 1,
           "must_report": true
         },
         {
           "meridian": "liver",
           "side": "left",
-          "value": 38.0,
+          "value": 38,
           "rank": 2,
           "must_report": true
         }
@@ -111,7 +108,7 @@
         "group2_status": "left_low",
         "trend": "stable_left_low",
         "group1_diff": 1.5,
-        "group2_diff": 1.0,
+        "group2_diff": 1,
         "group1_diff_level": "health_problem",
         "group2_diff_level": "health_problem",
         "diff_change": "improved",
@@ -124,8 +121,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "胃经表现为胃阴偏虚（左低趋势），温差1.0°C属于有健康问题，易出现消化快、容易饿、内热表现。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -133,7 +129,7 @@
         "group1_status": "left_low",
         "group2_status": "left_low",
         "trend": "stable_left_low",
-        "group1_diff": 2.0,
+        "group1_diff": 2,
         "group2_diff": 1.5,
         "group1_diff_level": "health_problem",
         "group2_diff_level": "health_problem",
@@ -148,8 +144,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "胆经偏弱（左低趋势），温差1.5°C属于有健康问题，需关注胆红素代谢及偏头痛问题。"
+        ]
       },
       {
         "meridian": "bladder",
@@ -157,8 +152,8 @@
         "group1_status": "left_low",
         "group2_status": "left_low",
         "trend": "stable_left_low",
-        "group1_diff": 2.0,
-        "group2_diff": 3.0,
+        "group1_diff": 2,
+        "group2_diff": 3,
         "group1_diff_level": "health_problem",
         "group2_diff_level": "serious_problem",
         "diff_change": "worsened",
@@ -175,8 +170,7 @@
           "group2_diff_serious_problem",
           "diff_worsened",
           "side_bias_participant"
-        ],
-        "narrative": "膀胱经是第二组最低点，呈现左低趋势，温差3.0°C属于较严重问题，需关注肩颈腰、肠道、肺部功能方向。"
+        ]
       },
       {
         "meridian": "liver",
@@ -185,7 +179,7 @@
         "group2_status": "left_low",
         "trend": "stable_left_low",
         "group1_diff": 1.5,
-        "group2_diff": 2.0,
+        "group2_diff": 2,
         "group1_diff_level": "health_problem",
         "group2_diff_level": "health_problem",
         "diff_change": "worsened",
@@ -209,8 +203,7 @@
           "group2_diff_health_problem",
           "diff_worsened",
           "side_bias_participant"
-        ],
-        "narrative": "肝经是第二组最低点，显示气虚推动不足（左低趋势），温差2.0°C属于有健康问题，易出现血稠、代谢慢、解毒功能减弱等表现。"
+        ]
       },
       {
         "meridian": "spleen",
@@ -233,8 +226,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "脾经过滤能力偏弱（左低趋势），温差1.5°C属于有健康问题，需关注血糖代谢和思虑过度问题。"
+        ]
       },
       {
         "meridian": "kidney",
@@ -242,8 +234,8 @@
         "group1_status": "left_low",
         "group2_status": "left_low",
         "trend": "stable_left_low",
-        "group1_diff": 1.0,
-        "group2_diff": 2.0,
+        "group1_diff": 1,
+        "group2_diff": 2,
         "group1_diff_level": "health_problem",
         "group2_diff_level": "health_problem",
         "diff_change": "worsened",
@@ -263,8 +255,7 @@
           "group2_diff_health_problem",
           "diff_worsened",
           "side_bias_participant"
-        ],
-        "narrative": "肾经阴虚内热（左低趋势），温差2.0°C属于有健康问题，易出现耳鸣、手心脚心热、缺水等表现。"
+        ]
       }
     ],
     "focus_issues": [
@@ -315,65 +306,60 @@
     "gender": "female",
     "measurement_type": "retest",
     "retest_detail": {
+      "test_number": 3,
+      "test_bonus": 5.0,
       "usage_days": 10,
-      "usage_bonus": 2.0,
-      "delta_I": 2.0,
-      "improvement_bonus": 0.6,
-      "retest_score_base": 78.8,
-      "protected_score": 78.8,
+      "delta_I": -12.0,
+      "improvement_bonus": 0.0,
+      "retest_score_base": 68.0,
+      "protected_score": 75,
       "previous_score": 75,
-      "previous_problem_index": 28.0,
-      "current_problem_index": 26.0
+      "previous_problem_index": 28,
+      "current_problem_index": 40.0
     },
-    "summary": "您的整体健康指数为79分，属于轻度失衡状态。本次复测显示所有六条经络均偏向左侧，提示头部供血方向需重点关注。膀胱经和肝经问题较为突出，同时存在腰椎相关风险。经过10天调理，经络整体好转趋势明显，建议继续坚持调理。",
-    "reportSummary": "您的整体健康指数为79分，属于轻度失衡状态。本次复测显示所有六条经络均偏向左侧，提示头部供血方向需重点关注。膀胱经和肝经问题较为突出，同时存在腰椎相关风险。经过10天调理，经络整体好转趋势明显，建议继续坚持调理。",
+    "summary": "本次复测显示您的健康状况保持稳定，综合健康分75分。虽然变化不大，但也没有恶化，建议继续调理。",
+    "reportSummary": "本次复测显示您的健康状况保持稳定，综合健康分75分。虽然变化不大，但也没有恶化，建议继续调理。",
     "storefront": {
-      "focusHeadline": "头部供血与腰椎需关注",
-      "clientExplanation": "本报告基于足部经络温度数据分析，不等同于医疗诊断，仅供参考和健康管理方向。",
+      "focusHeadline": "状态稳定，持续调理",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您的整体健康分数从75分提升到了79分，说明这段时间的调理有不错的效果。",
-        "不过数据显示经络整体偏左的情况比较明显，提示头部供血方面需要多加关注。",
-        "膀胱经和肝经的温度差异较大，可能与肩颈腰、肠道循环以及代谢功能有关，我们一起来看看怎么调整。"
+        "您的健康分保持在75分，状态比较稳定。",
+        "调理需要时间，建议继续当前的方案，耐心等待改善。"
       ],
-      "retestPrompt": "建议持续调理10-15天后再次复测，观察头部供血和腰椎相关指标的改善情况。"
+      "retestPrompt": "建议调理2-4周后复测，观察改善情况。"
     },
     "recommendations": [
-      "饮食建议：适当增加富含优质蛋白和维生素B族的食物，如黑芝麻、核桃、深绿色蔬菜，避免辛辣刺激和油腻食物。",
-      "运动建议：每天进行15-20分钟快走或八段锦，重点活动肩颈和腰部，促进气血循环。",
-      "仪器调理：建议继续使用生物电调理仪，每次重点疏通膀胱经和肝经，配合足部肾区按摩，每周3-4次。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经表现为胃阴偏虚（左低趋势），温差1.0°C属于有健康问题，易出现消化快、容易饿、内热表现。",
-      "gallbladder": "胆经偏弱（左低趋势），温差1.5°C属于有健康问题，需关注胆红素代谢及偏头痛问题。",
-      "bladder": "膀胱经是第二组最低点，呈现左低趋势，温差3.0°C属于较严重问题，需关注肩颈腰、肠道、肺部功能方向。",
-      "liver": "肝经是第二组最低点，显示气虚推动不足（左低趋势），温差2.0°C属于有健康问题，易出现血稠、代谢慢、解毒功能减弱等表现。",
-      "spleen": "脾经过滤能力偏弱（左低趋势），温差1.5°C属于有健康问题，需关注血糖代谢和思虑过度问题。",
-      "kidney": "肾经阴虚内热（左低趋势），温差2.0°C属于有健康问题，易出现耳鸣、手心脚心热、缺水等表现。"
-    }
+      "【膀胱经】注意腰部保暖，避免久坐，适当进行腰背拉伸。",
+      "【肝经】保持规律作息，尽量在23点前入睡，利于肝脏代谢。",
+      "【头部供血需关注】注意头部保暖，避免冷风直吹。",
+      "【腰椎问题】注意腰部保暖，避免久坐久站。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 79,
-    "problem_index": 26.0,
+    "score": 75,
+    "problem_index": 40.0,
     "problem_index_detail": {
-      "low_temperature_index": 3.0,
-      "temperature_difference_index": 11.5,
-      "side_bias_index": 6.0,
-      "trend_index": 3.0,
-      "combo_index": 2.5
+      "low_temperature_index": 4.0,
+      "temperature_difference_index": 16.0,
+      "side_bias_index": 8.0,
+      "trend_index": 6.0,
+      "combo_index": 6.0
     },
     "lowest_points": {
       "selected": [
         {
           "meridian": "bladder",
           "side": "left",
-          "value": 37.0,
+          "value": 37,
           "rank": 1,
           "must_report": true
         },
         {
           "meridian": "liver",
           "side": "left",
-          "value": 38.0,
+          "value": 38,
           "rank": 2,
           "must_report": true
         }

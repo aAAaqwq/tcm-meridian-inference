@@ -2,8 +2,7 @@
   "test_file": "test_14_cervical_opposite.json",
   "test_name": "颈椎判断测试 - 肾左低+膀胱右低: 相反低→颈椎问题",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 12106.48,
+  "response_time_ms": 0.09,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -53,21 +52,19 @@
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 12.1
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 86,
-      "score_raw": 86.2,
-      "problem_index": 9.5,
+      "score": 74,
+      "score_raw": 73.75,
+      "problem_index": 14.0,
       "problem_index_detail": {
-        "low_temperature_index": 3.0,
-        "temperature_difference_index": 3.0,
+        "low_temperature_index": 4.0,
+        "temperature_difference_index": 5.0,
         "side_bias_index": 0.0,
-        "trend_index": 1.0,
-        "combo_index": 2.5
+        "trend_index": 2.0,
+        "combo_index": 3.0
       }
     },
     "lowest_points": {
@@ -116,8 +113,7 @@
         "is_focus": true,
         "focus_reason": [
           "second_group_lowest_point"
-        ],
-        "narrative": "胃经在两组测量中均保持左右平衡，第二组温差0.0°C，状态稳定。作为第二组最低点之一，提示胃经能量偏低，消化功能可能偏弱，但无偏侧失衡。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -132,8 +128,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经在两组测量中均左右平衡，第二组温差0.0°C，整体状态良好，未见明显异常。"
+        "focus_reason": []
       },
       {
         "meridian": "bladder",
@@ -156,8 +151,7 @@
         "focus_reason": [
           "second_group_lowest_point",
           "group2_diff_health_problem"
-        ],
-        "narrative": "膀胱经呈现右低趋势，第二组温差2.0°C，属于有健康问题。右低提示湿气下注、腰部及肺右侧功能需关注，表现为大便不成形、湿气下注大肠等风险。"
+        ]
       },
       {
         "meridian": "liver",
@@ -172,8 +166,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肝经在两组测量中均左右平衡，第二组温差0.0°C，整体状态良好，未见明显异常。"
+        "focus_reason": []
       },
       {
         "meridian": "spleen",
@@ -188,8 +181,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "脾经在两组测量中均左右平衡，第二组温差0.0°C，整体状态良好，未见明显异常。"
+        "focus_reason": []
       },
       {
         "meridian": "kidney",
@@ -216,8 +208,7 @@
         "is_focus": true,
         "focus_reason": [
           "group2_diff_health_problem"
-        ],
-        "narrative": "肾经呈现左低趋势，第二组温差2.0°C，属于有健康问题。左低提示阴虚内热倾向，表现为耳鸣、手心脚心热、易缺水、尿黄等亚健康信号。"
+        ]
       }
     ],
     "focus_issues": [
@@ -255,42 +246,34 @@
     ],
     "gender": "female",
     "measurement_type": "first_test",
-    "summary": "本次检测显示综合健康分为86分，整体状态尚可，但存在一些需要关注的亚健康信号。膀胱经右侧温差较大，提示湿气下注、腰部及肺部功能方向需留意；胃经作为第二组最低点，虽然左右平衡，但低温本身提示消化系统机能可能偏弱；肾经左低趋势明显，伴有阴虚内热倾向；结合肾经与膀胱经的左右反向趋势，提示颈椎问题需要关注。建议从饮食、作息、运动及经络调理入手，逐步改善整体平衡。",
-    "reportSummary": "本次检测显示综合健康分为86分，整体状态尚可，但存在一些需要关注的亚健康信号。膀胱经右侧温差较大，提示湿气下注、腰部及肺部功能方向需留意；胃经作为第二组最低点，虽然左右平衡，但低温本身提示消化系统机能可能偏弱；肾经左低趋势明显，伴有阴虚内热倾向；结合肾经与膀胱经的左右反向趋势，提示颈椎问题需要关注。建议从饮食、作息、运动及经络调理入手，逐步改善整体平衡。",
+    "summary": "本次检测显示您的综合健康分74分，属于中度失衡状态。主要问题集中在膀胱经、胃经，提示相关脏腑功能需要关注。建议系统调理，改善亚健康状态。",
+    "reportSummary": "本次检测显示您的综合健康分74分，属于中度失衡状态。主要问题集中在膀胱经、胃经，提示相关脏腑功能需要关注。建议系统调理，改善亚健康状态。",
     "storefront": {
-      "focusHeadline": "膀胱与肾经需重点调理",
-      "clientExplanation": "本报告基于中医经络理论分析足部温度数据，不等同于医疗诊断，仅供参考。",
+      "focusHeadline": "膀胱经、胃经需重点关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您的检测结果整体健康分还不错，有86分呢。",
-        "不过我们发现膀胱经和肾经有比较明显的偏侧差异，这提示需要关注腰部、颈椎以及体内的水分代谢。",
-        "我们可以通过针对性的调理方案来帮助改善这些不平衡，建议您定期复测看看变化。"
+        "您的检测结果显示，膀胱经、胃经问题比较突出，这可能影响相关脏腑功能。",
+        "整体健康分74分，属于中度失衡，需要通过系统调理来改善。"
       ],
-      "retestPrompt": "建议在2-4周调理后进行复测，观察经络平衡改善情况。"
+      "retestPrompt": "建议调理2-4周后复测，观察改善情况。"
     },
     "recommendations": [
-      "饮食建议：多食滋阴润燥的食物，如银耳、百合、黑芝麻、山药，避免辛辣燥热食物；可适当食用薏米、红豆等健脾祛湿之品。",
-      "作息建议：保证晚上11点前入睡，避免熬夜；白天适当午休15-30分钟，养肾阴。",
-      "运动建议：进行瑜伽、太极、散步等温和运动，避免剧烈出汗；多做颈部拉伸和腰部扭转动作。",
-      "经络调理：建议在专业指导下进行膀胱经和肾经的温和按摩或艾灸，重点疏通腰部、颈肩部及足部反射区。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经在两组测量中均保持左右平衡，第二组温差0.0°C，状态稳定。作为第二组最低点之一，提示胃经能量偏低，消化功能可能偏弱，但无偏侧失衡。",
-      "gallbladder": "胆经在两组测量中均左右平衡，第二组温差0.0°C，整体状态良好，未见明显异常。",
-      "bladder": "膀胱经呈现右低趋势，第二组温差2.0°C，属于有健康问题。右低提示湿气下注、腰部及肺右侧功能需关注，表现为大便不成形、湿气下注大肠等风险。",
-      "liver": "肝经在两组测量中均左右平衡，第二组温差0.0°C，整体状态良好，未见明显异常。",
-      "spleen": "脾经在两组测量中均左右平衡，第二组温差0.0°C，整体状态良好，未见明显异常。",
-      "kidney": "肾经呈现左低趋势，第二组温差2.0°C，属于有健康问题。左低提示阴虚内热倾向，表现为耳鸣、手心脚心热、易缺水、尿黄等亚健康信号。"
-    }
+      "【膀胱经】注意腰部保暖，避免久坐，适当进行腰背拉伸。",
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "【颈椎问题】保持正确坐姿，避免长时间低头。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 86,
-    "problem_index": 9.5,
+    "score": 74,
+    "problem_index": 14.0,
     "problem_index_detail": {
-      "low_temperature_index": 3.0,
-      "temperature_difference_index": 3.0,
+      "low_temperature_index": 4.0,
+      "temperature_difference_index": 5.0,
       "side_bias_index": 0.0,
-      "trend_index": 1.0,
-      "combo_index": 2.5
+      "trend_index": 2.0,
+      "combo_index": 3.0
     },
     "lowest_points": {
       "selected": [

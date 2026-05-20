@@ -100,6 +100,7 @@ group2_right    第二组右脚温度，使用仪器 20 分钟时测量
 ```json
 {
   "measurement_type": "retest",
+  "test_number": 2,
   "previous_score": 77,
   "previous_problem_index": 24.4,
   "usage_days_between_tests": 14
@@ -109,6 +110,7 @@ group2_right    第二组右脚温度，使用仪器 20 分钟时测量
 字段说明：
 
 ```text
+test_number：本次是第几次测试（第一次测试为1，第二次为2，以此类推）
 previous_score：上一次展示给用户的综合健康分
 previous_problem_index：上一次计算出的内部问题指数 I
 usage_days_between_tests：两次检测之间用户实际使用仪器的天数
@@ -696,9 +698,9 @@ bladder.group2_diff > 0.5
 ### 7.1 评分目标
 
 ```text
-首测大部分用户落在 70-90 分之间
-60 多分只出现在问题明显集中的用户身上
-首测不轻易超过 90 分
+首测大部分用户落在 63-75 分之间
+63 分只出现在问题明显集中的用户身上
+首测不轻易超过 75 分
 复测时，如果用户持续使用仪器，分数应有改善空间
 如果用户坚持使用仪器达到一定天数，复测分数不能下降
 ```
@@ -739,10 +741,10 @@ A 取值：
 
 ```text
 低温差距 <= 0.5℃        A = 0
-0.5℃ < 低温差距 <= 1℃   A = 1
-1℃ < 低温差距 <= 2℃     A = 3
-2℃ < 低温差距 <= 3℃     A = 5
-低温差距 > 3℃           A = 6
+0.5℃ < 低温差距 <= 1℃   A = 2
+1℃ < 低温差距 <= 2℃     A = 4
+2℃ < 低温差距 <= 3℃     A = 6
+低温差距 > 3℃           A = 8
 ```
 
 ---
@@ -753,9 +755,9 @@ A 取值：
 
 ```text
 第二组温差 <= 0.2℃         0
-0.2℃ < 第二组温差 <= 0.5℃  0.5
-0.5℃ < 第二组温差 <= 2℃    1.5
-第二组温差 > 2℃            3.5
+0.2℃ < 第二组温差 <= 0.5℃  1
+0.5℃ < 第二组温差 <= 2℃    2.5
+第二组温差 > 2℃            5
 ```
 
 再看前后温差变化：
@@ -775,7 +777,7 @@ abs(第二组温差 - 第一组温差) <= 0.2℃   0
 六条经络累计后封顶：
 
 ```text
-B = min(六条经络单经温差指数之和, 12)
+B = min(六条经络单经温差指数之和, 16)
 ```
 
 ---
@@ -792,9 +794,9 @@ C 取值：
 
 ```text
 max_count < 4    C = 0
-max_count = 4    C = 3.5
-max_count = 5    C = 5
-max_count = 6    C = 6
+max_count = 4    C = 4
+max_count = 5    C = 6
+max_count = 6    C = 8
 ```
 
 ---
@@ -805,87 +807,108 @@ max_count = 6    C = 6
 
 ```text
 stable_balanced       0
-potential_symptom     0.3
-fast_response         0.3
-stable_left_low       0.5
-stable_right_low      0.5
-cross                 1.2
+potential_symptom     0.5
+fast_response         0.5
+stable_left_low       1
+stable_right_low      1
+cross                 2
 ```
 
 六条经络累计后封顶：
 
 ```text
-D = min(六条经络趋势指数之和, 4)
+D = min(六条经络趋势指数之和, 8)
 ```
 
 ---
 
 ### 7.7 E：组合问题指数
 
-只看肾经 + 膀胱经的组合判断。
+**E1：肾经 + 膀胱经组合判断**
 
 ```text
-未触发颈椎 / 腰椎问题      E = 0
-触发 cervical              E = 2.5
-触发 lumbar                E = 2.5
-触发 cervical_and_lumbar   E = 2.5
+未触发颈椎 / 腰椎问题      E1 = 0
+触发 cervical              E1 = 3
+触发 lumbar                E1 = 3
+触发 cervical_and_lumbar   E1 = 4
 ```
 
-说明：即使同时出现颈椎和腰椎问题，E 也不叠加，避免分数过低。
+**E2：肝经温度最低判断**
+
+如果肝经是六条经络中第二组温度最低的（左或右）：
+
+```text
+肝经为六条最低            E2 = 3
+```
+
+**E 总分计算**
+
+```text
+E = E1 + E2
+```
+
+说明：颈椎和腰椎问题同时存在时 E1 = 4，单项问题 E1 = 3。肝经温度最低是比较严重的问题，需额外加 E2 = 3。
 
 ---
 
 ### 7.8 问题指数映射为健康分
 
-不直接用 `90 - I`，而是分段映射。
+根据问题指数 I 映射为原始健康分，确保所有测试结果最终落在63-88分区间。
 
 ```text
-如果 I <= 10：
-    score_raw = 90 - 0.4 * I
+如果 I <= 5：
+    score_raw = 88 - 1.6 * I        → 范围：80-88分（整体状态良好）
 
-如果 10 < I <= 22：
-    score_raw = 86 - 0.55 * (I - 10)
+如果 5 < I <= 12：
+    score_raw = 80 - 0.71 * (I - 5) → 范围：75-80分（轻度失衡）
 
-如果 22 < I <= 32：
-    score_raw = 79.4 - 0.8 * (I - 22)
+如果 12 < I <= 20：
+    score_raw = 75 - 0.625 * (I - 12) → 范围：70-75分（中度失衡）
 
-如果 I > 32：
-    score_raw = 71.4 - 1.0 * (I - 32)
+如果 20 < I <= 30：
+    score_raw = 70 - 0.7 * (I - 20) → 范围：63-70分（严重失衡）
+
+如果 I > 30：
+    score_raw = 63                  → 最低63分
 ```
 
 首测展示分：
 
 ```text
-first_test_score = clamp(score_raw, 65, 89)
+first_test_score = clamp(score_raw, 63, 75)
 display_score = round(first_test_score)
 ```
+
+**首测分数控制在63-75分之间，确保用户有持续使用和复测的动力。**
 
 ### 7.9 分数区间解释
 
 ```text
-90-100：健康优秀，状态较好
-80-89：轻度失衡，属于常见亚健康状态
-70-79：中度失衡，需要重点关注和调理
-65-69：明显失衡，建议持续调理并复测
-60-64：严重失衡，极少数情况出现
+63-70：严重失衡；需极度关注身体的健康调理
+70-75：中度失衡；需重点关注身体的健康调理
+75-80：轻度失衡；身体亚健康，需重视身体的健康情况
+80-88：整体状态良好；继续保持
 ```
 
-当前首测最低 clamp 为 65，所以首测正常不会出现 60-64。
+**说明**：所有测试结果最终分数控制在63-88分之间。首测最低63分，复测最高88分。
 
 ---
 
 ## 8. 复测评分规则
 
-复测先按同一套规则计算本次 `score_raw` 和 `current_problem_index`，再加入使用天数加分、数据改善加分和复测保护。
+复测先按同一套规则计算本次 `score_raw` 和 `current_problem_index`，再加入测试次数加分、数据改善加分和复测保护。
 
-### 8.1 使用天数加分
+### 8.1 测试次数加分
+
+根据用户第几次测试，在真实温度反映的分数基础上额外加分：
 
 ```text
-0-2 天：        usage_bonus = 0
-3-6 天：        usage_bonus = 1
-7-13 天：       usage_bonus = 2
-14-29 天：      usage_bonus = 3
-30 天及以上：   usage_bonus = 4
+test_number = 1（首测）：        test_bonus = 0（首测不加，且上限 75）
+test_number = 2（第二次）：      test_bonus = 4
+test_number = 3（第三次）：      test_bonus = 5
+test_number = 4（第四次）：      test_bonus = 6
+test_number = 5（第五次）：      test_bonus = 7
+test_number >= 6（第六次及以上）：test_bonus = 8
 ```
 
 ### 8.2 数据改善加分
@@ -909,7 +932,7 @@ improvement_bonus = 0
 ### 8.3 复测基础修正分
 
 ```text
-retest_score_base = score_raw + usage_bonus + improvement_bonus
+retest_score_base = score_raw + test_bonus + improvement_bonus
 ```
 
 ### 8.4 复测保护
@@ -931,7 +954,7 @@ protected_score = max(retest_score_base, previous_score)
     protected_score = max(retest_score_base, previous_score)
 
 usage_days_between_tests >= 30：
-如果 previous_score < 90：
+如果 previous_score < 88：
     protected_score = max(retest_score_base, previous_score + 2)
 否则：
     protected_score = max(retest_score_base, previous_score)
@@ -940,12 +963,11 @@ usage_days_between_tests >= 30：
 复测最终展示分：
 
 ```text
-retest_final_score = clamp(protected_score, 65, 95)
+retest_final_score = clamp(protected_score, 63, 88)
 display_score = round(retest_final_score)
 ```
 
-复测保护只影响综合健康分，不影响具体问题分析。  
-如果某条经络本次温差仍然较大，报告中仍需如实提示。
+复测保护只影响综合健康分，不影响具体问题分析。
 
 ---
 

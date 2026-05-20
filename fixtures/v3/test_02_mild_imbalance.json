@@ -1,5 +1,5 @@
 {
-  "_comment": "首测 - 轻度失衡分数区间(80-89): 轻微温差,1-2条经络轻度异常",
+  "_comment": "首测 - 新算法轻度失衡(75分上限): 轻微温差,1-2条经络轻度异常",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
@@ -41,7 +41,8 @@
     }
   },
   "expected": {
-    "score_range": "80-89",
-    "score_level": "轻度失衡"
+    "score": 75,
+    "score_level": "中度失衡",
+    "note": "新算法：首测上限75分"
   }
 }

@@ -3,17 +3,17 @@
     "mode": "hybrid",
     "version": "3.0",
     "llmModel": "deepseek-chat",
-    "llmLatency": 8.32
+    "llmLatency": 5.16
   },
   "score_result": {
-    "score": 89,
-    "score_raw": 88.68,
-    "problem_index": 3.3,
+    "score": 75,
+    "score_raw": 79.64,
+    "problem_index": 5.5,
     "problem_index_detail": {
-      "low_temperature_index": 1.0,
-      "temperature_difference_index": 2.0,
+      "low_temperature_index": 2.0,
+      "temperature_difference_index": 3.0,
       "side_bias_index": 0.0,
-      "trend_index": 0.3,
+      "trend_index": 0.5,
       "combo_index": 0.0
     }
   },
@@ -65,7 +65,8 @@
         "second_group_lowest_point",
         "group2_diff_health_problem",
         "diff_worsened"
-      ]
+      ],
+      "narrative": "胃经出现潜在症状问题（第一组平衡，第二组异常），温差2.0°C属于有健康问题，需关注胃炎倾向、反酸、胃部刺激及饮食不规律风险。"
     },
     {
       "meridian": "gallbladder",
@@ -80,7 +81,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "胆经两组均平衡，温差0.0°C，状态良好。"
     },
     {
       "meridian": "bladder",
@@ -95,7 +97,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "膀胱经两组均平衡，温差0.0°C，状态良好。"
     },
     {
       "meridian": "liver",
@@ -110,7 +113,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "肝经两组均平衡，温差0.0°C，状态良好。"
     },
     {
       "meridian": "spleen",
@@ -125,7 +129,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "脾经两组均平衡，温差0.0°C，状态良好。"
     },
     {
       "meridian": "kidney",
@@ -140,7 +145,8 @@
       "diff_change": "unchanged",
       "matched_rules": [],
       "is_focus": false,
-      "focus_reason": []
+      "focus_reason": [],
+      "narrative": "肾经两组均平衡，温差0.0°C，状态良好。"
     }
   ],
   "focus_issues": [
@@ -173,21 +179,29 @@
   ],
   "gender": "female",
   "measurement_type": "first_test",
-  "summary": "本次检测显示您整体经络状态良好，健康分为89分，属于轻度失衡。重点关注胃经，第二组数据出现左右温差显著增大，提示消化系统功能可能存在潜在失衡趋势，建议平时注意饮食规律和腹部保暖。其他经络均处于平衡状态，整体健康状况较佳。",
-  "reportSummary": "本次检测显示您整体经络状态良好，健康分为89分，属于轻度失衡。重点关注胃经，第二组数据出现左右温差显著增大，提示消化系统功能可能存在潜在失衡趋势，建议平时注意饮食规律和腹部保暖。其他经络均处于平衡状态，整体健康状况较佳。",
+  "summary": "本次检测显示整体健康状态良好，大部分经络处于平衡状态。仅有胃经出现潜在症状问题，第二组温差较大，提示胃部功能需关注，建议从饮食和作息方面进行调理。",
+  "reportSummary": "本次检测显示整体健康状态良好，大部分经络处于平衡状态。仅有胃经出现潜在症状问题，第二组温差较大，提示胃部功能需关注，建议从饮食和作息方面进行调理。",
   "storefront": {
-    "focusHeadline": "胃经需关注，其他均平衡",
-    "clientExplanation": "本报告基于足部经络温度分析，反映身体功能状态，不等同于医疗诊断。请结合个人感受，必要时咨询专业医师。",
+    "focusHeadline": "胃经需关注",
+    "clientExplanation": "本次检测基于中医经络理论，不等同于医疗诊断，结果仅供参考。您的整体经络状态较好，仅胃经在复测时出现了温度差异，可能与饮食或消化功能有关，建议结合自身感受进行调理。",
     "talkTrack": [
-      "您的经络整体非常平衡，健康评分89分，状态不错。",
-      "不过胃经这边出现了一些变化，左右温差有两度，提示消化方面需要多留意。",
-      "其他五条经络都很平稳，说明身体基础很好，稍微关注一下饮食和腹部保暖就行。"
+      "您这次检测结果整体很不错，大部分经络都处于平衡状态。",
+      "不过我们在第二次测量时发现，胃经出现了温差，这个可能和您的消化功能或近期的饮食有关。",
+      "建议平时注意规律饮食，少吃生冷，可以适当配合一些脾胃调理的保养方法。"
     ],
-    "retestPrompt": "建议2-4周后复测，观察胃经变化趋势，以便及时调整调理方案。"
+    "retestPrompt": "建议2周后复测，观察胃经变化趋势。"
   },
   "recommendations": [
-    "饮食方面，建议规律进食，少食生冷油腻，可适当增加温热易消化的食物，如小米粥、山药等，并注意腹部保暖。",
-    "可以适度进行腹部按摩或艾灸足三里、中脘等穴位，帮助调理胃经。",
-    "保持良好作息，避免过度劳累和情绪紧张，有助于维护消化系统健康。"
-  ]
+    "饮食调理：建议规律进餐，避免暴饮暴食，减少辛辣、生冷食物摄入，适当食用小米、山药等健脾养胃的食材。",
+    "作息调整：保持充足睡眠，避免熬夜，建议晚上11点前入睡，有助于胃经修复。",
+    "运动建议：饭后散步15-20分钟，促进消化；可练习腹式呼吸或瑜伽的扭转变体，温和按摩腹部。"
+  ],
+  "meridianNarrative": {
+    "stomach": "胃经出现潜在症状问题（第一组平衡，第二组异常），温差2.0°C属于有健康问题，需关注胃炎倾向、反酸、胃部刺激及饮食不规律风险。",
+    "gallbladder": "胆经两组均平衡，温差0.0°C，状态良好。",
+    "bladder": "膀胱经两组均平衡，温差0.0°C，状态良好。",
+    "liver": "肝经两组均平衡，温差0.0°C，状态良好。",
+    "spleen": "脾经两组均平衡，温差0.0°C，状态良好。",
+    "kidney": "肾经两组均平衡，温差0.0°C，状态良好。"
+  }
 }

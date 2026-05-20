@@ -1,0 +1,357 @@
+{
+  "test_file": "test_41_retest_score_81.json",
+  "test_name": "复测 - 目标分数81分: 第4次复测+6分可从75分基准提升到81",
+  "status": "success",
+  "response_time_ms": 0.11,
+  "request": {
+    "measurement_type": "retest",
+    "gender": "female",
+    "test_number": 4,
+    "previous_score": 75,
+    "previous_problem_index": 20,
+    "usage_days_between_tests": 15,
+    "meridians": {
+      "stomach": {
+        "group1_left": 38,
+        "group1_right": 38.2,
+        "group2_left": 40,
+        "group2_right": 40.2
+      },
+      "gallbladder": {
+        "group1_left": 37.8,
+        "group1_right": 38.2,
+        "group2_left": 39.8,
+        "group2_right": 40.2
+      },
+      "bladder": {
+        "group1_left": 37.5,
+        "group1_right": 38,
+        "group2_left": 39.5,
+        "group2_right": 40
+      },
+      "liver": {
+        "group1_left": 38,
+        "group1_right": 38,
+        "group2_left": 40,
+        "group2_right": 40
+      },
+      "spleen": {
+        "group1_left": 37.8,
+        "group1_right": 38.2,
+        "group2_left": 39.8,
+        "group2_right": 40.2
+      },
+      "kidney": {
+        "group1_left": 37.5,
+        "group1_right": 38,
+        "group2_left": 39.5,
+        "group2_right": 40
+      }
+    }
+  },
+  "expected": {
+    "score": 78,
+    "score_level": "轻度失衡",
+    "note": "复测+6分后78分"
+  },
+  "actual": {
+    "engine": {
+      "mode": "rule-based-v3",
+      "version": "3.0"
+    },
+    "score_result": {
+      "score": 78,
+      "score_raw": 71.25,
+      "problem_index": 18.0,
+      "problem_index_detail": {
+        "low_temperature_index": 0.0,
+        "temperature_difference_index": 4.0,
+        "side_bias_index": 6.0,
+        "trend_index": 5.0,
+        "combo_index": 3.0
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "left",
+          "value": 39.5,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "gallbladder",
+          "side": "left",
+          "value": 39.8,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 5,
+      "right_low_count": 0,
+      "balanced_count": 1,
+      "result": "head_blood_supply_attention"
+    },
+    "cervical_lumbar_result": {
+      "result": "lumbar",
+      "kidney_trend": "stable_left_low",
+      "bladder_trend": "stable_left_low"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.2,
+        "group2_diff": 0.2,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "阴虚生内热",
+          "消化快",
+          "容易饿"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "side_bias_participant"
+        ]
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.4,
+        "group2_diff": 0.4,
+        "group1_diff_level": "mild_sub_health",
+        "group2_diff_level": "mild_sub_health",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "胆红素高",
+          "皮肤黄",
+          "眼白黄",
+          "偏头痛"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "side_bias_participant"
+        ]
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.5,
+        "group2_diff": 0.5,
+        "group1_diff_level": "mild_sub_health",
+        "group2_diff_level": "mild_sub_health",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "肩颈腰与肠道方向需关注",
+          "便秘",
+          "痔疮",
+          "大肠息肉风险",
+          "肺左侧功能风险"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "side_bias_participant"
+        ]
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "balanced",
+        "group2_status": "balanced",
+        "trend": "stable_balanced",
+        "group1_diff": 0.0,
+        "group2_diff": 0.0,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": []
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.4,
+        "group2_diff": 0.4,
+        "group1_diff_level": "mild_sub_health",
+        "group2_diff_level": "mild_sub_health",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "过滤能力弱",
+          "温差大时，容易出现血糖高方向问题",
+          "思虑重",
+          "容易操心"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "side_bias_participant"
+        ]
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.5,
+        "group2_diff": 0.5,
+        "group1_diff_level": "mild_sub_health",
+        "group2_diff_level": "mild_sub_health",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "耳鸣，尤其是嗡鸣声",
+          "阴虚",
+          "阴虚生内热",
+          "手心脚心热",
+          "体内像有一把火",
+          "容易缺水",
+          "五心烦躁",
+          "尿黄",
+          "尿短"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "side_bias_participant"
+        ]
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "side": "left",
+        "title": "膀胱经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "side": "left",
+        "title": "胆经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point"
+        ]
+      },
+      {
+        "priority": 3,
+        "type": "side_bias",
+        "title": "头部供血需关注",
+        "left_low_count": 5,
+        "reason_codes": [
+          "left_bias_count_high"
+        ]
+      },
+      {
+        "priority": 4,
+        "type": "cervical_lumbar",
+        "title": "腰椎相关问题需关注",
+        "reason_codes": [
+          "lumbar_issue_detected"
+        ]
+      }
+    ],
+    "gender": "female",
+    "measurement_type": "retest",
+    "retest_detail": {
+      "test_number": 4,
+      "test_bonus": 6.0,
+      "usage_days": 15,
+      "delta_I": 2.0,
+      "improvement_bonus": 0.6,
+      "retest_score_base": 77.85,
+      "protected_score": 77.85,
+      "previous_score": 75,
+      "previous_problem_index": 20,
+      "current_problem_index": 18.0
+    },
+    "summary": "恭喜！本次复测显示您的健康状况有明显改善，综合健康分从75提升至78分。说明之前的调理方向正确，建议继续坚持。",
+    "reportSummary": "恭喜！本次复测显示您的健康状况有明显改善，综合健康分从75提升至78分。说明之前的调理方向正确，建议继续坚持。",
+    "storefront": {
+      "focusHeadline": "调理见效，继续保持",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
+      "talkTrack": [
+        "太好了！您的健康分从75分提升到了78分，调理效果非常明显。",
+        "这说明我们的调理方向是对的，您的配合也很好，建议继续坚持。"
+      ],
+      "retestPrompt": "建议调理2-4周后复测，观察改善情况。"
+    },
+    "recommendations": [
+      "【膀胱经】注意腰部保暖，避免久坐，适当进行腰背拉伸。",
+      "【胆经】避免油腻和高胆固醇食物，多吃蔬菜水果。",
+      "【头部供血需关注】注意头部保暖，避免冷风直吹。",
+      "【腰椎问题】注意腰部保暖，避免久坐久站。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
+  },
+  "key_fields": {
+    "score": 78,
+    "problem_index": 18.0,
+    "problem_index_detail": {
+      "low_temperature_index": 0.0,
+      "temperature_difference_index": 4.0,
+      "side_bias_index": 6.0,
+      "trend_index": 5.0,
+      "combo_index": 3.0
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "bladder",
+          "side": "left",
+          "value": 39.5,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "gallbladder",
+          "side": "left",
+          "value": 39.8,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 5,
+      "right_low_count": 0,
+      "balanced_count": 1,
+      "result": "head_blood_supply_attention"
+    },
+    "cervical_lumbar_result": {
+      "result": "lumbar",
+      "kidney_trend": "stable_left_low",
+      "bladder_trend": "stable_left_low"
+    },
+    "trend_result": null,
+    "retest_analysis": null
+  },
+  "error": null
+}

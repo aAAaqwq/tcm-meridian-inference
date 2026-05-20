@@ -1,9 +1,8 @@
 {
   "test_file": "test_02_mild_imbalance.json",
-  "test_name": "首测 - 轻度失衡分数区间(80-89): 轻微温差,1-2条经络轻度异常",
+  "test_name": "首测 - 新算法轻度失衡(75分上限): 轻微温差,1-2条经络轻度异常",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 8058.14,
+  "response_time_ms": 0.08,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -47,26 +46,25 @@
     }
   },
   "expected": {
-    "score_range": "80-89",
-    "score_level": "轻度失衡"
+    "score": 75,
+    "score_level": "中度失衡",
+    "note": "新算法：首测上限75分"
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 8.05
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 89,
-      "score_raw": 89.4,
-      "problem_index": 1.5,
+      "score": 75,
+      "score_raw": 79.29,
+      "problem_index": 6.0,
       "problem_index_detail": {
         "low_temperature_index": 0.0,
-        "temperature_difference_index": 0.5,
+        "temperature_difference_index": 1.0,
         "side_bias_index": 0.0,
-        "trend_index": 1.0,
-        "combo_index": 0.0
+        "trend_index": 2.0,
+        "combo_index": 3.0
       }
     },
     "lowest_points": {
@@ -113,8 +111,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胃经两组温度均衡，温差0.0°C属于平衡状态，显示胃功能良好。"
+        "focus_reason": []
       },
       {
         "meridian": "gallbladder",
@@ -129,8 +126,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经两组温度均衡，温差0.0°C属于平衡状态，显示胆功能良好。"
+        "focus_reason": []
       },
       {
         "meridian": "bladder",
@@ -145,8 +141,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "膀胱经两组温度均衡，温差0.0°C属于平衡状态，显示膀胱功能良好。"
+        "focus_reason": []
       },
       {
         "meridian": "liver",
@@ -176,8 +171,7 @@
         "is_focus": true,
         "focus_reason": [
           "second_group_lowest_point"
-        ],
-        "narrative": "肝经关注点：两组均左低，提示气虚、血液流速不足，血液循环推动力弱，垃圾易沉积，需关注血稠、血脂、高血压方向，以及代谢差、皮肤易过敏等问题。第二组温差0.2°C属平衡。"
+        ]
       },
       {
         "meridian": "spleen",
@@ -199,8 +193,7 @@
         "is_focus": true,
         "focus_reason": [
           "second_group_lowest_point"
-        ],
-        "narrative": "脾经关注点：两组均左低，提示过滤能力弱，温差0.3°C属有一定亚健康，思虑重易操心，温差大时需关注血糖方向。"
+        ]
       },
       {
         "meridian": "kidney",
@@ -215,8 +208,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肾经两组温度均衡，温差0.0°C属于平衡状态，显示肾功能良好。"
+        "focus_reason": []
       }
     ],
     "focus_issues": [
@@ -245,41 +237,33 @@
     ],
     "gender": "female",
     "measurement_type": "first_test",
-    "summary": "本次检测显示您的综合健康评分为89分，处于轻度失衡的亚健康状态。主要关注点集中在脾经和肝经，这两条经络温度相对偏低，提示消化代谢和气血循环方面需要适当调理。整体经络平衡性良好，建议通过饮食作息改善。",
-    "reportSummary": "本次检测显示您的综合健康评分为89分，处于轻度失衡的亚健康状态。主要关注点集中在脾经和肝经，这两条经络温度相对偏低，提示消化代谢和气血循环方面需要适当调理。整体经络平衡性良好，建议通过饮食作息改善。",
+    "summary": "本次检测显示您的综合健康分75分，属于中度失衡状态。主要问题集中在脾经、肝经，提示相关脏腑功能需要关注。建议系统调理，改善亚健康状态。",
+    "reportSummary": "本次检测显示您的综合健康分75分，属于中度失衡状态。主要问题集中在脾经、肝经，提示相关脏腑功能需要关注。建议系统调理，改善亚健康状态。",
     "storefront": {
-      "focusHeadline": "脾肝代谢需关注",
-      "clientExplanation": "本次检测基于中医经络理论，通过足部温度变化分析身体状态，不等同于医疗诊断，仅供参考。",
+      "focusHeadline": "脾经、肝经需重点关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您的整体经络平衡性很不错，综合健康评分89分。",
-        "不过我们发现脾经和肝经的温度稍微偏低一些，这提示消化和代谢方面可能有点小负担。",
-        "可以适当调整饮食和作息，帮助身体恢复更好的状态。"
+        "您的检测结果显示，脾经、肝经问题比较突出，这可能影响相关脏腑功能。",
+        "整体健康分75分，属于中度失衡，需要通过系统调理来改善。"
       ],
-      "retestPrompt": "建议2-4周后复测，观察脾经和肝经的变化。"
+      "retestPrompt": "建议调理2-4周后复测，观察改善情况。"
     },
     "recommendations": [
-      "饮食上避免高油高糖，多吃绿叶蔬菜和优质蛋白，促进代谢。",
-      "每天安排15分钟腹式呼吸或散步，帮助气血循环。",
-      "减少思虑，保证晚上11点前入睡，帮助肝经排毒。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经两组温度均衡，温差0.0°C属于平衡状态，显示胃功能良好。",
-      "gallbladder": "胆经两组温度均衡，温差0.0°C属于平衡状态，显示胆功能良好。",
-      "bladder": "膀胱经两组温度均衡，温差0.0°C属于平衡状态，显示膀胱功能良好。",
-      "liver": "肝经关注点：两组均左低，提示气虚、血液流速不足，血液循环推动力弱，垃圾易沉积，需关注血稠、血脂、高血压方向，以及代谢差、皮肤易过敏等问题。第二组温差0.2°C属平衡。",
-      "spleen": "脾经关注点：两组均左低，提示过滤能力弱，温差0.3°C属有一定亚健康，思虑重易操心，温差大时需关注血糖方向。",
-      "kidney": "肾经两组温度均衡，温差0.0°C属于平衡状态，显示肾功能良好。"
-    }
+      "【脾经】少吃生冷油腻食物，多吃健脾祛湿食材如薏米、山药、红豆。",
+      "【肝经】保持规律作息，尽量在23点前入睡，利于肝脏代谢。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 89,
-    "problem_index": 1.5,
+    "score": 75,
+    "problem_index": 6.0,
     "problem_index_detail": {
       "low_temperature_index": 0.0,
-      "temperature_difference_index": 0.5,
+      "temperature_difference_index": 1.0,
       "side_bias_index": 0.0,
-      "trend_index": 1.0,
-      "combo_index": 0.0
+      "trend_index": 2.0,
+      "combo_index": 3.0
     },
     "lowest_points": {
       "selected": [

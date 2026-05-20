@@ -2,8 +2,7 @@
   "test_file": "test_07_trend_cross.json",
   "test_name": "趋势测试 - cross: 两组左右方向相反,肾经左低+膀胱经右低→颈椎问题",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 9950.8,
+  "response_time_ms": 0.11,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -52,21 +51,19 @@
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 9.95
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 77,
-      "score_raw": 77.0,
-      "problem_index": 25.0,
+      "score": 63,
+      "score_raw": 63.0,
+      "problem_index": 39.5,
       "problem_index_detail": {
-        "low_temperature_index": 3.0,
-        "temperature_difference_index": 9.5,
-        "side_bias_index": 6.0,
-        "trend_index": 4.0,
-        "combo_index": 2.5
+        "low_temperature_index": 4.0,
+        "temperature_difference_index": 15.5,
+        "side_bias_index": 8.0,
+        "trend_index": 8.0,
+        "combo_index": 4.0
       }
     },
     "lowest_points": {
@@ -122,8 +119,7 @@
           "second_group_lowest_point",
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "胃经出现交叉失衡，第二组温差2.0°C属于有健康问题，是第二组最低点之一，提示饮食不规律、胃炎、消化不良等问题需关注。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -144,8 +140,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "胆经出现交叉失衡，第二组温差1.5°C属于有健康问题，建议关注胆结石、胆囊炎风险，并保持按时吃早餐的习惯。"
+        ]
       },
       {
         "meridian": "bladder",
@@ -168,8 +163,7 @@
           "second_group_lowest_point",
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "膀胱经出现交叉失衡，第二组温差2.0°C属于有健康问题，是第二组最低点之一，需关注肠道、生殖系统及腰部循环问题。"
+        ]
       },
       {
         "meridian": "liver",
@@ -194,8 +188,7 @@
           "group2_diff_health_problem",
           "diff_worsened",
           "side_bias_participant"
-        ],
-        "narrative": "肝经出现交叉失衡，第二组温差2.0°C且左右差异变大，提示气血两虚，需关注脂肪肝、肝囊肿风险，避免熬夜。"
+        ]
       },
       {
         "meridian": "spleen",
@@ -220,8 +213,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "脾经出现交叉失衡，第二组温差1.5°C属于有健康问题，需关注血糖、湿气重、四肢乏力及肌肉松弛等问题。"
+        ]
       },
       {
         "meridian": "kidney",
@@ -245,8 +237,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "肾经出现交叉失衡，第二组温差2.0°C属于有健康问题，需关注结石、囊肿风险及生殖系统健康。"
+        ]
       }
     ],
     "focus_issues": [
@@ -294,41 +285,35 @@
     ],
     "gender": "female",
     "measurement_type": "first_test",
-    "summary": "您的整体健康分77分，属于中度失衡状态。本次测量发现膀胱经、胃经、肝经、肾经、胆经、脾经均存在交叉失衡，提示整体经络系统调节不稳定。第二组数据整体偏右，循环及心脏供血方向需重点关注，同时存在颈椎和腰椎问题。建议通过饮食、作息和运动进行系统调理。",
-    "reportSummary": "您的整体健康分77分，属于中度失衡状态。本次测量发现膀胱经、胃经、肝经、肾经、胆经、脾经均存在交叉失衡，提示整体经络系统调节不稳定。第二组数据整体偏右，循环及心脏供血方向需重点关注，同时存在颈椎和腰椎问题。建议通过饮食、作息和运动进行系统调理。",
+    "summary": "本次检测显示您的综合健康分63分，属于明显失衡状态。膀胱经、胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
+    "reportSummary": "本次检测显示您的综合健康分63分，属于明显失衡状态。膀胱经、胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
     "storefront": {
-      "focusHeadline": "多经络失衡，心循环需关注",
-      "clientExplanation": "本次分析基于足部经络热成像数据，不等同于医疗诊断，仅供参考。",
+      "focusHeadline": "膀胱经、胃经问题需紧急关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您这次的整体健康分数是77分，属于中度失衡，提示身体需要更多关注。",
-        "我们发现膀胱经和胃经是温度最低的两个点，而且所有六条经络都出现了交叉失衡，整体调节状态不太稳定。",
-        "另外，第二组数据显示整体偏右，循环和心脏供血方向需要特别关注，同时颈椎和腰椎也有潜在问题。"
+        "您的检测结果显示，膀胱经、胃经等多个经络问题比较突出。",
+        "整体健康分63分，属于明显失衡状态，需要重点关注和调理。"
       ],
-      "retestPrompt": "建议您坚持调理2-4周后进行复测，观察经络平衡的改善情况。"
+      "retestPrompt": "建议坚持调理2-3周后复测，密切观察改善情况。"
     },
     "recommendations": [
-      "饮食上建议规律三餐，避免生冷油腻，多吃温热易消化食物，如小米粥、南瓜、山药，以养护胃经。",
-      "作息上建议晚上11点前入睡，保证睡眠时间，避免熬夜，以养肝血，改善肝经交叉失衡。",
-      "运动上建议每天进行30分钟有氧运动，如快走、瑜伽，促进循环；避免久坐，可做颈椎和腰部拉伸。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经出现交叉失衡，第二组温差2.0°C属于有健康问题，是第二组最低点之一，提示饮食不规律、胃炎、消化不良等问题需关注。",
-      "gallbladder": "胆经出现交叉失衡，第二组温差1.5°C属于有健康问题，建议关注胆结石、胆囊炎风险，并保持按时吃早餐的习惯。",
-      "bladder": "膀胱经出现交叉失衡，第二组温差2.0°C属于有健康问题，是第二组最低点之一，需关注肠道、生殖系统及腰部循环问题。",
-      "liver": "肝经出现交叉失衡，第二组温差2.0°C且左右差异变大，提示气血两虚，需关注脂肪肝、肝囊肿风险，避免熬夜。",
-      "spleen": "脾经出现交叉失衡，第二组温差1.5°C属于有健康问题，需关注血糖、湿气重、四肢乏力及肌肉松弛等问题。",
-      "kidney": "肾经出现交叉失衡，第二组温差2.0°C属于有健康问题，需关注结石、囊肿风险及生殖系统健康。"
-    }
+      "【膀胱经】注意腰部保暖，避免久坐，适当进行腰背拉伸。",
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "【心脏方向需关注】保持情绪平稳，避免过度激动。",
+      "【颈椎+腰椎问题】保持正确姿势，避免长时间保持同一姿势。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 77,
-    "problem_index": 25.0,
+    "score": 63,
+    "problem_index": 39.5,
     "problem_index_detail": {
-      "low_temperature_index": 3.0,
-      "temperature_difference_index": 9.5,
-      "side_bias_index": 6.0,
-      "trend_index": 4.0,
-      "combo_index": 2.5
+      "low_temperature_index": 4.0,
+      "temperature_difference_index": 15.5,
+      "side_bias_index": 8.0,
+      "trend_index": 8.0,
+      "combo_index": 4.0
     },
     "lowest_points": {
       "selected": [

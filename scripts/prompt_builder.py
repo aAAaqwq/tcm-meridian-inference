@@ -205,8 +205,9 @@ def build_user_prompt(
         retest_detail = rule_engine_result.get("retest_detail", {})
         if retest_detail:
             lines.append(f"### 复测评分详情")
+            lines.append(f"- 测试次数: 第{retest_detail.get('test_number', '?')}次检测")
+            lines.append(f"- 测试次数加分: +{retest_detail.get('test_bonus', '?')}")
             lines.append(f"- 使用天数: {retest_detail.get('usage_days', '?')}")
-            lines.append(f"- 使用天数加分: +{retest_detail.get('usage_bonus', '?')}")
             lines.append(f"- 问题指数变化 (ΔI): {retest_detail.get('delta_I', '?')}")
             lines.append(f"- 数据改善加分: +{retest_detail.get('improvement_bonus', '?')}")
             lines.append(f"- 上次数值: 分数 {retest_detail.get('previous_score', '?')}, 问题指数 {retest_detail.get('previous_problem_index', '?')}")

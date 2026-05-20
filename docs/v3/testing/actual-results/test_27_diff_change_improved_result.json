@@ -1,90 +1,88 @@
 {
   "test_file": "test_27_diff_change_improved.json",
-  "test_name": "温差变化测试 - improved: 温差缩小>0.2℃",
+  "test_name": "温差变化测试 - improved: 温差缩小，分数约71",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 8821.68,
+  "response_time_ms": 0.13,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
     "meridians": {
       "stomach": {
-        "group1_left": 34.0,
+        "group1_left": 35.0,
         "group1_right": 38.0,
-        "group2_left": 39.0,
+        "group2_left": 38.5,
         "group2_right": 40.0
       },
       "gallbladder": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
+        "group1_left": 36.5,
+        "group1_right": 37.5,
+        "group2_left": 38.5,
         "group2_right": 40.0
       },
       "bladder": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
+        "group1_left": 36.2,
+        "group1_right": 37.8,
+        "group2_left": 38.5,
         "group2_right": 40.0
       },
       "liver": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
+        "group1_left": 36.8,
+        "group1_right": 36.8,
+        "group2_left": 39.0,
         "group2_right": 40.0
       },
       "spleen": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
+        "group1_left": 36.0,
+        "group1_right": 37.5,
+        "group2_left": 38.0,
         "group2_right": 40.0
       },
       "kidney": {
-        "group1_left": 38.0,
-        "group1_right": 38.0,
-        "group2_left": 40.0,
+        "group1_left": 36.2,
+        "group1_right": 37.5,
+        "group2_left": 38.5,
         "group2_right": 40.0
       }
     }
   },
   "expected": {
     "stomach": {
-      "group1_diff": 4.0,
-      "group2_diff": 1.0,
+      "group1_diff": 3.0,
+      "group2_diff": 1.5,
       "diff_change": "improved"
-    }
+    },
+    "target_score": 71
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 8.82
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 89,
-      "score_raw": 89.4,
-      "problem_index": 1.5,
+      "score": 63,
+      "score_raw": 63.0,
+      "problem_index": 36.5,
       "problem_index_detail": {
-        "low_temperature_index": 0.0,
-        "temperature_difference_index": 1.0,
-        "side_bias_index": 0.0,
-        "trend_index": 0.5,
-        "combo_index": 0.0
+        "low_temperature_index": 4.0,
+        "temperature_difference_index": 16.0,
+        "side_bias_index": 8.0,
+        "trend_index": 5.5,
+        "combo_index": 3.0
       }
     },
     "lowest_points": {
       "selected": [
         {
-          "meridian": "stomach",
+          "meridian": "spleen",
           "side": "left",
-          "value": 39.0,
+          "value": 38.0,
           "rank": 1,
           "must_report": true
         },
         {
           "meridian": "stomach",
-          "side": "right",
-          "value": 40.0,
+          "side": "left",
+          "value": 38.5,
           "rank": 2,
           "must_report": true
         }
@@ -92,15 +90,15 @@
       "tie_candidates": []
     },
     "side_bias_summary": {
-      "left_low_count": 1,
+      "left_low_count": 6,
       "right_low_count": 0,
-      "balanced_count": 5,
-      "result": "none"
+      "balanced_count": 0,
+      "result": "head_blood_supply_attention"
     },
     "cervical_lumbar_result": {
-      "result": "none",
-      "kidney_trend": "stable_balanced",
-      "bladder_trend": "stable_balanced"
+      "result": "lumbar",
+      "kidney_trend": "stable_left_low",
+      "bladder_trend": "stable_left_low"
     },
     "meridian_analysis": [
       {
@@ -109,8 +107,8 @@
         "group1_status": "left_low",
         "group2_status": "left_low",
         "trend": "stable_left_low",
-        "group1_diff": 4.0,
-        "group2_diff": 1.0,
+        "group1_diff": 3.0,
+        "group2_diff": 1.5,
         "group1_diff_level": "serious_problem",
         "group2_diff_level": "health_problem",
         "diff_change": "improved",
@@ -122,94 +120,147 @@
         "is_focus": true,
         "focus_reason": [
           "second_group_lowest_point",
-          "group2_diff_health_problem"
-        ],
-        "narrative": "胃经呈现左低趋势，第二组温差1.0°C属于有健康问题，主要与阴虚生内热、消化快、容易饿有关，是本次重点关注的经络。"
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ]
       },
       {
         "meridian": "gallbladder",
         "meridian_name": "胆经",
-        "group1_status": "balanced",
-        "group2_status": "balanced",
-        "trend": "stable_balanced",
-        "group1_diff": 0.0,
-        "group2_diff": 0.0,
-        "group1_diff_level": "balanced",
-        "group2_diff_level": "balanced",
-        "diff_change": "unchanged",
-        "matched_rules": [],
-        "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经左右平衡，温差0.0°C属于正常范围，整体状态稳定。"
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.0,
+        "group2_diff": 1.5,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "胆红素高",
+          "皮肤黄",
+          "眼白黄",
+          "偏头痛"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ]
       },
       {
         "meridian": "bladder",
         "meridian_name": "膀胱经",
-        "group1_status": "balanced",
-        "group2_status": "balanced",
-        "trend": "stable_balanced",
-        "group1_diff": 0.0,
-        "group2_diff": 0.0,
-        "group1_diff_level": "balanced",
-        "group2_diff_level": "balanced",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.6,
+        "group2_diff": 1.5,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
         "diff_change": "unchanged",
-        "matched_rules": [],
-        "is_focus": false,
-        "focus_reason": [],
-        "narrative": "膀胱经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
+        "matched_rules": [
+          "肩颈腰与肠道方向需关注",
+          "便秘",
+          "痔疮",
+          "大肠息肉风险",
+          "肺左侧功能风险"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ]
       },
       {
         "meridian": "liver",
         "meridian_name": "肝经",
         "group1_status": "balanced",
-        "group2_status": "balanced",
-        "trend": "stable_balanced",
+        "group2_status": "left_low",
+        "trend": "potential_symptom",
         "group1_diff": 0.0,
-        "group2_diff": 0.0,
+        "group2_diff": 1.0,
         "group1_diff_level": "balanced",
-        "group2_diff_level": "balanced",
-        "diff_change": "unchanged",
+        "group2_diff_level": "health_problem",
+        "diff_change": "worsened",
         "matched_rules": [],
-        "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肝经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ]
       },
       {
         "meridian": "spleen",
         "meridian_name": "脾经",
-        "group1_status": "balanced",
-        "group2_status": "balanced",
-        "trend": "stable_balanced",
-        "group1_diff": 0.0,
-        "group2_diff": 0.0,
-        "group1_diff_level": "balanced",
-        "group2_diff_level": "balanced",
-        "diff_change": "unchanged",
-        "matched_rules": [],
-        "is_focus": false,
-        "focus_reason": [],
-        "narrative": "脾经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.5,
+        "group2_diff": 2.0,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "worsened",
+        "matched_rules": [
+          "过滤能力弱",
+          "温差大时，容易出现血糖高方向问题",
+          "思虑重",
+          "容易操心"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "group2_diff_health_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ]
       },
       {
         "meridian": "kidney",
         "meridian_name": "肾经",
-        "group1_status": "balanced",
-        "group2_status": "balanced",
-        "trend": "stable_balanced",
-        "group1_diff": 0.0,
-        "group2_diff": 0.0,
-        "group1_diff_level": "balanced",
-        "group2_diff_level": "balanced",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 1.3,
+        "group2_diff": 1.5,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
         "diff_change": "unchanged",
-        "matched_rules": [],
-        "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肾经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
+        "matched_rules": [
+          "耳鸣，尤其是嗡鸣声",
+          "阴虚",
+          "阴虚生内热",
+          "手心脚心热",
+          "体内像有一把火",
+          "容易缺水",
+          "五心烦躁",
+          "尿黄",
+          "尿短"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ]
       }
     ],
     "focus_issues": [
       {
         "priority": 1,
+        "type": "lowest_point",
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "side": "left",
+        "title": "脾经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_health_problem",
+          "diff_worsened"
+        ]
+      },
+      {
+        "priority": 2,
         "type": "lowest_point",
         "meridian": "stomach",
         "meridian_name": "胃经",
@@ -221,69 +272,68 @@
         ]
       },
       {
-        "priority": 2,
-        "type": "lowest_point",
-        "meridian": "stomach",
-        "meridian_name": "胃经",
-        "side": "right",
-        "title": "胃经问题较突出",
+        "priority": 3,
+        "type": "side_bias",
+        "title": "头部供血需关注",
+        "left_low_count": 6,
         "reason_codes": [
-          "second_group_lowest_point",
-          "group2_diff_health_problem"
+          "left_bias_count_high"
+        ]
+      },
+      {
+        "priority": 4,
+        "type": "cervical_lumbar",
+        "title": "腰椎相关问题需关注",
+        "reason_codes": [
+          "lumbar_issue_detected"
         ]
       }
     ],
     "gender": "female",
     "measurement_type": "first_test",
-    "summary": "本次检测显示您的整体健康状态良好，综合健康分89分。主要发现是胃经存在一定失衡，左右温差1.0°C提示有健康问题倾向，可能与消化功能偏快、易饥有关。其他经络如胆经、膀胱经、肝经、脾经、肾经均表现平衡，整体状态稳定。建议重点关注胃经的调理，保持规律饮食，避免过度刺激。",
-    "reportSummary": "本次检测显示您的整体健康状态良好，综合健康分89分。主要发现是胃经存在一定失衡，左右温差1.0°C提示有健康问题倾向，可能与消化功能偏快、易饥有关。其他经络如胆经、膀胱经、肝经、脾经、肾经均表现平衡，整体状态稳定。建议重点关注胃经的调理，保持规律饮食，避免过度刺激。",
+    "summary": "本次检测显示您的综合健康分63分，属于明显失衡状态。脾经、胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
+    "reportSummary": "本次检测显示您的综合健康分63分，属于明显失衡状态。脾经、胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
     "storefront": {
-      "focusHeadline": "关注胃经平衡",
-      "clientExplanation": "本次检测显示您的胃经存在一定偏侧性失衡，可能与消化系统功能调节有关。请注意，此结果仅反映经络能量状态，不等同于医疗诊断，具体健康问题需结合临床检查。",
+      "focusHeadline": "脾经、胃经问题需紧急关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您好，从检测结果看，您的整体健康状况不错，综合评分89分。",
-        "不过我们发现胃经的左右温度差异稍大，提示消化系统可能有些小波动，比如容易饿或消化快。",
-        "其他经络都非常平衡，只要注意饮食规律和适当放松，很快就能调整过来。"
+        "您的检测结果显示，脾经、胃经等多个经络问题比较突出。",
+        "整体健康分63分，属于明显失衡状态，需要重点关注和调理。"
       ],
-      "retestPrompt": "建议2-4周后复测，观察胃经变化趋势，巩固调理效果。"
+      "retestPrompt": "建议坚持调理2-3周后复测，密切观察改善情况。"
     },
     "recommendations": [
-      "建议调整饮食节奏，少食多餐，避免暴饮暴食，适当增加优质蛋白和蔬菜摄入。",
-      "可尝试温和运动如散步或瑜伽，帮助稳定消化功能。",
-      "注意调节情绪，避免过度思虑，保证充足睡眠以维护脾胃运化。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经呈现左低趋势，第二组温差1.0°C属于有健康问题，主要与阴虚生内热、消化快、容易饿有关，是本次重点关注的经络。",
-      "gallbladder": "胆经左右平衡，温差0.0°C属于正常范围，整体状态稳定。",
-      "bladder": "膀胱经左右平衡，温差0.0°C属于正常范围，整体状态良好。",
-      "liver": "肝经左右平衡，温差0.0°C属于正常范围，整体状态良好。",
-      "spleen": "脾经左右平衡，温差0.0°C属于正常范围，整体状态良好。",
-      "kidney": "肾经左右平衡，温差0.0°C属于正常范围，整体状态良好。"
-    }
+      "【脾经】少吃生冷油腻食物，多吃健脾祛湿食材如薏米、山药、红豆。",
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "【头部供血需关注】注意头部保暖，避免冷风直吹。",
+      "【腰椎问题】注意腰部保暖，避免久坐久站。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 89,
-    "problem_index": 1.5,
+    "score": 63,
+    "problem_index": 36.5,
     "problem_index_detail": {
-      "low_temperature_index": 0.0,
-      "temperature_difference_index": 1.0,
-      "side_bias_index": 0.0,
-      "trend_index": 0.5,
-      "combo_index": 0.0
+      "low_temperature_index": 4.0,
+      "temperature_difference_index": 16.0,
+      "side_bias_index": 8.0,
+      "trend_index": 5.5,
+      "combo_index": 3.0
     },
     "lowest_points": {
       "selected": [
         {
-          "meridian": "stomach",
+          "meridian": "spleen",
           "side": "left",
-          "value": 39.0,
+          "value": 38.0,
           "rank": 1,
           "must_report": true
         },
         {
           "meridian": "stomach",
-          "side": "right",
-          "value": 40.0,
+          "side": "left",
+          "value": 38.5,
           "rank": 2,
           "must_report": true
         }
@@ -291,15 +341,15 @@
       "tie_candidates": []
     },
     "side_bias_summary": {
-      "left_low_count": 1,
+      "left_low_count": 6,
       "right_low_count": 0,
-      "balanced_count": 5,
-      "result": "none"
+      "balanced_count": 0,
+      "result": "head_blood_supply_attention"
     },
     "cervical_lumbar_result": {
-      "result": "none",
-      "kidney_trend": "stable_balanced",
-      "bladder_trend": "stable_balanced"
+      "result": "lumbar",
+      "kidney_trend": "stable_left_low",
+      "bladder_trend": "stable_left_low"
     },
     "trend_result": null,
     "retest_analysis": null

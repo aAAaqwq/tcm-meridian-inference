@@ -1,0 +1,48 @@
+{
+  "_comment": "首测 - 目标分数67分: 问题指数约42",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 36.0,
+      "group1_right": 36.5,
+      "group2_left": 38.0,
+      "group2_right": 38.5
+    },
+    "gallbladder": {
+      "group1_left": 35.8,
+      "group1_right": 36.2,
+      "group2_left": 37.8,
+      "group2_right": 38.2
+    },
+    "bladder": {
+      "group1_left": 35.5,
+      "group1_right": 36.0,
+      "group2_left": 37.5,
+      "group2_right": 38.0
+    },
+    "liver": {
+      "group1_left": 36.2,
+      "group1_right": 36.2,
+      "group2_left": 38.2,
+      "group2_right": 38.2
+    },
+    "spleen": {
+      "group1_left": 35.8,
+      "group1_right": 36.8,
+      "group2_left": 37.8,
+      "group2_right": 38.8
+    },
+    "kidney": {
+      "group1_left": 35.5,
+      "group1_right": 36.0,
+      "group2_left": 37.5,
+      "group2_right": 38.0
+    }
+  },
+  "expected": {
+    "score": 67,
+    "score_level": "严重失衡",
+    "target_problem_index": 42
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "_comment": "首测 - 目标75分: 问题指数≤26，使用较平衡数据",
+  "measurement_type": "first_test",
+  "gender": "female",
+  "meridians": {
+    "stomach": {
+      "group1_left": 37.0,
+      "group1_right": 37.0,
+      "group2_left": 39.0,
+      "group2_right": 39.0
+    },
+    "gallbladder": {
+      "group1_left": 36.8,
+      "group1_right": 37.2,
+      "group2_left": 38.8,
+      "group2_right": 39.2
+    },
+    "bladder": {
+      "group1_left": 36.5,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 39.5
+    },
+    "liver": {
+      "group1_left": 37.5,
+      "group1_right": 37.5,
+      "group2_left": 39.5,
+      "group2_right": 39.5
+    },
+    "spleen": {
+      "group1_left": 36.8,
+      "group1_right": 37.8,
+      "group2_left": 38.8,
+      "group2_right": 39.8
+    },
+    "kidney": {
+      "group1_left": 36.5,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 39.5
+    }
+  },
+  "expected": {
+    "score": 75,
+    "note": "亚健康接近上限"
+  }
+}

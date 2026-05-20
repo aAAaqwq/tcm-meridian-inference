@@ -1,51 +1,51 @@
 {
-  "_comment": "复测测试 - 使用7-13天: usage_bonus=2,保护为max(本次,上次)",
+  "_comment": "复测测试 - 第3次检测: test_bonus=5",
   "measurement_type": "retest",
   "gender": "female",
   "previous_score": 75,
-  "previous_problem_index": 28.0,
+  "previous_problem_index": 28,
   "usage_days_between_tests": 10,
   "meridians": {
     "stomach": {
       "group1_left": 36.5,
-      "group1_right": 38.0,
-      "group2_left": 39.0,
-      "group2_right": 40.0
+      "group1_right": 38,
+      "group2_left": 39,
+      "group2_right": 40
     },
     "gallbladder": {
-      "group1_left": 36.0,
-      "group1_right": 38.0,
+      "group1_left": 36,
+      "group1_right": 38,
       "group2_left": 38.5,
-      "group2_right": 40.0
+      "group2_right": 40
     },
     "bladder": {
-      "group1_left": 35.0,
-      "group1_right": 37.0,
-      "group2_left": 37.0,
-      "group2_right": 40.0
+      "group1_left": 35,
+      "group1_right": 37,
+      "group2_left": 37,
+      "group2_right": 40
     },
     "liver": {
-      "group1_left": 36.0,
+      "group1_left": 36,
       "group1_right": 37.5,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group2_left": 38,
+      "group2_right": 40
     },
     "spleen": {
       "group1_left": 35.5,
-      "group1_right": 37.0,
-      "group2_left": 38.0,
+      "group1_right": 37,
+      "group2_left": 38,
       "group2_right": 39.5
     },
     "kidney": {
-      "group1_left": 35.0,
-      "group1_right": 36.0,
-      "group2_left": 37.0,
-      "group2_right": 39.0
+      "group1_left": 35,
+      "group1_right": 36,
+      "group2_left": 37,
+      "group2_right": 39
     }
   },
   "expected": {
-    "usage_days": 10,
-    "usage_bonus": 2,
-    "protection": "max(retest_score_base, previous_score)"
-  }
+    "test_number": 3,
+    "test_bonus": 5
+  },
+  "test_number": 3
 }

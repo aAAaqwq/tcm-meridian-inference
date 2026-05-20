@@ -2,8 +2,7 @@
   "test_file": "test_25_retest_improvement.json",
   "test_name": "复测测试 - 数据改善: ΔI>0时improvement_bonus=min(3, 0.3*ΔI)",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 9010.72,
+  "response_time_ms": 0.09,
   "request": {
     "measurement_type": "retest",
     "gender": "female",
@@ -58,14 +57,12 @@
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 9.01
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 95,
-      "score_raw": 90.0,
+      "score": 88,
+      "score_raw": 88.0,
       "problem_index": 0.0,
       "problem_index_detail": {
         "low_temperature_index": 0.0,
@@ -121,8 +118,7 @@
         "is_focus": true,
         "focus_reason": [
           "second_group_lowest_point"
-        ],
-        "narrative": "胃经是本次第二组最低点之一，两次测量温差较大（从38.0°C升至40.0°C），虽然左右平衡，但升温明显，提示胃部功能可能处于活跃或敏感状态，建议关注饮食规律和消化负担。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -137,8 +133,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+        "focus_reason": []
       },
       {
         "meridian": "bladder",
@@ -153,8 +148,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "膀胱经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+        "focus_reason": []
       },
       {
         "meridian": "liver",
@@ -169,8 +163,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肝经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+        "focus_reason": []
       },
       {
         "meridian": "spleen",
@@ -185,8 +178,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "脾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+        "focus_reason": []
       },
       {
         "meridian": "kidney",
@@ -201,8 +193,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
+        "focus_reason": []
       }
     ],
     "focus_issues": [
@@ -232,44 +223,36 @@
     "gender": "female",
     "measurement_type": "retest",
     "retest_detail": {
+      "test_number": 2,
+      "test_bonus": 4.0,
       "usage_days": 14,
-      "usage_bonus": 3.0,
       "delta_I": 30.0,
       "improvement_bonus": 3.0,
-      "retest_score_base": 96.0,
-      "protected_score": 96.0,
+      "retest_score_base": 95.0,
+      "protected_score": 95.0,
       "previous_score": 70,
       "previous_problem_index": 30.0,
       "current_problem_index": 0.0
     },
-    "summary": "本次复测结果显示，您的整体经络状态非常优秀，综合健康分从70分跃升至95分，反映出近期的调理取得了显著成效。所有经络在两次测量中均保持平衡，仅胃经因温差变化较大而需稍加关注。建议继续保持良好的生活习惯，巩固调理成果。",
-    "reportSummary": "本次复测结果显示，您的整体经络状态非常优秀，综合健康分从70分跃升至95分，反映出近期的调理取得了显著成效。所有经络在两次测量中均保持平衡，仅胃经因温差变化较大而需稍加关注。建议继续保持良好的生活习惯，巩固调理成果。",
+    "summary": "恭喜！本次复测显示您的健康状况有明显改善，综合健康分从70提升至88分。说明之前的调理方向正确，建议继续坚持。",
+    "reportSummary": "恭喜！本次复测显示您的健康状况有明显改善，综合健康分从70提升至88分。说明之前的调理方向正确，建议继续坚持。",
     "storefront": {
-      "focusHeadline": "经络状态显著提升",
-      "clientExplanation": "本次复测结果基于足部经络温度数据分析，不等同于医疗诊断，主要作为健康管理的参考。",
+      "focusHeadline": "调理见效，继续保持",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您的整体经络平衡度非常好，六条经络都达到了理想的平衡状态。",
-        "胃经是本次唯一需要关注的经络，两次测量温差较大，提示消化功能可能需要持续养护。",
-        "与上次相比，您的健康分提升了25分，说明这段时间的调理非常有效，请继续保持。"
+        "太好了！您的健康分从70分提升到了88分，调理效果非常明显。",
+        "这说明我们的调理方向是对的，您的配合也很好，建议继续坚持。"
       ],
-      "retestPrompt": "建议继续按照目前的调理方案坚持14天左右，再进行一次复测，以巩固和观察胃经的改善情况。"
+      "retestPrompt": "建议3-6个月后定期复测，持续跟踪健康状态。"
     },
     "recommendations": [
-      "饮食上注意三餐规律，避免暴饮暴食和生冷刺激性食物，可适当食用山药、小米等养胃食材。",
-      "建议进行温和的运动，如散步或瑜伽，以促进气血循环，帮助胃经保持稳定。",
-      "保持良好作息，避免熬夜，有助于整体经络的平衡和消化系统的修复。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经是本次第二组最低点之一，两次测量温差较大（从38.0°C升至40.0°C），虽然左右平衡，但升温明显，提示胃部功能可能处于活跃或敏感状态，建议关注饮食规律和消化负担。",
-      "gallbladder": "胆经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
-      "bladder": "膀胱经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
-      "liver": "肝经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
-      "spleen": "脾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。",
-      "kidney": "肾经两次测量均处于平衡状态，温差0.0°C，整体功能稳定，无需特别关注。"
-    }
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 95,
+    "score": 88,
     "problem_index": 0.0,
     "problem_index_detail": {
       "low_temperature_index": 0.0,

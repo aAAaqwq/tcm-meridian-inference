@@ -621,19 +621,19 @@ def analyze_cervical_lumbar(kidney_trend: str, bladder_trend: str) -> dict:
 
 def calculate_low_temperature_index(group2_data: dict) -> Tuple[float, dict]:
     """
-    A: 低温指数
+    A: 低温指数 (新算法)
 
     计算：
     M = 第二组12个数据的中位数
     L = 第二组最低两个温度值的平均值
     低温差距 = M - L
 
-    A取值：
+    A取值（新）：
     低温差距 <= 0.5℃        A = 0
-    0.5℃ < 低温差距 <= 1℃   A = 1
-    1℃ < 低温差距 <= 2℃     A = 3
-    2℃ < 低温差距 <= 3℃     A = 5
-    低温差距 > 3℃           A = 6
+    0.5℃ < 低温差距 <= 1℃   A = 2
+    1℃ < 低温差距 <= 2℃     A = 4
+    2℃ < 低温差距 <= 3℃     A = 6
+    低温差距 > 3℃           A = 8
     """
     # 收集第二组所有12个温度值
     all_temps = []
@@ -654,17 +654,17 @@ def calculate_low_temperature_index(group2_data: dict) -> Tuple[float, dict]:
     if gap < 0:
         gap = 0.0
 
-    # 计算A
+    # 计算A（新算法）
     if gap <= 0.5:
         A = 0.0
     elif gap <= 1.0:
-        A = 1.0
+        A = 2.0
     elif gap <= 2.0:
-        A = 3.0
+        A = 4.0
     elif gap <= 3.0:
-        A = 5.0
-    else:
         A = 6.0
+    else:
+        A = 8.0
 
     return A, {
         "median": M,
@@ -678,13 +678,13 @@ def calculate_temperature_difference_index(
     meridian_analysis: List[dict]
 ) -> Tuple[float, dict]:
     """
-    B: 温差指数
+    B: 温差指数 (新算法)
 
     每条经络根据第二组温差计算基础指数：
     第二组温差 <= 0.2℃         0
-    0.2℃ < 第二组温差 <= 0.5℃  0.5
-    0.5℃ < 第二组温差 <= 2℃    1.5
-    第二组温差 > 2℃            3.5
+    0.2℃ < 第二组温差 <= 0.5℃  1
+    0.5℃ < 第二组温差 <= 2℃    2.5
+    第二组温差 > 2℃            5
 
     前后温差变化修正：
     第二组温差 - 第一组温差 > 0.2℃   +0.5
@@ -692,7 +692,7 @@ def calculate_temperature_difference_index(
     其他                              0
 
     单经温差指数 = max(0, 基础指数 + 修正值)
-    B = min(六条经络单经温差指数之和, 12)
+    B = min(六条经络单经温差指数之和, 16)  # 封顶16
     """
     per_meridian = []
     total = 0.0
@@ -701,15 +701,15 @@ def calculate_temperature_difference_index(
         group2_diff = m["group2_diff"]
         diff_change = m["diff_change"]
 
-        # 基础指数
+        # 基础指数（新算法）
         if group2_diff <= 0.2:
             base = 0.0
         elif group2_diff <= 0.5:
-            base = 0.5
+            base = 1.0
         elif group2_diff <= 2.0:
-            base = 1.5
+            base = 2.5
         else:
-            base = 3.5
+            base = 5.0
 
         # 修正值
         if diff_change == "worsened":
@@ -731,8 +731,8 @@ def calculate_temperature_difference_index(
 
         total += single_index
 
-    # 封顶
-    B = min(total, 12.0)
+    # 封顶（新算法：16）
+    B = min(total, 16.0)
 
     return B, {
         "per_meridian": per_meridian,
@@ -743,50 +743,50 @@ def calculate_temperature_difference_index(
 
 def calculate_side_bias_index(side_bias: dict) -> Tuple[float, dict]:
     """
-    C: 偏侧指数
+    C: 偏侧指数 (新算法)
 
     max_count = max(left_low_count, right_low_count)
 
     max_count < 4    C = 0
-    max_count = 4    C = 3.5
-    max_count = 5    C = 5
-    max_count = 6    C = 6
+    max_count = 4    C = 4
+    max_count = 5    C = 6
+    max_count = 6    C = 8
     """
     max_count = max(side_bias["left_low_count"], side_bias["right_low_count"])
 
     if max_count < 4:
         C = 0.0
     elif max_count == 4:
-        C = 3.5
+        C = 4.0
     elif max_count == 5:
-        C = 5.0
-    else:  # max_count == 6
         C = 6.0
+    else:  # max_count == 6
+        C = 8.0
 
     return C, {"max_count": max_count, "value": C}
 
 
 def calculate_trend_index(meridian_analysis: List[dict]) -> Tuple[float, dict]:
     """
-    D: 经络趋势指数
+    D: 经络趋势指数 (新算法)
 
     每条经络根据整体趋势计分：
     stable_balanced       0
-    potential_symptom     0.3
-    fast_response         0.3
-    stable_left_low       0.5
-    stable_right_low      0.5
-    cross                 1.2
+    potential_symptom     0.5
+    fast_response         0.5
+    stable_left_low       1
+    stable_right_low      1
+    cross                 2
 
-    D = min(六条经络趋势指数之和, 4)
+    D = min(六条经络趋势指数之和, 8)  # 封顶8
     """
     trend_scores = {
         "stable_balanced": 0.0,
-        "potential_symptom": 0.3,
-        "fast_response": 0.3,
-        "stable_left_low": 0.5,
-        "stable_right_low": 0.5,
-        "cross": 1.2,
+        "potential_symptom": 0.5,
+        "fast_response": 0.5,
+        "stable_left_low": 1.0,
+        "stable_right_low": 1.0,
+        "cross": 2.0,
     }
 
     per_meridian = []
@@ -802,8 +802,8 @@ def calculate_trend_index(meridian_analysis: List[dict]) -> Tuple[float, dict]:
         })
         total += score
 
-    # 封顶
-    D = min(total, 4.0)
+    # 封顶（新算法：8）
+    D = min(total, 8.0)
 
     return D, {
         "per_meridian": per_meridian,
@@ -812,25 +812,49 @@ def calculate_trend_index(meridian_analysis: List[dict]) -> Tuple[float, dict]:
     }
 
 
-def calculate_combo_index(cervical_lumbar_result: dict) -> Tuple[float, dict]:
+def calculate_combo_index(
+    cervical_lumbar_result: dict,
+    meridian_analysis: List[dict],
+    lowest_points: List[dict],
+) -> Tuple[float, dict]:
     """
-    E: 组合问题指数
+    E: 组合问题指数 (新算法)
 
-    未触发颈椎/腰椎问题      E = 0
-    触发 cervical           E = 2.5
-    触发 lumbar             E = 2.5
-    触发 cervical_and_lumbar  E = 2.5
+    E1: 肾经+膀胱经组合判断
+    未触发颈椎/腰椎问题        E1 = 0
+    触发 cervical              E1 = 3
+    触发 lumbar                E1 = 3
+    触发 cervical_and_lumbar   E1 = 4
 
-    说明：即使同时出现颈椎和腰椎问题，E也不叠加
+    E2: 肝经温度最低判断
+    肝经为六条最低（第二组）    E2 = 3
+
+    E = E1 + E2
     """
+    # E1: 颈椎/腰椎判断
     result = cervical_lumbar_result["result"]
-
     if result == "none":
-        E = 0.0
-    else:
-        E = 2.5
+        E1 = 0.0
+    elif result == "cervical_and_lumbar":
+        E1 = 4.0
+    else:  # cervical 或 lumbar
+        E1 = 3.0
 
-    return E, {"cervical_lumbar_result": result, "value": E}
+    # E2: 肝经最低判断
+    E2 = 0.0
+    for lp in lowest_points:
+        if lp["meridian"] == "liver":
+            E2 = 3.0
+            break
+
+    E = E1 + E2
+
+    return E, {
+        "E1_cervical_lumbar": E1,
+        "E2_liver_lowest": E2,
+        "cervical_lumbar_result": result,
+        "value": E,
+    }
 
 
 def calculate_problem_index(
@@ -838,15 +862,16 @@ def calculate_problem_index(
     meridian_analysis: List[dict],
     side_bias: dict,
     cervical_lumbar_result: dict,
+    lowest_points: List[dict],
 ) -> Tuple[float, dict]:
     """
-    计算总问题指数 I = A + B + C + D + E
+    计算总问题指数 I = A + B + C + D + E (新算法)
     """
     A, A_detail = calculate_low_temperature_index(group2_data)
     B, B_detail = calculate_temperature_difference_index(meridian_analysis)
     C, C_detail = calculate_side_bias_index(side_bias)
     D, D_detail = calculate_trend_index(meridian_analysis)
-    E, E_detail = calculate_combo_index(cervical_lumbar_result)
+    E, E_detail = calculate_combo_index(cervical_lumbar_result, meridian_analysis, lowest_points)
 
     I = A + B + C + D + E
 
@@ -866,39 +891,48 @@ def calculate_problem_index(
 
 def map_index_to_score(I: float) -> Tuple[float, str]:
     """
-    将问题指数 I 映射为健康分。
+    将问题指数 I 映射为健康分 (新算法)。
 
-    如果 I <= 10：
-        score_raw = 90 - 0.4 * I
+    确保所有测试结果最终落在63-88分区间：
 
-    如果 10 < I <= 22：
-        score_raw = 86 - 0.55 * (I - 10)
+    如果 I <= 5：
+        score_raw = 88 - 1.6 * I        → 范围：80-88分（整体状态良好）
 
-    如果 22 < I <= 32：
-        score_raw = 79.4 - 0.8 * (I - 22)
+    如果 5 < I <= 12：
+        score_raw = 80 - 0.71 * (I - 5) → 范围：75-80分（轻度失衡）
 
-    如果 I > 32：
-        score_raw = 71.4 - 1.0 * (I - 32)
+    如果 12 < I <= 20：
+        score_raw = 75 - 0.625 * (I - 12) → 范围：70-75分（中度失衡）
+
+    如果 20 < I <= 30：
+        score_raw = 70 - 0.7 * (I - 20) → 范围：63-70分（严重失衡）
+
+    如果 I > 30：
+        score_raw = 63                  → 最低63分
     """
-    if I <= 10:
-        score_raw = 90 - 0.4 * I
-    elif I <= 22:
-        score_raw = 86 - 0.55 * (I - 10)
-    elif I <= 32:
-        score_raw = 79.4 - 0.8 * (I - 22)
+    if I <= 5:
+        score_raw = 88 - 1.6 * I
+    elif I <= 12:
+        score_raw = 80 - 0.71 * (I - 5)
+    elif I <= 20:
+        score_raw = 75 - 0.625 * (I - 12)
+    elif I <= 30:
+        score_raw = 70 - 0.7 * (I - 20)
     else:
-        score_raw = 71.4 - 1.0 * (I - 32)
+        score_raw = 63.0
 
     return score_raw, ""
 
 
 def clamp_first_test_score(score_raw: float) -> Tuple[int, float]:
     """
-    首测展示分：
-    first_test_score = clamp(score_raw, 65, 89)
+    首测展示分（新算法）：
+    first_test_score = clamp(score_raw, 63, 75)
     display_score = round(first_test_score)
+
+    首测分数控制在63-75分之间，确保用户有持续使用和复测的动力。
     """
-    clamped = max(65.0, min(89.0, score_raw))
+    clamped = max(63.0, min(75.0, score_raw))
     return round(clamped), clamped
 
 
@@ -912,25 +946,36 @@ def calculate_retest_score(
     previous_problem_index: float,
     current_problem_index: float,
     usage_days: int,
+    test_number: int = 2,
 ) -> Tuple[int, float, dict]:
     """
-    复测评分计算。
+    复测评分计算 (新算法)。
 
-    1. 使用天数加分
+    1. 测试次数加分（替代使用天数加分）
     2. 数据改善加分
     3. 复测保护
+
+    测试次数加分：
+    test_number = 1（首测）：        test_bonus = 0（首测不加，且上限 75）
+    test_number = 2（第二次）：      test_bonus = 4
+    test_number = 3（第三次）：      test_bonus = 5
+    test_number = 4（第四次）：      test_bonus = 6
+    test_number = 5（第五次）：      test_bonus = 7
+    test_number >= 6（第六次及以上）：test_bonus = 8
     """
-    # 使用天数加分
-    if usage_days <= 2:
-        usage_bonus = 0.0
-    elif usage_days <= 6:
-        usage_bonus = 1.0
-    elif usage_days <= 13:
-        usage_bonus = 2.0
-    elif usage_days <= 29:
-        usage_bonus = 3.0
-    else:
-        usage_bonus = 4.0
+    # 测试次数加分（新算法）
+    if test_number <= 1:
+        test_bonus = 0.0
+    elif test_number == 2:
+        test_bonus = 4.0
+    elif test_number == 3:
+        test_bonus = 5.0
+    elif test_number == 4:
+        test_bonus = 6.0
+    elif test_number == 5:
+        test_bonus = 7.0
+    else:  # test_number >= 6
+        test_bonus = 8.0
 
     # 数据改善加分
     delta_I = previous_problem_index - current_problem_index
@@ -940,7 +985,7 @@ def calculate_retest_score(
         improvement_bonus = 0.0
 
     # 复测基础修正分
-    retest_score_base = score_raw + usage_bonus + improvement_bonus
+    retest_score_base = score_raw + test_bonus + improvement_bonus
 
     # 复测保护
     if usage_days <= 2:
@@ -955,18 +1000,19 @@ def calculate_retest_score(
         else:
             protected_score = max(retest_score_base, previous_score)
     else:  # >= 30
-        if previous_score < 90:
+        if previous_score < 88:  # 新算法：从90改为88
             protected_score = max(retest_score_base, previous_score + 2)
         else:
             protected_score = max(retest_score_base, previous_score)
 
-    # 最终展示分（clamp到65-95）
-    retest_final_score = max(65.0, min(95.0, protected_score))
+    # 最终展示分（新算法：clamp到63-88）
+    retest_final_score = max(63.0, min(88.0, protected_score))
     display_score = round(retest_final_score)
 
     detail = {
+        "test_number": test_number,
+        "test_bonus": test_bonus,
         "usage_days": usage_days,
-        "usage_bonus": usage_bonus,
         "delta_I": delta_I,
         "improvement_bonus": improvement_bonus,
         "retest_score_base": retest_score_base,
@@ -1362,17 +1408,23 @@ def build_meridian_analysis(
 
 
 def get_score_level(score: int) -> Tuple[str, str]:
-    """根据分数获取等级和说明。"""
-    if score >= 90:
-        return "健康优秀", "当前整体状态优秀，请继续保持。"
-    elif score >= 80:
-        return "轻度失衡", "整体状态尚可，局部仍需关注。"
+    """根据分数获取等级和说明（新算法）。
+
+    63-70：严重失衡；需极度关注身体的健康调理
+    70-75：中度失衡；需重点关注身体的健康调理
+    75-80：轻度失衡；身体亚健康，需重视身体的健康情况
+    80-88：整体状态良好；继续保持
+    """
+    if score >= 80:
+        return "整体状态良好", "继续保持。"
+    elif score >= 75:
+        return "轻度失衡", "身体亚健康，需重视身体的健康情况。"
     elif score >= 70:
-        return "中度失衡", "存在较明确失衡，建议持续调理。"
-    elif score >= 65:
-        return "明显失衡", "当前失衡较明显，建议持续调理并复测。"
+        return "中度失衡", "需重点关注身体的健康调理。"
+    elif score >= 63:
+        return "严重失衡", "需极度关注身体的健康调理。"
     else:
-        return "严重失衡", "当前失衡较明显，建议尽早重视。"
+        return "严重失衡", "需极度关注身体的健康调理。"
 
 
 def build_final_output(
@@ -1485,7 +1537,7 @@ def infer(payload: dict, rules: dict) -> dict:
 
     # Step 6: 计算问题指数 I = A + B + C + D + E
     problem_index, problem_index_detail = calculate_problem_index(
-        group2_data, meridian_analysis, side_bias, cervical_lumbar_result
+        group2_data, meridian_analysis, side_bias, cervical_lumbar_result, lowest_points
     )
 
     # Step 7: 映射为原始分数
@@ -1496,12 +1548,15 @@ def infer(payload: dict, rules: dict) -> dict:
     if measurement_type == "first_test":
         display_score, clamped_score = clamp_first_test_score(score_raw)
     else:  # retest
+        # 获取测试次数，默认为2（如果是旧数据没有test_number字段）
+        test_number = payload.get("test_number", 2)
         display_score, clamped_score, score_detail = calculate_retest_score(
             score_raw,
             payload["previous_score"],
             payload["previous_problem_index"],
             problem_index,
             payload["usage_days_between_tests"],
+            test_number,
         )
 
     # Step 9: 构建最终输出

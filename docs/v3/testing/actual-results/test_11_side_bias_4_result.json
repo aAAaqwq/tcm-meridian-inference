@@ -2,8 +2,7 @@
   "test_file": "test_11_side_bias_4.json",
   "test_name": "左右偏向测试 - 4条经络左低: 触发头部供血关注, C=3.5",
   "status": "success",
-  "http_status": 200,
-  "response_time_ms": 11499.87,
+  "response_time_ms": 0.07,
   "request": {
     "measurement_type": "first_test",
     "gender": "female",
@@ -54,20 +53,18 @@
   },
   "actual": {
     "engine": {
-      "mode": "hybrid",
-      "version": "3.0",
-      "llmModel": "deepseek-chat",
-      "llmLatency": 11.5
+      "mode": "rule-based-v3",
+      "version": "3.0"
     },
     "score_result": {
-      "score": 84,
-      "score_raw": 83.53,
-      "problem_index": 14.5,
+      "score": 69,
+      "score_raw": 68.6,
+      "problem_index": 22.0,
       "problem_index_detail": {
-        "low_temperature_index": 3.0,
-        "temperature_difference_index": 6.0,
-        "side_bias_index": 3.5,
-        "trend_index": 2.0,
+        "low_temperature_index": 4.0,
+        "temperature_difference_index": 10.0,
+        "side_bias_index": 4.0,
+        "trend_index": 4.0,
         "combo_index": 0.0
       }
     },
@@ -123,8 +120,7 @@
           "second_group_lowest_point",
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "胃经表现为左低趋势（阴虚生内热），第二组温差2.0°C属于有健康问题，主要提示消化快、容易饿，需关注胃部津液不足。"
+        ]
       },
       {
         "meridian": "gallbladder",
@@ -139,8 +135,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "胆经左右平衡，温差0.0°C属于正常范围，整体状态良好，无需特别关注。"
+        "focus_reason": []
       },
       {
         "meridian": "bladder",
@@ -164,8 +159,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "膀胱经呈现左低趋势，第二组温差2.0°C属于有健康问题，提示肩颈腰与肠道方向需关注，可能伴有便秘、痔疮或大肠息肉风险。"
+        ]
       },
       {
         "meridian": "liver",
@@ -196,8 +190,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "肝经表现为左低趋势，第二组温差2.0°C属于有健康问题，提示气虚、血液流速不够、血液循环推动不足，需关注血稠、血脂、高血压方向及代谢、解毒功能。"
+        ]
       },
       {
         "meridian": "spleen",
@@ -220,8 +213,7 @@
         "focus_reason": [
           "group2_diff_health_problem",
           "side_bias_participant"
-        ],
-        "narrative": "脾经表现为左低趋势，第二组温差2.0°C属于有健康问题，提示过滤能力弱、思虑重、容易操心，温差大时可能出现血糖偏高方向问题。"
+        ]
       },
       {
         "meridian": "kidney",
@@ -236,8 +228,7 @@
         "diff_change": "unchanged",
         "matched_rules": [],
         "is_focus": false,
-        "focus_reason": [],
-        "narrative": "肾经左右平衡，温差0.0°C属于正常范围，整体状态良好，无需特别关注。"
+        "focus_reason": []
       }
     ],
     "focus_issues": [
@@ -277,40 +268,32 @@
     ],
     "gender": "female",
     "measurement_type": "first_test",
-    "summary": "本次检测显示您的综合健康评分84分，属于轻度失衡状态。整体偏向左侧，提示头部供血方向需关注。胃经、肝经、脾经、膀胱经均存在明显温差，需重点关注消化、代谢、排毒及肩颈腰问题。肾经和胆经状态良好。建议调整饮食、作息，结合经络调理改善当前状况。",
-    "reportSummary": "本次检测显示您的综合健康评分84分，属于轻度失衡状态。整体偏向左侧，提示头部供血方向需关注。胃经、肝经、脾经、膀胱经均存在明显温差，需重点关注消化、代谢、排毒及肩颈腰问题。肾经和胆经状态良好。建议调整饮食、作息，结合经络调理改善当前状况。",
+    "summary": "本次检测显示您的综合健康分69分，属于明显失衡状态。胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
+    "reportSummary": "本次检测显示您的综合健康分69分，属于明显失衡状态。胃经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
     "storefront": {
-      "focusHeadline": "消化与代谢需关注",
-      "clientExplanation": "本报告基于经络温度数据生成，不等同于医疗诊断，仅供健康参考。",
+      "focusHeadline": "胃经问题需紧急关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
       "talkTrack": [
-        "您的检测结果显示整体偏向左侧，头部供血方向需要多加关注，平时有没有容易头晕或记忆力下降的感觉？",
-        "胃经、肝经、脾经和膀胱经都存在温差，提示消化、代谢和肩颈腰方面可能有些负担，可以针对这些方向进行调理。",
-        "肾经和胆经状态很平衡，说明您的基础能量还不错，通过针对性调理很快就能改善整体状态。"
+        "您的检测结果显示，胃经等多个经络问题比较突出。",
+        "整体健康分69分，属于明显失衡状态，需要重点关注和调理。"
       ],
-      "retestPrompt": "建议在调理2-4周后复测，观察经络平衡变化，评估调理效果。"
+      "retestPrompt": "建议坚持调理2-3周后复测，密切观察改善情况。"
     },
     "recommendations": [
-      "饮食建议：规律三餐，避免暴饮暴食，减少高油高糖食物，适当增加膳食纤维（如燕麦、绿叶蔬菜）促进肠道蠕动；可饮用菊花茶或薄荷茶帮助疏肝清热。",
-      "作息建议：尽量在23点前入睡，保证7-8小时睡眠，睡前1小时远离电子产品，有助于肝经修复和改善头部供血。",
-      "运动建议：每日进行30分钟有氧运动（如快走、游泳），配合颈部拉伸和腰部扭转动作，缓解肩颈腰紧张；避免久坐，每1小时起身活动5分钟。"
-    ],
-    "meridianNarrative": {
-      "stomach": "胃经表现为左低趋势（阴虚生内热），第二组温差2.0°C属于有健康问题，主要提示消化快、容易饿，需关注胃部津液不足。",
-      "gallbladder": "胆经左右平衡，温差0.0°C属于正常范围，整体状态良好，无需特别关注。",
-      "bladder": "膀胱经呈现左低趋势，第二组温差2.0°C属于有健康问题，提示肩颈腰与肠道方向需关注，可能伴有便秘、痔疮或大肠息肉风险。",
-      "liver": "肝经表现为左低趋势，第二组温差2.0°C属于有健康问题，提示气虚、血液流速不够、血液循环推动不足，需关注血稠、血脂、高血压方向及代谢、解毒功能。",
-      "spleen": "脾经表现为左低趋势，第二组温差2.0°C属于有健康问题，提示过滤能力弱、思虑重、容易操心，温差大时可能出现血糖偏高方向问题。",
-      "kidney": "肾经左右平衡，温差0.0°C属于正常范围，整体状态良好，无需特别关注。"
-    }
+      "【胃经】饮食规律，三餐定时，避免暴饮暴食和生冷食物。",
+      "【头部供血需关注】注意头部保暖，避免冷风直吹。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
   },
   "key_fields": {
-    "score": 84,
-    "problem_index": 14.5,
+    "score": 69,
+    "problem_index": 22.0,
     "problem_index_detail": {
-      "low_temperature_index": 3.0,
-      "temperature_difference_index": 6.0,
-      "side_bias_index": 3.5,
-      "trend_index": 2.0,
+      "low_temperature_index": 4.0,
+      "temperature_difference_index": 10.0,
+      "side_bias_index": 4.0,
+      "trend_index": 4.0,
       "combo_index": 0.0
     },
     "lowest_points": {
