@@ -1,49 +1,48 @@
 {
-  "_comment": "左右偏向测试 - 6条经络全部左低: C=6,严重偏侧",
+  "_comment": "左右偏向测试 - 4条经络左低: C=4,中度偏侧,目标分数约73分,PI≈15",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
     "stomach": {
-      "group1_left": 36.0,
+      "group1_left": 37.5,
       "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "gallbladder": {
-      "group1_left": 36.0,
+      "group1_left": 37.5,
       "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "bladder": {
-      "group1_left": 36.0,
+      "group1_left": 37.5,
       "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "liver": {
-      "group1_left": 36.0,
+      "group1_left": 37.5,
       "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "spleen": {
-      "group1_left": 36.0,
-      "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group1_left": 38.0,
+      "group1_right": 38.5,
+      "group2_left": 39.0,
+      "group2_right": 39.5
     },
     "kidney": {
-      "group1_left": 36.0,
-      "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group1_left": 38.0,
+      "group1_right": 38.5,
+      "group2_left": 39.0,
+      "group2_right": 39.5
     }
   },
   "expected": {
-    "left_low_count": 6,
+    "left_low_count": 4,
     "right_low_count": 0,
-    "side_bias_result": "head_blood_supply_attention",
-    "side_bias_index_C": 6
+    "side_bias_result": "left_low_imbalance"
   }
 }

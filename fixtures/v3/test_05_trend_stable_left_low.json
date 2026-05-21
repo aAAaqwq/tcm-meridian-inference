@@ -1,42 +1,42 @@
 {
-  "_comment": "趋势测试 - stable_left_low: 两组均左低,肾经和膀胱经同左低→腰椎问题",
+  "_comment": "趋势测试 - stable_left_low: 两组均左低,肾经和膀胱经同左低→腰椎问题,目标分数约73分,PI≈15",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
     "stomach": {
-      "group1_left": 36.0,
-      "group1_right": 38.0,
-      "group2_left": 38.0,
-      "group2_right": 40.0
-    },
-    "gallbladder": {
-      "group1_left": 36.5,
+      "group1_left": 37.5,
       "group1_right": 38.0,
       "group2_left": 38.5,
-      "group2_right": 40.0
+      "group2_right": 39.0
+    },
+    "gallbladder": {
+      "group1_left": 37.5,
+      "group1_right": 38.0,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "bladder": {
-      "group1_left": 35.0,
-      "group1_right": 37.0,
-      "group2_left": 37.0,
+      "group1_left": 36.5,
+      "group1_right": 38.0,
+      "group2_left": 38.0,
       "group2_right": 39.0
     },
     "liver": {
-      "group1_left": 36.0,
-      "group1_right": 37.5,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group1_left": 37.5,
+      "group1_right": 38.0,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "spleen": {
-      "group1_left": 35.5,
-      "group1_right": 37.0,
-      "group2_left": 38.0,
-      "group2_right": 39.5
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "kidney": {
-      "group1_left": 34.0,
-      "group1_right": 36.0,
-      "group2_left": 36.0,
+      "group1_left": 36.5,
+      "group1_right": 38.0,
+      "group2_left": 37.5,
       "group2_right": 39.0
     }
   },

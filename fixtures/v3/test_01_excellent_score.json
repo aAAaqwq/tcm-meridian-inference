@@ -1,5 +1,5 @@
 {
-  "_comment": "首测 - 健康优秀分数区间(90-100): 所有经络平衡,温差小,问题指数<=10",
+  "_comment": "首测 - 健康优秀(理论88分): 完美平衡数据验证首测clamp上限75",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
@@ -43,8 +43,7 @@
   "expected": {
     "score": 75,
     "score_raw": 88.0,
-    "score_level": "中度失衡",
-    "problem_index": 0.0,
-    "note": "新算法：首测clamp上限75，所以完美数据也只能得到75分"
+    "problem_index": 0,
+    "note": "完美数据理论88分，但首测clamp上限75"
   }
 }

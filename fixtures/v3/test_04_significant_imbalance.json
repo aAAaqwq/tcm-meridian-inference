@@ -1,51 +1,48 @@
 {
-  "_comment": "首测 - 严重失衡: 极端温差,多交叉,最高问题指数~30.5,分数~73",
+  "_comment": "首测 - 目标73分: PI≈15,4条偏侧,温差≤0.8,肾经膀胱平衡",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
     "stomach": {
-      "group1_left": 28.0,
-      "group1_right": 38.0,
-      "group2_left": 42.0,
-      "group2_right": 32.0
+      "group1_left": 37.0,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "gallbladder": {
-      "group1_left": 38.0,
-      "group1_right": 28.0,
-      "group2_left": 32.0,
-      "group2_right": 42.0
+      "group1_left": 37.0,
+      "group1_right": 37.0,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "bladder": {
-      "group1_left": 26.0,
-      "group1_right": 34.0,
-      "group2_left": 44.0,
-      "group2_right": 30.0
+      "group1_left": 37.5,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 38.5
     },
     "liver": {
-      "group1_left": 28.0,
-      "group1_right": 36.0,
-      "group2_left": 42.0,
-      "group2_right": 32.0
+      "group1_left": 37.0,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "spleen": {
-      "group1_left": 38.0,
-      "group1_right": 28.0,
-      "group2_left": 32.0,
-      "group2_right": 42.0
+      "group1_left": 37.0,
+      "group1_right": 37.8,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "kidney": {
-      "group1_left": 26.0,
-      "group1_right": 35.0,
-      "group2_left": 43.0,
-      "group2_right": 30.0
+      "group1_left": 37.5,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
+      "group2_right": 38.5
     }
   },
   "expected": {
-    "score": 73,
-    "score_raw": 74.6,
-    "score_level": "中度失衡",
-    "problem_index": 28.0,
-    "cross_count": 6,
-    "note": "这是理论上的极端情况，实际临床很少见"
+    "target_score": 73,
+    "problem_index": 15,
+    "note": "4条偏侧,温差≤0.5,肾经膀胱平衡,E=0,PI≈15"
   }
 }

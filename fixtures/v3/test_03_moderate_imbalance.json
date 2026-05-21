@@ -1,42 +1,42 @@
 {
-  "_comment": "首测 - 中度失衡分数区间(70-79): 多条经络有温差,偏侧明显",
+  "_comment": "首测 - 中度失衡分数区间(70-79): 4条经络左低,目标分数约73分,PI≈15",
   "measurement_type": "first_test",
   "gender": "female",
   "meridians": {
     "stomach": {
-      "group1_left": 36.5,
-      "group1_right": 38.0,
-      "group2_left": 39.0,
-      "group2_right": 40.0
-    },
-    "gallbladder": {
-      "group1_left": 36.0,
+      "group1_left": 37.5,
       "group1_right": 38.0,
       "group2_left": 38.5,
-      "group2_right": 40.0
+      "group2_right": 39.0
+    },
+    "gallbladder": {
+      "group1_left": 37.5,
+      "group1_right": 38.5,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "bladder": {
-      "group1_left": 35.0,
-      "group1_right": 37.0,
-      "group2_left": 37.0,
-      "group2_right": 40.0
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "liver": {
-      "group1_left": 36.0,
-      "group1_right": 37.5,
-      "group2_left": 38.0,
-      "group2_right": 40.0
+      "group1_left": 38.0,
+      "group1_right": 38.0,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "spleen": {
-      "group1_left": 35.5,
-      "group1_right": 37.0,
-      "group2_left": 38.0,
-      "group2_right": 39.5
+      "group1_left": 37.0,
+      "group1_right": 38.0,
+      "group2_left": 38.5,
+      "group2_right": 39.0
     },
     "kidney": {
-      "group1_left": 35.0,
-      "group1_right": 36.0,
-      "group2_left": 37.0,
+      "group1_left": 37.5,
+      "group1_right": 37.5,
+      "group2_left": 38.5,
       "group2_right": 39.0
     }
   },
