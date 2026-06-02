@@ -32,10 +32,10 @@ TREND_NAMES_ZH = {
 }
 
 DIFF_LEVEL_NAMES_ZH = {
-    "balanced": "平衡",
-    "mild_sub_health": "有一定亚健康",
-    "health_problem": "有健康问题",
-    "serious_problem": "有比较严重的问题",
+    "balanced": "正常范围",
+    "mild_sub_health": "轻度亚健康问题",
+    "health_problem": "明显失衡",
+    "serious_problem": "严重失衡",
 }
 
 
@@ -172,9 +172,9 @@ def build_user_prompt(
             if focus_reason:
                 reason_map = {
                     "second_group_lowest_point": "是第二组最低点之一",
-                    "group2_diff_health_problem": "第二组温差有健康问题",
-                    "group2_diff_serious_problem": "第二组温差有严重问题",
-                    "diff_worsened": "温差恶化",
+                    "group2_diff_health_problem": "第二组温差存在明显失衡",
+                    "group2_diff_serious_problem": "第二组温差存在严重失衡",
+                    "diff_worsened": "温差扩大",
                     "side_bias_participant": "参与整体偏侧统计",
                 }
                 reasons = [reason_map.get(r, r) for r in focus_reason]

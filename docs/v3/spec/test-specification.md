@@ -1351,21 +1351,31 @@ E (组合指数):
 
 ---
 
-## 附录 B: 分数映射公式
+## 附录 B: 分数映射公式（V3 统一算法）
 
 ```
-if I <= 10:
-    score_raw = 90 - 0.4 * I
-elif I <= 22:
-    score_raw = 86 - 0.55 * (I - 10)
-elif I <= 32:
-    score_raw = 79.4 - 0.8 * (I - 22)
+if I <= 5:
+    score_raw = 88 - 1.6 * I                    → 范围：80-88分（整体良好）
+elif I <= 12:
+    score_raw = 80 - 0.71 * (I - 5)             → 范围：75-80分（轻度失衡）
+elif I <= 20:
+    score_raw = 75 - 0.625 * (I - 12)           → 范围：70-75分（中度失衡）
+elif I <= 30:
+    score_raw = 70 - 0.7 * (I - 20)             → 范围：63-70分（严重失衡）
 else:
-    score_raw = 71.4 - 1.0 * (I - 32)
+    score_raw = 63                              → 最低63分
 
-首测: clamp(score_raw, 65, 89)
-复测: clamp(score_raw + usage_bonus + improvement_bonus, 65, 95)
+首测: clamp(score_raw, 63, 75)
+复测: clamp(score_raw + test_bonus + improvement_bonus, 63, 88)
 ```
+
+分数区间解释：
+- 63-70：严重失衡；需极度关注身体的健康调理
+- 70-75：中度失衡；需重点关注身体的健康调理
+- 75-80：轻度失衡；身体亚健康，需重视身体的健康情况
+- 80-88：整体状态良好；继续保持
+
+> 注意：此公式与 prd-mulinsen-v1.md 7.8节保持一致
 
 ---
 

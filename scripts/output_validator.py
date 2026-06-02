@@ -3,9 +3,80 @@
 
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from logger import MERIDIANS
+
+
+# ---------------------------------------------------------------------------
+# Post-processing: fix known LLM temperature-expression violations
+# ---------------------------------------------------------------------------
+
+_BAD_EXPR_FIXES: list[tuple[str, str]] = [
+    # Order matters: more specific patterns first
+    (r"温差扩大", "问题更突出"),
+    (r"温差加重", "问题更突出"),
+    (r"温差恶化", "问题更突出"),
+    (r"且恶化", "且问题更突出"),
+    (r"°C属([^于])", r"°C，\1"),                   # "°C属正常" → "°C，正常"
+    (r"°C为有", "°C，"),                             # "°C为有" → "°C，"
+    (r"属于有比较严重的问题", "存在严重失衡"),         # old → new
+    (r"属于有健康问题", "存在明显失衡"),               # old → new
+    (r"属于有一定亚健康", "存在轻度亚健康问题"),       # old → new
+    (r"属于正常范围", "处于正常范围"),                  # old → new
+    (r"属于较严重问题", "存在严重失衡"),
+    (r"属于平衡(?!状|经|筋)", "处于正常范围"),
+    (r"温差平衡", "温差正常"),
+]
+
+
+def _fix_temperature_expressions(text: str) -> str:
+    """Apply regex fixes for known bad temperature expressions."""
+    for pattern, replacement in _BAD_EXPR_FIXES:
+        text = re.sub(pattern, replacement, text)
+    # Fix double commas that may result from replacements
+    text = text.replace("，，", "，")
+    return text
+
+
+def _fix_all_text_fields(result: dict[str, Any]) -> None:
+    """Apply temperature expression fixes to all LLM-generated text fields."""
+    # summary
+    if isinstance(result.get("summary"), str):
+        result["summary"] = _fix_temperature_expressions(result["summary"])
+    if isinstance(result.get("reportSummary"), str):
+        result["reportSummary"] = _fix_temperature_expressions(result["reportSummary"])
+
+    # storefront
+    sf = result.get("storefront", {})
+    if isinstance(sf, dict):
+        for key in ("focusHeadline", "clientExplanation", "retestPrompt"):
+            if isinstance(sf.get(key), str):
+                sf[key] = _fix_temperature_expressions(sf[key])
+        for i, t in enumerate(sf.get("talkTrack", [])):
+            if isinstance(t, str):
+                sf["talkTrack"][i] = _fix_temperature_expressions(t)
+
+    # meridianNarrative
+    narrative = result.get("meridianNarrative", {})
+    if isinstance(narrative, dict):
+        for key in narrative:
+            if isinstance(narrative[key], str):
+                narrative[key] = _fix_temperature_expressions(narrative[key])
+
+    # meridian_analysis narratives
+    for ma in result.get("meridian_analysis", []):
+        if isinstance(ma.get("narrative"), str):
+            ma["narrative"] = _fix_temperature_expressions(ma["narrative"])
+
+    # recommendations
+    recs = result.get("recommendations", [])
+    if isinstance(recs, list):
+        result["recommendations"] = [
+            _fix_temperature_expressions(r) if isinstance(r, str) else r
+            for r in recs
+        ]
 
 
 def validate_and_fix(
@@ -93,6 +164,7 @@ def validate_and_fix(
         result["recommendations"] = [r for r in recs if isinstance(r, str)]
 
     # --- final safety checks ---
+    _fix_all_text_fields(result)
     _ensure_storefront_safety(result)
 
     return result

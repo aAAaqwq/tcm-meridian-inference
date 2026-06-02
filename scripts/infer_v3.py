@@ -34,10 +34,10 @@ TREND_TYPES = {
 }
 
 DIFF_LEVELS = {
-    "balanced": "平衡",
-    "mild_sub_health": "有一定亚健康",
-    "health_problem": "有健康问题",
-    "serious_problem": "有比较严重的问题",
+    "balanced": "正常范围",
+    "mild_sub_health": "轻度亚健康问题",
+    "health_problem": "明显失衡",
+    "serious_problem": "严重失衡",
 }
 
 # ============================================================================
@@ -1308,8 +1308,8 @@ def get_matched_rules(meridian: str, trend: str, group1_status: str, group2_stat
             "cross": ["结石", "囊肿", "腹部手术史", "女性：剖腹产、人流、子宫肌瘤", "男性：前列腺炎、前列腺钙化"],
         },
         "stomach": {
-            "stable_left_low": ["阴虚生内热", "消化快", "容易饿"],
-            "stable_right_low": ["胃阳不足", "胃胀", "温度特别低时，可能吃什么拉什么"],
+            "stable_left_low": ["阴虚生内热", "消化快", "容易饿", "慢性胃炎"],
+            "stable_right_low": ["胃阳不足", "胃胀", "打嗝", "消化不良", "温度特别低时，可能吃什么拉什么"],
             "cross": ["饮食不规律", "胃炎", "胃溃疡", "消化不良"],
         },
         "gallbladder": {
@@ -1318,9 +1318,9 @@ def get_matched_rules(meridian: str, trend: str, group1_status: str, group2_stat
             "cross": ["温度上不去时，容易胆结石、胆囊炎", "不按时吃早餐"],
         },
         "bladder": {
-            "stable_left_low": ["肩颈腰与肠道方向需关注", "便秘", "痔疮", "大肠息肉风险", "肺左侧功能风险"],
-            "stable_right_low": ["湿下注与腰部方向需关注", "大便不成形", "湿气下注大肠", "肺右侧功能风险"],
-            "cross": ["肠道问题需关注", "生殖系统问题需关注", "腰部及循环问题需关注"],
+            "stable_left_low": ["肩颈腰痛"],
+            "stable_right_low": ["注意肺结节", "大肠息肉", "便溏"],
+            "cross": ["注意腰椎"],
         },
     }
 

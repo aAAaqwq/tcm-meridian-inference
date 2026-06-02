@@ -1,0 +1,307 @@
+{
+  "test_file": "test_37_real_case.json",
+  "test_name": "test_37",
+  "status": "success",
+  "response_time_ms": 0.06,
+  "request": {
+    "measurement_type": "first_test",
+    "gender": "male",
+    "meridians": {
+      "liver": {
+        "group1_left": 37.9,
+        "group1_right": 38.8,
+        "group2_left": 38.4,
+        "group2_right": 39.0
+      },
+      "spleen": {
+        "group1_left": 38.6,
+        "group1_right": 38.0,
+        "group2_left": 39.8,
+        "group2_right": 39.6
+      },
+      "kidney": {
+        "group1_left": 38.9,
+        "group1_right": 38.2,
+        "group2_left": 39.6,
+        "group2_right": 40.2
+      },
+      "stomach": {
+        "group1_left": 39.7,
+        "group1_right": 39.5,
+        "group2_left": 40.1,
+        "group2_right": 40.2
+      },
+      "gallbladder": {
+        "group1_left": 38.0,
+        "group1_right": 38.0,
+        "group2_left": 39.5,
+        "group2_right": 40.3
+      },
+      "bladder": {
+        "group1_left": 38.1,
+        "group1_right": 38.5,
+        "group2_left": 40.6,
+        "group2_right": 40.6
+      }
+    }
+  },
+  "expected": {},
+  "actual": {
+    "engine": {
+      "mode": "rule-based-v3",
+      "version": "3.0"
+    },
+    "score_result": {
+      "score": 63,
+      "score_raw": 63.35,
+      "problem_index": 29.5,
+      "problem_index_detail": {
+        "low_temperature_index": 4.0,
+        "temperature_difference_index": 7.5,
+        "side_bias_index": 4.0,
+        "trend_index": 7.0,
+        "combo_index": 7.0
+      }
+    },
+    "lowest_points": {
+      "selected": [
+        {
+          "meridian": "liver",
+          "side": "left",
+          "value": 38.4,
+          "rank": 1,
+          "must_report": true
+        },
+        {
+          "meridian": "liver",
+          "side": "right",
+          "value": 39.0,
+          "rank": 2,
+          "must_report": true
+        }
+      ],
+      "tie_candidates": []
+    },
+    "side_bias_summary": {
+      "left_low_count": 4,
+      "right_low_count": 1,
+      "balanced_count": 1,
+      "result": "head_blood_supply_attention"
+    },
+    "cervical_lumbar_result": {
+      "result": "cervical_and_lumbar",
+      "kidney_trend": "cross",
+      "bladder_trend": "fast_response"
+    },
+    "meridian_analysis": [
+      {
+        "meridian": "stomach",
+        "meridian_name": "胃经",
+        "group1_status": "right_low",
+        "group2_status": "left_low",
+        "trend": "cross",
+        "group1_diff": 0.2,
+        "group2_diff": 0.1,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "balanced",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "饮食不规律",
+          "胃炎",
+          "胃溃疡",
+          "消化不良"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "side_bias_participant"
+        ]
+      },
+      {
+        "meridian": "gallbladder",
+        "meridian_name": "胆经",
+        "group1_status": "balanced",
+        "group2_status": "left_low",
+        "trend": "potential_symptom",
+        "group1_diff": 0.0,
+        "group2_diff": 0.8,
+        "group1_diff_level": "balanced",
+        "group2_diff_level": "health_problem",
+        "diff_change": "worsened",
+        "matched_rules": [],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "diff_worsened",
+          "side_bias_participant"
+        ]
+      },
+      {
+        "meridian": "bladder",
+        "meridian_name": "膀胱经",
+        "group1_status": "left_low",
+        "group2_status": "balanced",
+        "trend": "fast_response",
+        "group1_diff": 0.4,
+        "group2_diff": 0.0,
+        "group1_diff_level": "mild_sub_health",
+        "group2_diff_level": "balanced",
+        "diff_change": "improved",
+        "matched_rules": [],
+        "is_focus": false,
+        "focus_reason": []
+      },
+      {
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "group1_status": "left_low",
+        "group2_status": "left_low",
+        "trend": "stable_left_low",
+        "group1_diff": 0.9,
+        "group2_diff": 0.6,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "improved",
+        "matched_rules": [
+          "气虚",
+          "血液流速不够",
+          "血液循环推动不足",
+          "垃圾容易沉积在血管中",
+          "血稠、血脂、高血压方向",
+          "代谢差",
+          "口臭",
+          "放屁多",
+          "解毒功能变弱",
+          "皮肤易过敏",
+          "湿疹",
+          "容易长斑"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "second_group_lowest_point",
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ]
+      },
+      {
+        "meridian": "spleen",
+        "meridian_name": "脾经",
+        "group1_status": "right_low",
+        "group2_status": "right_low",
+        "trend": "stable_right_low",
+        "group1_diff": 0.6,
+        "group2_diff": 0.2,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "balanced",
+        "diff_change": "improved",
+        "matched_rules": [
+          "湿气重",
+          "阳少湿气重",
+          "湿气下注到大肠，结合肝右低、肾右低，容易便溏",
+          "湿气下注到子宫，可能例假长",
+          "湿气下注到小腿，容易腿沉"
+        ],
+        "is_focus": false,
+        "focus_reason": []
+      },
+      {
+        "meridian": "kidney",
+        "meridian_name": "肾经",
+        "group1_status": "right_low",
+        "group2_status": "left_low",
+        "trend": "cross",
+        "group1_diff": 0.7,
+        "group2_diff": 0.6,
+        "group1_diff_level": "health_problem",
+        "group2_diff_level": "health_problem",
+        "diff_change": "unchanged",
+        "matched_rules": [
+          "结石",
+          "囊肿",
+          "腹部手术史",
+          "女性：剖腹产、人流、子宫肌瘤",
+          "男性：前列腺炎、前列腺钙化"
+        ],
+        "is_focus": true,
+        "focus_reason": [
+          "group2_diff_health_problem",
+          "side_bias_participant"
+        ]
+      }
+    ],
+    "focus_issues": [
+      {
+        "priority": 1,
+        "type": "lowest_point",
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "side": "left",
+        "title": "肝经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_health_problem"
+        ]
+      },
+      {
+        "priority": 2,
+        "type": "lowest_point",
+        "meridian": "liver",
+        "meridian_name": "肝经",
+        "side": "right",
+        "title": "肝经问题较突出",
+        "reason_codes": [
+          "second_group_lowest_point",
+          "group2_diff_health_problem"
+        ]
+      },
+      {
+        "priority": 3,
+        "type": "side_bias",
+        "title": "头部供血需关注",
+        "left_low_count": 4,
+        "reason_codes": [
+          "left_bias_count_high"
+        ]
+      },
+      {
+        "priority": 4,
+        "type": "cervical_lumbar",
+        "title": "颈椎和腰椎问题同时存在",
+        "reason_codes": [
+          "cervical_and_lumbar_detected"
+        ]
+      }
+    ],
+    "gender": "male",
+    "measurement_type": "first_test",
+    "summary": "本次检测显示您的综合健康分63分，属于明显失衡状态。肝经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
+    "reportSummary": "本次检测显示您的综合健康分63分，属于明显失衡状态。肝经等多个经络存在明显问题，提示身体处于亚健康状态。建议重点关注，及时进行系统调理。",
+    "storefront": {
+      "focusHeadline": "肝经问题需紧急关注",
+      "clientExplanation": "本次检测基于足部经络温度分析，不等同于医疗诊断。如有不适请及时就医。",
+      "talkTrack": [
+        "您的检测结果显示，肝经等多个经络问题比较突出。",
+        "整体健康分63分，属于明显失衡状态，需要重点关注和调理。"
+      ],
+      "retestPrompt": "建议坚持调理2-3周后复测，密切观察改善情况。"
+    },
+    "recommendations": [
+      "【肝经】保持规律作息，尽量在23点前入睡，利于肝脏代谢。",
+      "【头部供血需关注】注意头部保暖，避免冷风直吹。",
+      "【颈椎+腰椎问题】保持正确姿势，避免长时间保持同一姿势。",
+      "保持规律作息，避免熬夜，保证充足睡眠。",
+      "适度运动，如散步、太极、瑜伽等，促进气血流通。"
+    ]
+  },
+  "key_fields": {
+    "score": 63,
+    "problem_index": 29.5,
+    "problem_index_detail": {
+      "low_temperature_index": 4.0,
+      "temperature_difference_index": 7.5,
+      "side_bias_index": 4.0,
+      "trend_index": 7.0,
+      "combo_index": 7.0
+    }
+  },
+  "error": null
+}
