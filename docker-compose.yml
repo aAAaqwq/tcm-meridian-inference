@@ -34,7 +34,7 @@ services:
       - TCM_INFER_MODE=${TCM_INFER_MODE:-auto}
       - TCM_LOG_LEVEL=${TCM_LOG_LEVEL:-INFO}
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY:-}
-      - DEEPSEEK_MODEL=${DEEPSEEK_MODEL:-deepseek-chat}
+      - DEEPSEEK_MODEL=${DEEPSEEK_MODEL:-deepseek-v4-flash}
       # Python 内存优化
       - PYTHONUNBUFFERED=1
       - MALLOC_ARENA_MAX=2

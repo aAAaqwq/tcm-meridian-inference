@@ -58,7 +58,7 @@ docker run -d \
     -e TCM_INFER_MODE="${TCM_INFER_MODE:-auto}" \
     -e TCM_LOG_LEVEL="${TCM_LOG_LEVEL:-INFO}" \
     -e DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-}" \
-    -e DEEPSEEK_MODEL="${DEEPSEEK_MODEL:-deepseek-chat}" \
+    -e DEEPSEEK_MODEL="${DEEPSEEK_MODEL:-deepseek-v4-flash}" \
     "$IMAGE"
 
 # 等待启动

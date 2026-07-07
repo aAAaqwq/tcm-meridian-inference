@@ -100,12 +100,17 @@ jobs:
             docker run -d \
               --name $CONTAINER_NAME \
               --restart unless-stopped \
+              --memory=1g --memory-swap=1g \
+              --health-cmd="python3 -c \"import urllib.request;urllib.request.urlopen('http://localhost:$PORT/health')\"" \
+              --health-interval=15s --health-timeout=5s --health-retries=3 --health-start-period=30s \
               -p $PORT:$PORT \
               -e TCM_API_PORT=$PORT \
               -e TCM_INFER_MODE="${{ secrets.TCM_INFER_MODE || 'auto' }}" \
               -e TCM_LOG_LEVEL="${{ secrets.TCM_LOG_LEVEL || 'INFO' }}" \
               -e DEEPSEEK_API_KEY="${{ secrets.DEEPSEEK_API_KEY }}" \
-              -e DEEPSEEK_MODEL="${{ secrets.DEEPSEEK_MODEL || 'deepseek-chat' }}" \
+              -e DEEPSEEK_MODEL="${{ secrets.DEEPSEEK_MODEL || 'deepseek-v4-flash' }}" \
+              -e PYTHONUNBUFFERED=1 \
+              -e MALLOC_ARENA_MAX=2 \
               $IMAGE
 
             # 等待服务启动

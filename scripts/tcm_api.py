@@ -19,8 +19,9 @@ import json
 import sys
 import os
 import signal
+import threading
 import time
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import urlparse
 from importlib import util as importlib_util
@@ -41,35 +42,48 @@ _shutting_down = False
 _infer_mod = None
 _agent_mod = None
 _rules = None
+_load_lock = threading.Lock()
 
 
 def load_infer():
+    """加载推理引擎模块（线程安全，双重检查锁定）。"""
     global _infer_mod
     if _infer_mod is not None:
         return _infer_mod
-    spec = importlib_util.spec_from_file_location("infer_v3", INFER_SCRIPT)
-    _infer_mod = importlib_util.module_from_spec(spec)
-    spec.loader.exec_module(_infer_mod)
+    with _load_lock:
+        if _infer_mod is not None:
+            return _infer_mod
+        spec = importlib_util.spec_from_file_location("infer_v3", INFER_SCRIPT)
+        _infer_mod = importlib_util.module_from_spec(spec)
+        spec.loader.exec_module(_infer_mod)
     return _infer_mod
 
 
 def load_agent():
+    """加载 agent 模块（线程安全，双重检查锁定）。"""
     global _agent_mod
     if _agent_mod is not None:
         return _agent_mod
-    spec = importlib_util.spec_from_file_location("infer_agent", AGENT_SCRIPT)
-    _agent_mod = importlib_util.module_from_spec(spec)
-    spec.loader.exec_module(_agent_mod)
+    with _load_lock:
+        if _agent_mod is not None:
+            return _agent_mod
+        spec = importlib_util.spec_from_file_location("infer_agent", AGENT_SCRIPT)
+        _agent_mod = importlib_util.module_from_spec(spec)
+        spec.loader.exec_module(_agent_mod)
     return _agent_mod
 
 
 def load_rules():
+    """加载规则文件（线程安全，双重检查锁定）。"""
     global _rules
     if _rules is not None:
         return _rules
-    with open(os.path.join(RULES_DIR, "meridian_rules.json")) as f:
-        meridian_rules = json.load(f)
-    _rules = {"meridian_rules": meridian_rules}
+    with _load_lock:
+        if _rules is not None:
+            return _rules
+        with open(os.path.join(RULES_DIR, "meridian_rules.json")) as f:
+            meridian_rules = json.load(f)
+        _rules = {"meridian_rules": meridian_rules}
     return _rules
 
 
@@ -238,7 +252,7 @@ def main():
     global _shutting_down
     load_dotenv()
     mode = _resolve_mode()
-    server = HTTPServer(("0.0.0.0", PORT), TCMHandler)
+    server = ThreadingHTTPServer(("0.0.0.0", PORT), TCMHandler)
     log.info("TCM API v3 starting on 0.0.0.0:%d mode=%s", PORT, mode)
 
     def shutdown(sig, _frame):

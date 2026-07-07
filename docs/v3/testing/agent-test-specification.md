@@ -31,7 +31,7 @@ docs/v3/testing/agent-results/
 
 **生成时间**: 2026-05-05  
 **后端版本**: v3.0 (Agent 模式)  
-**LLM 模型**: deepseek-chat
+**LLM 模型**: deepseek-v4-flash
 
 ---
 

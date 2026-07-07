@@ -233,7 +233,7 @@ ls docs/v3/testing/actual-results/
 | `TCM_API_PORT` | `18790` | 服务端口 |
 | `TCM_INFER_MODE` | `auto` | `rule` / `agent` / `auto` |
 | `DEEPSEEK_API_KEY` | （空） | DeepSeek API 密钥 |
-| `DEEPSEEK_MODEL` | `deepseek-chat` | DeepSeek 模型 |
+| `DEEPSEEK_MODEL` | `deepseek-v4-flash` | DeepSeek 模型 |
 | `TCM_LOG_LEVEL` | `INFO` | 日志级别 |
 
 ---

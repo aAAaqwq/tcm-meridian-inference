@@ -93,7 +93,7 @@ def run_hybrid(
     merged["engine"] = {
         "mode": "hybrid",
         "version": rule_result["engine"]["version"],
-        "llmModel": os.environ.get("DEEPSEEK_MODEL", "deepseek-reasoner"),
+        "llmModel": os.environ.get("DEEPSEEK_MODEL", "deepseek-v4-flash"),
         "llmLatency": elapsed,
     }
     log.info("hybrid inference done score=%s llm_latency=%.2fs", merged.get("score_result", {}).get("score", 0), elapsed)

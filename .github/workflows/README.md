@@ -32,7 +32,7 @@ GitHub 仓库 → Settings → Secrets and variables → Actions → New reposit
 |------------|------|--------|
 | `TCM_INFER_MODE` | 推理模式 | `auto` |
 | `TCM_LOG_LEVEL` | 日志级别 | `INFO` |
-| `DEEPSEEK_MODEL` | 模型名称 | `deepseek-chat` |
+| `DEEPSEEK_MODEL` | 模型名称 | `deepseek-v4-flash` |
 
 ### 2. 启用 GitHub Container Registry
 

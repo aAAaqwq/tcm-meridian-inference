@@ -182,7 +182,7 @@ python3 tests/run_v3_tests.py --sequential
   "engine": {
     "mode": "hybrid",
     "version": "3.0",
-    "llmModel": "deepseek-chat",
+    "llmModel": "deepseek-v4-flash",
     "llmLatency": 8.83
   },
 

@@ -89,7 +89,7 @@ services:
       - TCM_INFER_MODE=\${TCM_INFER_MODE:-auto}
       - TCM_LOG_LEVEL=\${TCM_LOG_LEVEL:-INFO}
       - DEEPSEEK_API_KEY=\${DEEPSEEK_API_KEY:-}
-      - DEEPSEEK_MODEL=\${DEEPSEEK_MODEL:-deepseek-chat}
+      - DEEPSEEK_MODEL=\${DEEPSEEK_MODEL:-deepseek-v4-flash}
     ports:
       - "${PORT}:8080"
     healthcheck:
@@ -135,7 +135,7 @@ if [ ! -f .env ]; then
     cat > .env << 'EOF'
 # DeepSeek API (Hybrid模式需要)
 DEEPSEEK_API_KEY=
-DEEPSEEK_MODEL=deepseek-chat
+DEEPSEEK_MODEL=deepseek-v4-flash
 
 # 推理模式: rule | agent | auto
 TCM_INFER_MODE=auto
