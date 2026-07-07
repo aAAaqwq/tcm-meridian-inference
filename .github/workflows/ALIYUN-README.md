@@ -31,7 +31,7 @@
 |------------|------|------|
 | `ALIYUN_USERNAME` | 阿里云账号 | `aaa_xxx` |
 | `ALIYUN_PASSWORD` | 固定密码 | `your-password` |
-| `SSH_HOST` | 服务器 IP | `180.76.137.183` |
+| `SSH_HOST` | 服务器 IP | `8.163.126.86` |
 | `SSH_USER` | SSH 用户名 | `root` |
 | `SSH_PASSWORD` | SSH 密码 | `your-password` |
 | `DEEPSEEK_API_KEY` | DeepSeek API Key | `sk-xxxxxxxx` |
@@ -52,7 +52,7 @@ git push origin main
 
 ```bash
 # 1. 登录服务器
-ssh root@180.76.137.183
+ssh root@8.163.126.86
 
 # 2. 登录阿里云镜像仓库
 docker login registry.cn-hangzhou.aliyuncs.com -u YOUR_ALIYUN_USERNAME

@@ -6,7 +6,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-API_URL = "http://180.76.137.183:18790/api/inference/meridian-diagnosis"
+API_URL = "http://8.163.126.86:18790/api/inference/meridian-diagnosis"
 FIXTURES_DIR = Path("fixtures/v3")
 OUTPUT_FILE = Path("docs/v3/testing/test_outputs_real.json")
 

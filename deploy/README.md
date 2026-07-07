@@ -24,7 +24,7 @@
 
    | Secret | 说明 |
    |--------|------|
-   | `SSH_HOST` | 服务器 IP，如 `180.76.137.183` |
+   | `SSH_HOST` | 服务器 IP，如 `8.163.126.86` |
    | `SSH_USER` | SSH 用户名，如 `root` |
    | `SSH_PASSWORD` | SSH 密码 |
    | `DEEPSEEK_API_KEY` | DeepSeek API Key |
@@ -67,7 +67,7 @@ firewall-cmd --reload
 
 ```bash
 # 1. 登录服务器
-ssh root@180.76.137.183
+ssh root@8.163.126.86
 
 # 2. 创建工作目录
 cd ~ && mkdir -p tcm-api && cd tcm-api

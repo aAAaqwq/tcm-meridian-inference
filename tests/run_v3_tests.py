@@ -13,8 +13,8 @@ V3推理引擎测试脚本
   python3 tests/run_v3_tests.py --mode agent
 
   # 线上API测试
-  python3 tests/run_v3_tests.py --url http://180.76.137.183:18790/api/inference/meridian-diagnosis
-  python3 tests/run_v3_tests.py --port 18970
+  python3 tests/run_v3_tests.py --url http://8.163.126.86:18790/api/inference/meridian-diagnosis
+  python3 tests/run_v3_tests.py --port 18790
 """
 
 import argparse

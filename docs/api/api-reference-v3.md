@@ -48,8 +48,8 @@ python3 tests/run_v3_tests.py --mode rule        # 纯规则引擎
 python3 tests/run_v3_tests.py --mode agent       # Hybrid模式(需DEEPSEEK_API_KEY)
 
 # 线上API测试
-python3 tests/run_v3_tests.py --url http://180.76.137.183:18970/api/inference/meridian-diagnosis
-python3 tests/run_v3_tests.py --port 18970      # 指定端口
+python3 tests/run_v3_tests.py --url http://8.163.126.86:18790/api/inference/meridian-diagnosis
+python3 tests/run_v3_tests.py --port 18790      # 指定端口
 
 # 顺序执行（便于调试）
 python3 tests/run_v3_tests.py --sequential

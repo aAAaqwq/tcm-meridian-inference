@@ -1,7 +1,7 @@
 # V3 API 测试结果汇总
 
 **测试时间**: 2026-05-07 19:50:43
-**API地址**: http://180.76.137.183:18790/api/inference/meridian-diagnosis
+**API地址**: http://8.163.126.86:18790/api/inference/meridian-diagnosis
 
 ## 统计概览
 

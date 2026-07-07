@@ -27,7 +27,7 @@ python3 tests/run_v3_tests.py --mode rule        # 纯规则引擎
 python3 tests/run_v3_tests.py --mode agent      # Hybrid模式
 
 # 线上API测试
-python3 tests/run_v3_tests.py --url http://180.76.137.183:18970/api/inference/meridian-diagnosis
+python3 tests/run_v3_tests.py --url http://8.163.126.86:18790/api/inference/meridian-diagnosis
 ```
 
 #### 分析文档
@@ -103,7 +103,7 @@ cd tests
 python3 run_v3_tests.py                       # 本地自动模式
 python3 run_v3_tests.py --mode rule           # 纯规则引擎
 python3 run_v3_tests.py --mode agent          # Hybrid模式(需DEEPSEEK_API_KEY)
-python3 run_v3_tests.py --port 18970          # 测试线上API
+python3 run_v3_tests.py --port 18790          # 测试线上API
 
 # 单个测试
 python3 scripts/infer_v3.py fixtures/v3/case_01_first_test.json --pretty

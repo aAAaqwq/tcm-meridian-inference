@@ -21,7 +21,7 @@ GitHub 仓库 → Settings → Secrets and variables → Actions → New reposit
 
 | Secret 名称 | 说明 | 示例 |
 |------------|------|------|
-| `SSH_HOST` | 服务器 IP | `180.76.137.183` |
+| `SSH_HOST` | 服务器 IP | `8.163.126.86` |
 | `SSH_USER` | SSH 用户名 | `root` |
 | `SSH_PASSWORD` | SSH 密码 | `your-password` |
 | `DEEPSEEK_API_KEY` | DeepSeek API Key | `sk-xxxxxxxx` |
@@ -43,7 +43,7 @@ GitHub 仓库 → Settings → Secrets and variables → Actions → New reposit
 
 ```bash
 # 1. 登录服务器
-ssh root@180.76.137.183
+ssh root@8.163.126.86
 
 # 2. 检查 Docker
 docker --version
@@ -99,7 +99,7 @@ GitHub → Actions → Build and Deploy → Run workflow
 
 ```bash
 # 1. 登录服务器
-ssh root@180.76.137.183
+ssh root@8.163.126.86
 
 # 2. 下载部署脚本
 cd ~ && curl -O https://raw.githubusercontent.com/AAAaqwq/tcm-meridian-inference/main/deploy/server-deploy.sh
